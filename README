@@ -1,0 +1,80 @@
+ ___              ____    _____    ____     _    _   _____    ___    __
+|   |     /\     |    \     |     /    \   | \  / |    |     /   \  /  |
+|___|    /  \    |     |    |    |      |  |  \/  |    |    |       \ _
+|  \    /____\   |     |    |    |      |  |      |    |    |          \
+|   \  /      \  |____/   __|__   \____/   |      |  __|__   \___/  |__/
+
+-------------------------------------------------------------------------
+
+|<https://github.com/mvallieres/radiomics/>|
+--> A package providing MATLAB programming tools for radiomics analysis.
+
+-------------------------------------------------------------------------
+REFERENCE:
+[1] Vallières, M. et al. (2015). A radiomics model from joint FDG-PET and 
+    MRI texture features for the prediction of lung metastases in soft-tissue 
+    sarcomas of the extremities. Physics in Medicine and Biology, 00(0), xxx-yyy. 
+-------------------------------------------------------------------------
+AUTHOR: Martin Vallières <mart.vallieres@gmail.com>
+-------------------------------------------------------------------------
+HISTORY:
+- Version 1.0: May 2015
+-------------------------------------------------------------------------
+DISCLAIMER:
+"I am not a programmer, I am just a scientist doing stuff!"
+-------------------------------------------------------------------------
+
+
+*** THANK YOU FOR YOUR INTEREST IN THIS PACKAGE ***
+--> If you have any questions, comments or suggestions about this package, 
+    please do not hesitate to contact me!
+
+
+This package contains 5 folders:
+
+1. 'TextureToolbox': MATLAB codes to perform texture analysis from an input 
+    2D or 3D region of interest (ROI). This toolbox is self-contained and 
+    can be used on its own outside of the radiomics package. In particular,
+    this texture analysis package implements wavelet band-pass filtering, 
+    isotropic resampling, discretization length corrections and different 
+    quantization tools. Please see ref. [1] for more details.
+
+
+2. 'NonTextureFeatures': MATLAB codes to compute features other than texture
+    from an input 3D region of interest (ROI). Include features such as SUV 
+    metrics, AUC-CSH, Percent Inactive, Size, Solidity, Volume and Eccentricity. 
+    Please see ref. [1] for more details.
+
+
+3. 'MultivariableModeling': MATLAB codes to perform multivariable analysis
+    operations such as logistic regression, bootstrapping, feature set 
+    reduction, feature set selection, prediction performance estimation,
+    permutation tests, etc.
+
+--> IMPORTANT: These codes will be put online during the week of June 8, 2015.
+    (Martin Vallières - June 1, 2015)
+
+
+4. 'Utilities': MATLAB codes used to perform different operations including
+    the computation of SUV maps, 3D resampling, conversion of RTstruct DICOM
+    objects to 3D masks, 3D resampling, etc.
+
+
+5. 'STUDIES': MATLAB codes used for specific studies. To reproduce the 
+    experiments of a given study, please see its corresponding folder.
+   
+    - 'STSstudy': Ref. [1]. Imaging data and clinical information is 
+       available on The Cancer Imaging Archive (TCIA) website under the 
+       following DOI: <http://dx.doi.org/10.7937/K9/TCIA.2015.7GO2GSKS>.
+ 
+
+
+**************************************************************************************************
+ACKNOWLEDGEMENTS: other software code
+- Wei's GLRLM toolbox: Xunkai Wei, Gray Level Run Length Matrix Toolbox
+  v1.0, Software,Beijing Aeronautical Technology Research Center, 2007.
+  <http://www.mathworks.com/matlabcentral/fileexchange/17482-gray-level-run-length-matrix-toolbox>
+- Q. Li: <http://www.mathworks.com/matlabcentral/fileexchange/23377-ellipsoid-fitting>
+- CERR development team <http://www.cerr.info/>
+- Dirk-Jan Kroon: <http://www.mathworks.com/matlabcentral/fileexchange/21451-multimodality-non-rigid-demon-algorithm-image-registration/content//functions/imresize3d.m>
+***************************************************************************************************

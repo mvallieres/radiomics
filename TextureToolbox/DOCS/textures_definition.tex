@@ -1,0 +1,248 @@
+\documentclass{article}
+\usepackage{mathtools}
+\usepackage{mathrsfs}
+\usepackage{hyperref}
+\usepackage{multirow}
+\hypersetup{colorlinks,citecolor=black,filecolor=black,linkcolor=black,urlcolor=black}
+
+\begin{document}
+
+\section*{DEFINITION OF TEXTURE FEATURES}
+\bigskip
+
+\noindent \textbf{Input volume:} Volume of interest $V(x,y,z)$ with isotropic voxel size. The necessity for isotropically resampling $V$ to a given voxel dimension prior to texture analysis results from the fact that \textit{Global} features are computed from histograms counting the number of gray-levels in 3D space, and that all higher-order texture measurements explicitly or implicitly involve a distance parameter in the matrix computation (GLCM, GLRLM, GLSZM and NGTDM). For this parameter to be meaningful in 3D space and in order for the orientation dependence of the tumour to be minimized, isotropic resolution is required.
+\bigskip \bigskip
+
+% GLOBAL TEXTURES
+\noindent \textbf{Global texture features (first-order gray-level statistics).} \\
+Let $P$ define the first-order histogram of a volume $V(x,y,z)$ with isotropic voxel size. $P(i)$ represents the number of voxels with gray-level $i$, and $N_g$ represents the number of gray-level bins set for $P$. The $i^{\mathrm{th}}$ entry of the normalized histogram is then defined as:
+
+\[p(i) = \frac{P(i)}{\sum_{i=1}^{N_g} P(i)}.\] \\
+
+\noindent The \textit{Global} texture features are then defined as:
+
+\begin{itemize}
+	\item Variance:
+		  \[\sigma^2 = \sum_{i=1}^{N_g} (i-\mu)^2\,p(i)\] 
+	\item Skewness:
+		  \[s = \sigma^{-3} \sum_{i=1}^{N_g} (i-\mu)^3\,p(i)\]
+	\item Kurtosis
+		  \[k = \sigma^{-4} \sum_{i=1}^{N_g} \left[(i-\mu)^4\,p(i)\right]-3\]
+	\\
+\end{itemize}
+
+
+% GLCM TEXTURES
+\noindent \textbf{Gray-Level Co-occurence Matrix (GLCM) texture features.} \\
+Let $P$ define the GLCM of a quantized volume $V(x,y,z)$ with isotropic voxel size. $P(i,j)$ represents the number of times voxels of gray-level $i$ were neighbours with voxels of gray-level $j$ in $V$, and $N_g$ represents the pre-defined number of quantized gray-levels set in $V$. Only one GLCM of size $N_g \times N_g$ is computed per volume $V$ by simultaneously adding up the frequency of co-occurences of all voxels with their 26-connected neighbours in 3D space, with all voxels (\textit{including} the peripheral region) considered once as a center voxel (according to \cite{HaralickRM1973}, thus always using $d=1$). To account for discretization length differences, neighbours at a distance of $\sqrt{3}$ voxels around a center voxel increment the GLCM by a value of $\sqrt{3}$, neighbours at a distance of $\sqrt{2}$ voxels around a center voxel increment the GLCM by a value of $\sqrt{2}$, and neighbours at a distance of 1 voxel around a center voxel increment the GLCM by a value of 1. The entry $(i,j)$ of the of the normalized GLCM is then defined as:
+
+\[p(i,j) = \frac{P(i,j)}{\sum_{i=1}^{N_g}\sum_{j=1}^{N_g} P(i,j)}.\]
+
+\noindent The following quantities are also defined:
+\[\mu_i = \sum_{i=1}^{N_g} i \sum_{j=1}^{N_g} p(i,j), \qquad \mu_j = \sum_{j=1}^{N_g} j \sum_{i=1}^{N_g} p(i,j),\]
+\[\sigma_i = \sum_{i=1}^{N_g} (i-\mu_i)^2 \sum_{j=1}^{N_g} p(i,j), \qquad \sigma_j = \sum_{j=1}^{N_g} (j-\mu_j)^2 \sum_{i=1}^{N_g} p(i,j).\] \\
+
+\noindent The GLCM texture features are then defined as:
+
+\begin{itemize}
+	\item Energy \cite{HaralickRM1973}:
+		  \[energy = \sum_{i=1}^{N_g}\sum_{j=1}^{N_g} \left[p(i,j)\right]^2\]
+	\item Contrast \cite{HaralickRM1973}:
+		  \[contrast = \sum_{i=1}^{N_g}\sum_{j=1}^{N_g} (i-j)^2\,p(i,j)\]
+	\item Correlation (adapted from \cite{HaralickRM1973}):
+		  \[correlation = \sum_{i=1}^{N_g}\sum_{j=1}^{N_g} \frac{(i-\mu_i)\,(j-\mu_j)\,p(i,j)}	
+		  {\sigma_i\,\sigma_j}\]
+	\item Homogeneity (adapted from \cite{HaralickRM1973}):
+		  \[homogeneity = \sum_{i=1}^{N_g}\sum_{j=1}^{N_g} \frac{p(i,j)}{1 + \vert i-j \vert}\]
+	\item Variance (adapted from \cite{HaralickRM1973}):
+		  \[variance = \frac{1}{N_g \times N_g} \sum_{i=1}^{N_g}\sum_{j=1}^{N_g} 
+		  \left[(i-\mu_i)^2\,p(i,j) + (j-\mu_j)^2\,p(i,j)\right]\]
+	\item Sum Average (adapted from \cite{HaralickRM1973}):
+		  \[sum\text{ }average = \frac{1}{N_g \times N_g} \sum_{i=1}^{N_g}\sum_{j=1}^{N_g} 
+		  \left[i\,p(i,j) + j\,p(i,j)\right]\]
+	\item Entropy \cite{HaralickRM1973}:
+		  \[entropy = -\sum_{i=1}^{N_g}\sum_{j=1}^{N_g} p(i,j)\,\text{log}_2\big(p(i,j)\big)\]
+	\\	
+\end{itemize}
+
+
+% GLRLM TEXTURES
+\noindent \textbf{Gray-Level Run-Length Matrix (GLRLM) texture features.} \\
+Let $P$ define the GLRLM of a quantized volume $V(x,y,z)$ with isotropic voxel size. $P(i,j)$ represents the number of runs of gray-level $i$ and of length $j$ in $V$, $N_g$ represents the pre-defined number of quantized gray-levels set in $V$, and $L_r$ represents the length of the longest run (of any gray-level) in $V$. Only one GLRLM of size $N_g \times L_r$ is computed per volume $V$ by simultaneously adding up all possible longest run-lengths in the 13 directions of 3D space (one voxel can be part of multiple runs in different directions, but can be part of only one run in a given direction). A MATLAB toolbox created by Xunkai Wei \cite{WeiX2008} computes GLRLMs from 2D images, and it can be used to facilitate the computation of GLRLMs from 3D volumes. To account for discretization length differences, runs constructed from voxels separated by a distance of $\sqrt{3}$ increment the GLRLM by a value of $\sqrt{3}$, runs constructed from voxels separated by a distance of $\sqrt{2}$ increment the GLRLM by a value of $\sqrt{2}$, and runs constructed from voxels separated by a distance of 1 increment the GLRLM by a value of 1. The entry $(i,j)$ of the of the normalized GLRLM is then defined as:
+
+\[p(i,j) = \frac{P(i,j)}{\sum_{i=1}^{N_g}\sum_{j=1}^{L_r} P(i,j)}.\]
+
+\noindent The following quantities are also defined:
+\[\mu_i = \sum_{i=1}^{N_g} i \sum_{j=1}^{L_r} p(i,j), \qquad \mu_j = \sum_{j=1}^{L_r} j \sum_{i=1}^{N_g} p(i,j).\] \\
+
+\noindent The GLRLM texture features are then defined as:
+
+\begin{itemize}
+	\item Short Run Emphasis (SRE) \cite{GallowayMM1975}:
+		  \[SRE = \sum_{i=1}^{N_g}\sum_{j=1}^{L_r} \frac{p(i,j)}{j^2}\]
+	\item Long Run Emphasis (LRE) \cite{GallowayMM1975}:
+		  \[LRE = \sum_{i=1}^{N_g}\sum_{j=1}^{L_r} j^2\,p(i,j)\]
+	\item Gray-Level Nonuniformity (GLN) (adapted from \cite{GallowayMM1975}):
+		  \[GLN = \sum_{i=1}^{N_g}\left(\sum_{j=1}^{L_r} p(i,j)\right)^2\]
+	\item Run-Length Nonuniformity (RLN) (adapted from \cite{GallowayMM1975}):
+		  \[RLN = \sum_{j=1}^{L_r}\left(\sum_{i=1}^{N_g} p(i,j)\right)^2\]
+	\item Run Percentage (RP) (adapted from \cite{GallowayMM1975}):
+		  \[RP = \frac{\sum_{i=1}^{N_g}\sum_{j=1}^{L_r} p(i,j)}{\sum_{j=1}^{L_r} j 
+		  \sum_{i=1}^{N_g} p(i,j)}\]
+	\item Low Gray-Level Run Emphasis (LGRE) \cite{ChuA1990}:
+		  \[LGRE = \sum_{i=1}^{N_g}\sum_{j=1}^{L_r} \frac{p(i,j)}{i^2}\]
+	\item High Gray-Level Run Emphasis (HGRE) \cite{ChuA1990}:
+		  \[HGRE = \sum_{i=1}^{N_g}\sum_{j=1}^{L_r} i^2\,p(i,j)\]
+	\item Short Run Low Gray-Level Emphasis (SRLGE) \cite{DasarathyBV1991}:
+		  \[SRLGE = \sum_{i=1}^{N_g}\sum_{j=1}^{L_r} \frac{p(i,j)}{i^2j^2}\]
+	\item Short Run High Gray-Level Emphasis (SRHGE) \cite{DasarathyBV1991}:
+		  \[SRHGE = \sum_{i=1}^{N_g}\sum_{j=1}^{L_r} \frac{i^2\,p(i,j)}{j^2}\]
+	\item Long Run Low Gray-Level Emphasis (LRLGE) \cite{DasarathyBV1991}:
+		  \[LRLGE = \sum_{i=1}^{N_g}\sum_{j=1}^{L_r} \frac{j^2\,p(i,j)}{i^2}\]
+	\item Long Run High Gray-Level Emphasis (LRHGE) \cite{DasarathyBV1991}:
+		  \[LRHGE = \sum_{i=1}^{N_g}\sum_{j=1}^{L_r} i^2j^2\,p(i,j)\]
+	\item Gray-Level Variance (GLV) (adapted from \cite{ThibaultG2009}):
+		  \[GLV = \frac{1}{N_g \times L_r} \sum_{i=1}^{N_g}\sum_{j=1}^{L_r} 
+		  \left(i\,p(i,j)-\mu_i\right)^2\]
+	\item Run-Length Variance (RLV) (adapted from \cite{ThibaultG2009}):
+		  \[RLV = \frac{1}{N_g \times L_r} \sum_{i=1}^{N_g}\sum_{j=1}^{L_r} 
+		  \left(j\,p(i,j)-\mu_j\right)^2\]
+	\\
+\end{itemize}
+
+
+% GLSZM TEXTURES
+\noindent \textbf{Gray-Level Size Zone Matrix (GLSZM) texture features.} \\
+Let $P$ define the GLSZM of a quantized volume $V(x,y,z)$ with isotropic voxel size. $P(i,j)$ represents the number of 3D zones of gray-levels $i$ and of size $j$ in $V$, $N_g$ represents the pre-defined number of quantized gray-levels set in $V$, and $L_z$ represents the size of the largest zone (of any gray-level) in $V$.  One GLSZM of size $N_g \times L_z$ is computed per volume $V$ by adding up all possible largest zone-sizes, with zones constructed from 26-connected neighbours  of the same gray-level in 3D space (one voxel can be part of only one zone). The entry $(i,j)$ of the normalized GLSZM is then defined as:
+
+\[p(i,j) = \frac{P(i,j)}{\sum_{i=1}^{N_g}\sum_{j=1}^{L_z} P(i,j)}.\]
+
+\noindent The following quantities are also defined:
+\[\mu_i = \sum_{i=1}^{N_g} i \sum_{j=1}^{L_z} p(i,j), \qquad \mu_j = \sum_{j=1}^{L_z} j \sum_{i=1}^{N_g} p(i,j).\] \\
+
+\noindent The GLSZM texture features are then defined as:
+
+\begin{itemize}
+	\item Small Zone Emphasis (SZE) \cite{GallowayMM1975,ThibaultG2009}:
+		  \[SZE = \sum_{i=1}^{N_g}\sum_{j=1}^{L_z} \frac{p(i,j)}{j^2}\]
+	\item Large Zone Emphasis (LZE) \cite{GallowayMM1975,ThibaultG2009}:
+		  \[LZE = \sum_{i=1}^{N_g}\sum_{j=1}^{L_z} j^2\,p(i,j)\]
+	\item Gray-Level Nonuniformity (GLN) (adapted from \cite{GallowayMM1975,ThibaultG2009}):
+		  \[GLN = \sum_{i=1}^{N_g}\left(\sum_{j=1}^{L_z} p(i,j)\right)^2\]
+	\item Zone-Size Nonuniformity (ZSN) (adapted from \cite{GallowayMM1975,ThibaultG2009}):
+		  \[ZSN = \sum_{j=1}^{L_z}\left(\sum_{i=1}^{N_g} p(i,j)\right)^2\]
+	\item Zone Percentage (RP) \cite{GallowayMM1975,ThibaultG2009}:
+		  \[ZP = \frac{\sum_{i=1}^{N_g}\sum_{j=1}^{L_z} p(i,j)}{\sum_{j=1}^{L_z} j 
+		  \sum_{i=1}^{N_g} p(i,j)}\]
+	\item Low Gray-Level Zone Emphasis (LGZE) \cite{ChuA1990,ThibaultG2009}:
+		  \[LGZE = \sum_{i=1}^{N_g}\sum_{j=1}^{L_z} \frac{p(i,j)}{i^2}\]
+	\item High Gray-Level Zone Emphasis (HGZE) \cite{ChuA1990,ThibaultG2009}:
+		  \[HGZE = \sum_{i=1}^{N_g}\sum_{j=1}^{L_z} i^2\,p(i,j)\]
+	\item Small Zone Low Gray-Level Emphasis (SZLGE) \cite{DasarathyBV1991,ThibaultG2009}:
+		  \[SZLGE = \sum_{i=1}^{N_g}\sum_{j=1}^{L_z} \frac{p(i,j)}{i^2j^2}\]
+	\item Small Zone High Gray-Level Emphasis (SZHGE) \cite{DasarathyBV1991,ThibaultG2009}:
+		  \[SZHGE = \sum_{i=1}^{N_g}\sum_{j=1}^{L_z} \frac{i^2\,p(i,j)}{j^2}\]
+	\item Large Zone Low Gray-Level Emphasis (LZLGE) \cite{DasarathyBV1991,ThibaultG2009}:
+		  \[LZLGE = \sum_{i=1}^{N_g}\sum_{j=1}^{L_z} \frac{j^2\,p(i,j)}{i^2}\]
+	\item Large Zone High Gray-Level Emphasis (LZHGE) \cite{DasarathyBV1991,ThibaultG2009}:
+		  \[LZHGE = \sum_{i=1}^{N_g}\sum_{j=1}^{L_z} i^2j^2\,p(i,j)\]
+	\item Gray-Level Variance (GLV) (adapted from \cite{ThibaultG2009}):
+		  \[GLV = \frac{1}{N_g \times L_z} \sum_{i=1}^{N_g}\sum_{j=1}^{L_z} 
+		  \left(i\,p(i,j)-\mu_i\right)^2\]
+	\item Zone-Size Variance (ZSV) (adapted from \cite{ThibaultG2009}):
+		  \[ZSV = \frac{1}{N_g \times L_z} \sum_{i=1}^{N_g}\sum_{j=1}^{L_z} 
+		  \left(j\,p(i,j)-\mu_j\right)^2\]
+	\\
+\end{itemize}
+
+
+% NGTDM TEXTURES
+\noindent \textbf{Neighbourhood Gray-Tone Difference Matrix (NGTDM) texture features.} \\
+Let $P(i)$ define the NGTDM of a quantized volume $V(x,y,z)$ with isotropic voxel size. $P(i)$ represents the summation of the gray-level differences between all voxels with gray-level $i$ and the average gray-level of their 26-connected neighbours in 3D space. $N_g$ represents the pre-defined number of quantized gray-levels set in $V$, and $(N_g)_{eff}$ is the effective number of gray-levels in $V$, with $(N_g)_{eff} < N_g$ (let the vector of gray-levels values in $V$ be denoted as $\textbf{g} = g(1),g(2),\ldots,g(N_g)$; some gray-levels excluding $g(1)$ and $g(N_g)$ may not appear in $V$ due to different quantization schemes). One NGTDM of size $N_g \times 1$ is computed per volume $V$. To account for discretization length differences, all averages around a center voxel located at position $(j,k,l)$ in $V$ are performed such that the neighbours at a distance of $\sqrt{3}$ voxels are given a weight of $1/\sqrt{3}$, the neighbours at a distance of $\sqrt{2}$ voxels are given a weight of $1/\sqrt{2}$, and the neighbours at a distance of 1 voxel are given a weight of 1. The $i^{\mathrm{th}}$ entry of the NGTDM is then defined as:
+
+\[P(i) = \begin{cases}
+		 \sum_{\text{all voxels}\,\in \{N_i\}} \vert i-\overline{A}_i \vert & \text{if } N_i > 
+		 0, \\
+		 0 & \text{if } N_i = 0.
+		 \end{cases}
+\]
+
+\noindent where $\{N_i\}$ is the set of all voxels with gray-level $i$ in $V$ (\textit{including} the peripheral region), $N_i$ is the number of voxels with gray-level $i$ in $V$, and $\overline{A}_i$ is the average gray-level of the 26-connected neighbours around a center voxel with gray-level $i$ and located at position $(j,k,l)$ in $V$ such that:
+
+\[\overline{A}_i = \overline{A}(j,k,l) = \frac{\sum_{m=-1}^{m=1}\sum_{n=-1}^{n=1}\sum_{o=-1}^{o=1} w_{m,n,o} \cdot V(j+m,k+n,l+o)}{\sum_{m=-1}^{m=1}\sum_{n=-1}^{n=1}\sum_{o=-1}^{o=1} w_{m,n,o}},\]
+
+\[\text{where} \quad w_{m,n,o} =  \begin{cases}
+									1 & \text{if } |j-m| + |k-n| + |l-o| = 1,\\
+									\frac{1}{\sqrt{2}} & \text{if } |j-m| + |k-n| + |l-o| = 
+									2,\\
+									\frac{1}{\sqrt{3}} & \text{if } |j-m| + |k-n| + |l-o| = 
+									3,\\
+									0 & \text{if } V(j+m,k+n,l+o) \text{ is undefined.} \\								
+								\end{cases}\]
+
+\noindent The following quantity is also defined:
+\[n_i = \frac{N_i}{N}.\]
+
+\noindent where $N$ is the total number of voxels in $V$. The NGTDM texture features are then defined as:
+
+\begin{itemize}
+	\item Coarseness \cite{AmadasunM1989}:
+		  \[coarseness = \left[\epsilon + \sum_{i=1}^{N_g} n_i\,P(i)\right]^{-1}\]
+		  where $\epsilon$ is a small number to prevent $coarseness$ becoming infinite.
+	\item Contrast \cite{AmadasunM1989}:
+		  \[contrast = \left[\frac{1}{(N_g)_{eff}\,\big[(N_g)_{eff}-1\big]}\sum_{i=1}^{N_g}\sum_{j=1}^{N_g} 
+		  n_i\,n_j\,(i-j)^2\right]\left[\frac{1}{N}\sum_{i=1}^{N_g} P(i)\right]\]
+	\item Busyness \cite{AmadasunM1989}:
+		  \[busyness = \frac{\sum_{i=1}^{N_g} n_i\,P(i)}{\sum_{i=1}^{N_g}\sum_{j=1}^{N_g} (i\,n_i - j\,n_j)}, 
+		  \quad n_i \neq 0,n_j \neq 0\]
+	\item Complexity \cite{AmadasunM1989}:
+		  \[complexity = \sum_{i=1}^{N_g}\sum_{j=1}^{N_g} \frac{|i-j|\,\big[n_i\,P(i) + n_j\,P(j)\big]}{N\,(n_i 
+		  + n_j)}, \quad n_i \neq 0,n_j \neq 0\]
+	\item Strength \cite{AmadasunM1989}:
+		  \[strength = \frac{\sum_{i=1}^{N_g}\sum_{j=1}^{N_g} (n_i + n_j)\,(i-j)^2}{\left[\epsilon + 
+		  \sum_{i=1}^{N_g} P(i)\right]},  \quad n_i \neq 0,n_j \neq 0\]
+		  where $\epsilon$ is a small number to prevent $strength$ becoming infinite.
+	\\
+\end{itemize}
+
+
+\section*{Online resources} 
+MATLAB$^{\textregistered}$ codes are available at: \url{https://github.com/mvallieres/radiomics}.
+
+\footnotesize
+\begin{thebibliography}{99} % Referencing close to Harvard style, but better looking than in PMB
+
+	\bibitem	{HaralickRM1973} Haralick, R.M., Shanmugam, K. and Dinstein, I. (1973).
+			{Textural features for image classification}.
+			{\em IEEE Transactions on Systems, Man, and Cybernetics}, smc \textbf{3}(6), 	
+			610-621.	
+			
+	\bibitem{GallowayMM1975} Galloway, M.M. (1975).
+			{Texture analysis using gray level run lengths}.
+			{\em Computer Graphics and Image Processing}, \textbf{4}(2), 172-179.	
+			
+	\bibitem{AmadasunM1989} Amadasun, M. and King, R. (1989).
+			{Textural features corresponding to textural properties}.
+			{\em IEEE Transactions on Systems, Man, and Cybernetics}, \textbf{19}(5), 1264-1274. 
+			
+	\bibitem{ChuA1990} Chu, A. Sehgal, C.M. and Greenleaf, J.F. (1990).
+			{Use of gray value distribution of run lengths for texture analysis}.
+			{\em Pattern Recognition Letters}, \textbf{11}(6), 415-419.
+			
+	\bibitem{DasarathyBV1991} Dasarathy, B.V. and Holder, E.B. (1991).
+			{Image characterization based on joint gray level-run length distributions}.
+			{\em Pattern Recognition Letters}, \textbf{12}(8), 497-502.
+			
+	\bibitem{ThibaultG2009} Thibault, G. et al. (2009).
+			{Texture indexes and gray level size zone matrix. Application to cell nuclei 
+			classification}. In {\em Pattern Recognition and Information Processing}. 
+			Minsk, Belarus, 140-145.
+			
+	\bibitem{WeiX2008} Wei, X. (2007). 
+			{Gray Level Run Length Matrix Toolbox v1.0, computer software}.
+			{Beijing Aeronautical Technology Research Center}.
+			{Available from: http://www.mathworks.com/matlabcentral/fileexchange/17482-gray-level-run-length-matrix-toolbox}. [11 January 2013]
+			
+\end{thebibliography}
+
+\end{document}

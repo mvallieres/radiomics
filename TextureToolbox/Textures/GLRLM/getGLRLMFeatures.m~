@@ -1,0 +1,136 @@
+function [textures] = getGLRLMFeatures(GLRLM)
+% --------------------------------------------------------------------------------------------------------------
+% [textures] = getGLRLMFeatures(GLRLM)
+% --------------------------------------------------------------------------------------------------------------
+% DESCRIPTION:
+% This function computes texture features from an input Gray-Level Run-Length
+% Matrix (GLRLM).
+% --------------------------------------------------------------------------------------------------------------
+% REFERENCE:
+% [1] Galloway, M. M. (1975). Texture analysis using gray level run lengths. Computer Graphics and Image Processing, 4(2), 172–179.
+% [2] Chu, A., Sehgal, C. M., & Greenleaf, J. F. (1990). Use of gray value distribution of run lengths for texture analysis. Pattern Recognition Letters, 11(6), 415-419.
+% [3] Dasarathy, B. V., & Holder, E. B. (1991). Image characterizations based on joint gray level-run length distributions. Pattern Recognition Letters, 12(8), 497-502.
+% [4] Thibault, G., Fertil, B., Navarro, C., Pereira, S., Cau, P., Levy, N., … Mari, J.-L. (2009). Texture Indexes and Gray Level Size Zone Matrix. Application to Cell Nuclei Classification. In Pattern Recognition and Information Processing (PRIP) (pp. 140–145).
+% --------------------------------------------------------------------------------------------------------------
+% INPUTS:
+% 1. GLRLM: Gray-Level Run-Length Matrix.
+%
+% ** 'GLRLM' should be the output from 'getGLRLM.m' **
+% --------------------------------------------------------------------------------------------------------------
+% OUTPUTS:
+% 1. textures: Struture specifying the vale of different GLRLM texture
+%              features defined below.
+% --------------------------------------------------------------------------------------------------------------
+% AUTHOR: Martin Vallières
+%         <mart.vallieres@gmail.com>
+% --------------------------------------------------------------------------------------------------------------
+% HISTORY:
+% - Creation: January 2013.
+% - Revision I: 27/11/2014.
+% --------------------------------------------------------------------------------------------------------------
+
+
+% USEFUL MATRICES, VECTORS AND QUANTITIES
+sz=size(GLRLM); % Size of GLRLM
+nRuns=sum(GLRLM(:));
+cVect=1:sz(2); rVect=1:sz(1);% Row and column vectors
+[cMat,rMat]=meshgrid(cVect,rVect); % Column and row indicators for each entry of the GLRLMs
+pg=sum(GLRLM,2)'; % Gray-Level Run-Number Vector
+pr=sum(GLRLM); % Run-Length Run-Number Vector
+
+
+% TEXTURE COMPUTATION
+% 1. Short Run Emphasis (SRE) -- Ref.[1]
+textures.SRE = (pr*(cVect.^(-2))')/nRuns;
+
+% 2. Long Run Emphasis (LRE) (Ref 1)
+textures.LRE=(pr*(cVect.^2)')/nRuns + (pr18*(cVect18.^2)')/n;
+
+% 3. Gray-Level Nonuniformity (GLN) (Ref 1)
+textures.GLN=(sum(pg.^2)/nRuns + sum(pg18.^2)/nRuns18 + sum(pg26.^2)/nRuns26)/3;
+
+% 4. Run Length Nonuniformity (RLN) (Ref 1)
+textures.RLN=(sum(pr.^2)/nRuns + sum(pr18.^2)/nRuns18 + sum(pr26.^2)/nRuns26)/3;
+
+% 5. Run Percentage (RP) ((Ref 1)
+textures.RP=(nRuns/(pr*cVect') + nRuns18/(pr18*cVect18') + nRuns26/(pr26*cVect26'))/3;
+
+% 6. Low Gray-Level Run Emphasis (LGRE) (Ref 2)
+textures.LGRE=((pg*(rVect.^(-2))')/nRuns + (pg18*(rVect18.^(-2))')/nRuns18 + (pg26*(rVect26.^(-2))')/nRuns26)/3;
+
+% 7. High Gray-Level Run Emphasis (HGRE) (Ref 2)
+textures.HGRE=((pg*(rVect.^2)')/nRuns + (pg18*(rVect18.^2)')/nRuns18 + (pg26*(rVect26.^2)')/nRuns26)/3;
+
+% 8. Short Run Low Gray-Level Emphasis (SRLGE) (Ref 3)
+textures.SRLGE=(sum(sum(GLRLM6.*(rMat.^(-2)).*(cMat.^(-2))))/nRuns + sum(sum(GLRLM18.*(rMat18.^(-2)).*(cMat18.^(-2))))/nRuns18 + sum(sum(GLRLM26.*(rMat26.^(-2)).*(cMat26.^(-2))))/nRuns26)/3;
+
+% 9. Short Run High Gray-Level Emphasis (SRHGE) (Ref 3)
+textures.SRHGE=(sum(sum(GLRLM6.*(rMat.^2).*(cMat.^(-2))))/nRuns + sum(sum(GLRLM18.*(rMat18.^2).*(cMat18.^(-2))))/nRuns18 + sum(sum(GLRLM26.*(rMat26.^2).*(cMat26.^(-2))))/nRuns26)/3;
+
+% 10. Long Run Low Gray-Level Emphasis (LRLGE) (Ref 3)
+textures.LRLGE=(sum(sum(GLRLM6.*(rMat.^(-2)).*(cMat.^2)))/nRuns + sum(sum(GLRLM18.*(rMat18.^(-2)).*(cMat18.^2)))/nRuns18 + sum(sum(GLRLM26.*(rMat26.^(-2)).*(cMat26.^2)))/nRuns26)/3;
+
+% 11. Long Run High Gray-Level Emphasis (LRHGE) (Ref 3)
+textures.LRHGE=(sum(sum(GLRLM6.*(rMat.^2).*(cMat.^2)))/nRuns + sum(sum(GLRLM18.*(rMat18.^2).*(cMat18.^2)))/nRuns18 + sum(sum(GLRLM26.*(rMat26.^2).*(cMat26.^2)))/nRuns26)/3;
+
+
+% New features according to (Thibault, 2009). However, in order to have the
+% real definition of variance, the square root is not taken.
+tempMat6=GLRLM6; tempMat18=GLRLM18; tempMat26=GLRLM26;
+GLRLM6=GLRLM6./nRuns; GLRLM18=GLRLM18./nRuns18; GLRLM26=GLRLM26./nRuns26;
+pg=sum(GLRLM6,2)'; pr=sum(GLRLM6); pg18=sum(GLRLM18,2)'; pr18=sum(GLRLM18); pg26=sum(GLRLM26,2)'; pr26=sum(GLRLM26);
+ug6=(pg*rVect')/(sz(1)*sz(2)); ug18=(pg18*rVect18')/(sz18(1)*sz18(2)); ug26=(pg26*rVect26')/(sz26(1)*sz26(2));
+ur6=(pr*cVect')/(sz(1)*sz(2)); ur18=(pr18*cVect18')/(sz18(1)*sz18(2)); ur26=(pr26*cVect26')/(sz26(1)*sz26(2));
+
+% 12. Gray-Level Variance (GLV) (Ref 4)
+GLV6=0;
+for g=1:sz(1)
+    for r=1:sz(2)
+        GLV6=GLV6+(GLRLM6(g,r)*g-ug6)^2;
+    end
+end
+GLV6=GLV6/(sz(1)*sz(2));
+GLV18=0;
+for g=1:sz18(1)
+    for r=1:sz18(2)
+        GLV18=GLV18+(GLRLM18(g,r)*g-ug18)^2;
+    end
+end
+GLV18=GLV18/(sz18(1)*sz18(2));
+GLV26=0;
+for g=1:sz26(1)
+    for r=1:sz26(2)
+        GLV26=GLV26+(GLRLM26(g,r)*g-ug26)^2;
+    end
+end
+GLV26=GLV26/(sz26(1)*sz26(2));
+textures.GLV=(GLV6+GLV18+GLV26)/3;
+
+% 13. Run Length Variance (RLV) (Ref 4)
+RLV6=0;
+for g=1:sz(1)
+    for r=1:sz(2)
+        RLV6=RLV6+(GLRLM6(g,r)*r-ug6)^2;
+    end
+end
+RLV6=RLV6/(sz(1)*sz(2));
+RLV18=0;
+for g=1:sz18(1)
+    for r=1:sz18(2)
+        RLV18=RLV18+(GLRLM18(g,r)*r*sqrt(2)-ug18)^2;
+    end
+end
+RLV18=RLV18/(sz18(1)*sz18(2));
+RLV26=0;
+for g=1:sz26(1)
+    for r=1:sz26(2)
+        RLV26=RLV26+(GLRLM26(g,r)*r*sqrt(3)-ug26)^2;
+    end
+end
+RLV26=RLV26/(sz26(1)*sz26(2));
+textures.RLV=(RLV6+RLV18+RLV26)/3;
+
+
+
+% features.MatrixData.GLRLM6=tempMat6; features.MatrixData.GLRLM18=tempMat18; features.MatrixData.GLRLM26=tempMat26;
+end
