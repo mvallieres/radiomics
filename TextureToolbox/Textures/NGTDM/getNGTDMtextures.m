@@ -59,10 +59,10 @@ nValid = length(pValid);
 
 
 % COMPUTATION OF TEXTURES
-% 1. Coarseness
+% 1. Coarseness, Ref.[1]
 textures.Coarseness = (((countValid')*NGTDM) + eps)^(-1);
 
-% 2. Contrast
+% 2. Contrast, Ref.[1]
 val = 0;
 for i = 1:NL
     for j = 1:NL
@@ -71,7 +71,7 @@ for i = 1:NL
 end
 textures.Contrast = val*sum(NGTDM)/(Ng*(Ng-1)*nTot);
 
-% 3. Busyness
+% 3. Busyness, Ref.[1]
 denom = 0;
 for i = 1:nValid
     for j = 1:nValid
@@ -80,7 +80,7 @@ for i = 1:nValid
 end
 textures.Busyness = ((countValid')*NGTDM)/denom;
 
-% 4. Complexity
+% 4. Complexity, Ref.[1]
 val = 0;
 for i = 1:nValid
     for j = 1:nValid
@@ -89,7 +89,7 @@ for i = 1:nValid
 end
 textures.Complexity = val;
 
-% 5. Strength
+% 5. Strength, Ref.[1]
 val = 0;
 for i = 1:nValid
     for j = 1:nValid

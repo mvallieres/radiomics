@@ -52,7 +52,7 @@ function organizeSeparateTextures_STS(pathWORK,nPatient,R_mat,scale_cell,algo_ce
 % algo_cell = {'Equal','Lloyd'};
 % Ng_mat = [8,16,32,64];
 % -------------------------------------------------------------------------
-% AUTHOR(S): Martin Vallieres, <mart.vallieres@gmail.com>
+% AUTHOR(S): Martin Vallieres <mart.vallieres@gmail.com>
 % -------------------------------------------------------------------------
 % HISTORY:
 % - Creation: May 2015
@@ -84,6 +84,7 @@ scans = {'PET','T1','T2FS'}; % For now on, T2-weighted fat-saturated and STIR sc
 nScans = numel(scans);
 suffix = ['_TEXT'];
 
+fprintf('ORGANIZING TEXTURES FROM SEPARATE SCANS ... ')
 for scan = 1:numel(scans)
     cd([pathWORK,'/TEXTURES'])
     temp = load('Patient1_PET_TEXT'); temp = struct2cell(temp); temp = temp{1}; % In order to get the necessary 'nameType' and 'nameFeature' fields
@@ -119,6 +120,7 @@ for scan = 1:numel(scans)
     end
     cd(pathWORK), save(['textures_',scans{scan}],'text')
 end
+fprintf('DONE\n')
 
 cd(startpath)
 end

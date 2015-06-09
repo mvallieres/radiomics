@@ -1,0 +1,14 @@
+--> This folder contains functions from the software DREES <http://www.cerr.info/drees>:
+
+- 'drxlr_apply_logistic_regression.m'
+- 'drxlr_binomial_variance.m'
+- 'drxlr_d_logit.m'
+- 'drxlr_get_lrt.m'
+- 'drxlr_get_p_gaussian.m'
+- 'drxlr_invlogit.m'
+- 'drxlr_logistic_regression.m'
+- 'drxlr_rlogit.m'
+- 'drxlr_wfit.m'
+
+These functions are available at: <https://github.com/yw2026/DREES.git>. See 'COPYRIGHT' for more details.
+

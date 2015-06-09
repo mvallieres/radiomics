@@ -83,9 +83,9 @@ end
 textures.Contrast = contrast;
 
 % 3. Entropy, Ref.[1]
-textures.Entropy = -sum(sum(GLCM.*log(GLCM + realmin)));
+textures.Entropy = -sum(sum(GLCM.*log2(GLCM + realmin)));
 
-% 4. Homogeneity, Ref.[1]
+% 4. Homogeneity, adapted from Ref.[1]
 temp = 0;
 for i = 1:nL
    for j = 1:nL
@@ -94,15 +94,15 @@ for i = 1:nL
 end
 textures.Homogeneity = temp;
 
-% 5. Correlation (this definition from MATLAB is preferred from the original one in [1])
+% 5. Correlation, adapted from Ref. [1] (this definition from MATLAB is preferred from the original one in [1])
 textures.Correlation = graycoprops(round(matrixtemp),'Correlation');
 textures.Correlation = struct2cell(textures.Correlation);
 textures.Correlation = textures.Correlation{1};
 
-% 6. Variance, Ref.[2]; and 7. SumAverage, Ref.[2]. (Actual Variance and SumAverage defined by Haralick [1])
+% 6. Variance, Ref.[2]; and 7. SumAverage, Ref.[2]. (adapted from Variance and SumAverage metrics defined by Haralick in Ref. [1])
 % However, in order to compare GLCMs of different sizes, the metrics
 % are divided by the total number of elements in the GLCM (nL*nL). Also,
-% there is probably an error in Assefa's paper [2]. In the variance equation,
+% there is probably an error in Assefa's paper [2]: in the variance equation,
 % 'u' should appropriately be replaced by 'ux' and 'uy' as calculated in A1
 % and A2 of the same paper (read 'ui' and 'uj' in our code).
 ui = indVect*sum(GLCM,2);

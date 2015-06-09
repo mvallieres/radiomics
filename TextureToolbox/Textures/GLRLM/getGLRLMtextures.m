@@ -71,13 +71,13 @@ textures.SRE = (pr*(cVect.^(-2))')/nRuns;
 % 2. Long Run Emphasis (LRE), Ref.[1]
 textures.LRE = (pr*(cVect.^2)')/nRuns;
 
-% 3. Gray-Level Nonuniformity (GLN), Ref.[1]
+% 3. Gray-Level Nonuniformity (GLN), adapted from Ref.[1]
 textures.GLN = sum(pg.^2)/nRuns;
 
-% 4. Run-Length Nonuniformity (RLN), Ref.[1]
+% 4. Run-Length Nonuniformity (RLN), adapted from Ref.[1]
 textures.RLN = sum(pr.^2)/nRuns;
 
-% 5. Run Percentage (RP), Ref.[1]
+% 5. Run Percentage (RP), adapted from Ref.[1]
 textures.RP = nRuns/(pr*cVect');
 
 % 6. Low Gray-Level Run Emphasis (LGRE), Ref.[2]
@@ -99,14 +99,13 @@ textures.LRLGE = sum(sum(GLRLM.*(rMat.^(-2)).*(cMat.^2)))/nRuns;
 textures.LRHGE = sum(sum(GLRLM.*(rMat.^2).*(cMat.^2)))/nRuns;
 
 
-% New features according to Ref.[4]. However, in order to have the
-% real definition of variance, the square root is not taken.
+% New features according to Ref.[4]
 GLRLM = GLRLM./nRuns;
 pg = sum(GLRLM,2)'; pr = sum(GLRLM);
 ug = (pg*rVect')/(sz(1)*sz(2));
 ur = (pr*cVect')/(sz(1)*sz(2));
 
-% 12. Gray-Level Variance (GLV), Ref.[4]
+% 12. Gray-Level Variance (GLV), adapted from Ref.[4]
 GLV = 0;
 for g = 1:sz(1)
     for r = 1:sz(2)
@@ -116,7 +115,7 @@ end
 GLV = GLV/(sz(1)*sz(2));
 textures.GLV = GLV;
 
-% 13. Run-Length Variance (RLV), Ref.[4]
+% 13. Run-Length Variance (RLV), adapted from Ref.[4]
 RLV = 0;
 for g = 1:sz(1)
     for r = 1:sz(2)

@@ -1,6 +1,6 @@
-function computeAllNonTextureFeatures_STS(pathWORK,nPatient,roiNumb,outcome)
+function calcAllNonTextureFeatures_STS(pathWORK,nPatient,roiNumb,outcome)
 % -------------------------------------------------------------------------
-% function computeAllNonTextureFeatures_STS(pathWORK,nPatient,roiNumb,outcome)
+% function calcAllNonTextureFeatures_STS(pathWORK,nPatient,roiNumb,outcome)
 % -------------------------------------------------------------------------
 % DESCRIPTION: 
 % Computes 9 non-texture features for all soft-tissue sarcoma (STS) DICOM 
@@ -19,7 +19,7 @@ function computeAllNonTextureFeatures_STS(pathWORK,nPatient,roiNumb,outcome)
 % - outcome: Vector of lung metastases outcome status for all patients.
 %            (Load 'outcome' from the STS WORKSPACE)
 % -------------------------------------------------------------------------
-% AUTHOR(S): Martin Vallieres, <mart.vallieres@gmail.com>
+% AUTHOR(S): Martin Vallieres <mart.vallieres@gmail.com>
 % -------------------------------------------------------------------------
 % HISTORY:
 % - Creation: May 2015

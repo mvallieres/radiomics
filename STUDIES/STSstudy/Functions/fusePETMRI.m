@@ -1,6 +1,6 @@
 function [fusedBox] = fusePETMRI(ROIbox_PET,ROIbox_MRI,maskBox_PET,MRIinv,MRIweight,wavelet)
 % -------------------------------------------------------------------------
-% [fusedBox] = fusePETMRI(ROIbox_PET,ROIbox_MRI,maskBox_PET,Invert,MRIweight,wavelet)
+% function [fusedBox] = fusePETMRI(ROIbox_PET,ROIbox_MRI,maskBox_PET,Invert,MRIweight,wavelet)
 % -------------------------------------------------------------------------
 % DESCRIPTION: 
 % This function fuse the region of interest (ROI) of two registered PET and 

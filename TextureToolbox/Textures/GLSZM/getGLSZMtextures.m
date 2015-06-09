@@ -71,13 +71,13 @@ textures.SZE = (pr*(cVect.^(-2))')/nRuns;
 % 2. Large Zone Emphasis (LZE), Ref.[1,4]
 textures.LZE = (pr*(cVect.^2)')/nRuns;
 
-% 3. Gray-Level Nonuniformity (GLN), Ref.[1,4]
+% 3. Gray-Level Nonuniformity (GLN), adapted from Ref.[1,4]
 textures.GLN = sum(pg.^2)/nRuns;
 
-% 4. Zone-Size Nonuniformity (ZSN), Ref.[1,4]
+% 4. Zone-Size Nonuniformity (ZSN), adapted from Ref.[1,4]
 textures.ZSN = sum(pr.^2)/nRuns;
 
-% 5. Zone Percentage (ZP), Ref.[1,4]
+% 5. Zone Percentage (ZP), adapted from Ref.[1,4]
 textures.ZP = nRuns/(pr*cVect');
 
 % 6. Low Gray-Level Zone Emphasis (LGZE), Ref.[2,4]
@@ -99,14 +99,12 @@ textures.LZLGE = sum(sum(GLSZM.*(rMat.^(-2)).*(cMat.^2)))/nRuns;
 textures.LZHGE = sum(sum(GLSZM.*(rMat.^2).*(cMat.^2)))/nRuns;
 
 
-% New features according to Ref.[4]. However, in order to have the
-% real definition of variance, the square root is not taken.
-GLSZM = GLSZM./nRuns;
+% New features according to Ref.[4]
 pg = sum(GLSZM,2)'; pr = sum(GLSZM);
 ug = (pg*rVect')/(sz(1)*sz(2));
 ur = (pr*cVect')/(sz(1)*sz(2));
 
-% 12. Gray-Level Variance (GLV), Ref.[4]
+% 12. Gray-Level Variance (GLV), adapted from Ref.[4]
 GLV = 0;
 for g = 1:sz(1)
     for r = 1:sz(2)
@@ -115,7 +113,7 @@ for g = 1:sz(1)
 end
 textures.GLV = GLV/(sz(1)*sz(2));
 
-% 13. Zone-Size Variance (ZSV), Ref.[4]
+% 13. Zone-Size Variance (ZSV), adapted from Ref.[4]
 ZSV = 0;
 for g = 1:sz(1)
     for r = 1:sz(2)

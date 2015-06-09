@@ -36,7 +36,6 @@ function [sData] = computeROI(sData)
 
 
 % INITIALIZATION
-boxBound = zeros(3,2);
 sizeScan = size(sData{2}.scan.volume);
 sData{2}.scan.contour.name     = [];
 sData{2}.scan.contour.boxBound = [];

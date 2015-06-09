@@ -1,0 +1,5 @@
+The files 'install.m' and 'fastAUC.cpp' were written by Enric Junqué de Fortuny and are available at: <http://www.mathworks.com/matlabcentral/fileexchange/41258-faster-roc-auc>. See 'license.txt' for more details.
+
+% KNOWN ISSUES
+- Building MEX files on Ubuntu 14.04 in MATLAB 2013b: Ubuntu 14.04 by default has the compiler GCC 4.8, but Matlab R2013b .mex files require GCC 4.7.x. See the following to solve the issue: <http://bafnatech.blogspot.ca/2015/02/building-mex-files-in-matlab-2014b-on.html>.
+- <math.h> does not compute abs() for floating point numbers: Add '#include <cmath>' in fastAUC.cpp to be able to use std::abs() with floats. (Addition by Martin Vallières on line 31 of fastAUC.cpp, June 7, 2015)

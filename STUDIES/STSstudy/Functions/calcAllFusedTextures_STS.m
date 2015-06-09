@@ -52,7 +52,7 @@ function calcAllFusedTextures_STS(pathWORK,nPatient,roiNumb,MRIinv_cell,MRIweigh
 % algo_cell = {'Equal','Lloyd'};
 % Ng_mat = [8,16,32,64];
 % -------------------------------------------------------------------------
-% AUTHOR(S): Martin Vallieres, <mart.vallieres@gmail.com>
+% AUTHOR(S): Martin Vallieres <mart.vallieres@gmail.com>
 % -------------------------------------------------------------------------
 % HISTORY:
 % - Creation: May 2015
@@ -77,7 +77,7 @@ function calcAllFusedTextures_STS(pathWORK,nPatient,roiNumb,MRIinv_cell,MRIweigh
 % -------------------------------------------------------------------------
 
 startpath=pwd;
-cd(pathWORK), mkdir TEXTURES, cd('TEXTURES'), pathTEXT = pwd;
+cd(pathWORK), cd('TEXTURES'), pathTEXT = pwd;
 cd .., cd('DATA'), pathDATA = pwd;
 
 % INITIALIZATION
@@ -98,7 +98,7 @@ for i = 1:nPatient
             load(nameLoad), sDataMRI = sData;
         end
         tStart = tic;
-        fprintf(['\n**************************** COMPUTING TEXTURES: PATIENT %u, FUSED PET/',scans{j}(1:(end-3)),' SCAN ****************************'],i)
+        fprintf(['\n*********************** COMPUTING TEXTURES: PATIENT %u, FUSED PET/',scans{j}(1:(end-3)),' SCAN ***********************'],i)
         [textures] = calcPatientFusText_STS(sDataPET,sDataMRI,roiNumb(i),MRIinv_cell,MRIweight_mat,R_mat,scale_cell,algo_cell,Ng_mat);
         cd(pathTEXT), save(['Patient',num2str(i),'_PET_',scans{j}(1:(end-3)),suffix],'textures')
         cd(pathDATA)

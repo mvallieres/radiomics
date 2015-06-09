@@ -6,7 +6,7 @@ function [eccentricity] = getEccentricity(ROIonly,pixelW,sliceT)
 % This function computes the eccentricity metric of the region of interest 
 % (ROI) of an input volume. The ellipsoid that best fits the ROI is first 
 % computed following the framework of reference [1], using an adaptation of
-% a code found at: <http://www.mathworks.com/matlabcentral/fileexchange/23377-ellipsoid-fitting>
+% a code available at: <http://www.mathworks.com/matlabcentral/fileexchange/23377-ellipsoid-fitting>
 % -------------------------------------------------------------------------
 % REFERENCE:
 % [1] Li, Q. and Griffiths, J. G. (2004). Least-square ellipsoid specific

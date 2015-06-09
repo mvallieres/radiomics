@@ -52,7 +52,7 @@ ROIonlyPET = padarray(ROIonlyPET,[1 1 1],NaN);
 % SUVmax
 [SUVmax,indMax] = max(ROIonlyPET(:));
 
-% SUVpeak (using 26 neighbors around SUVmax voxel as ROI)
+% SUVpeak (using 26 neighbors around SUVmax)
 [indMaxX,indMaxY,indMaxZ] = ind2sub(size(ROIonlyPET),indMax);
 connectivity = getneighbors(strel('arbitrary',conndef(3,'maximal')));
 nPeak = length(connectivity);

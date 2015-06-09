@@ -4,7 +4,7 @@ function [Vnew] = imresize3D(V,scale,tsize,ntype,npad)
 % -------------------------------------------------------------------------
 % DESCRIPTION: 
 % This function resizes a 3D input volume to new dimensions. It is adapted 
-% from the original code of D. Kroon of Twente(July 2008) found at: 
+% from the original code of D. Kroon of Twente(July 2008) available at: 
 % <http://www.mathworks.com/matlabcentral/fileexchange/21451-multimodality-non-rigid-demon-algorithm-image-registration/content//functions/imresize3d.m>
 % -------------------------------------------------------------------------
 % INPUTS:

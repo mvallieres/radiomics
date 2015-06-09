@@ -1,6 +1,6 @@
 function [varargout] = checkFusionSliceDim(varargin)
 % -------------------------------------------------------------------------
-% [fusedBox] = fusePETMRI(ROIbox_PET,ROIbox_MRI,maskBox_PET,Invert,MRIweight,wavelet)
+% function [varargout] = checkFusionSliceDim(varargin)
 % -------------------------------------------------------------------------
 % DESCRIPTION: 
 % This function performs checks prior to PET/MRI fusion to ensure that the

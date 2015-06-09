@@ -1,3 +1,8 @@
+   _______   ____          _______             ____     ____    __
+      |     |       \   /     |     |     |   |    |   |       /  |
+      |     |___     \ /      |     |     |   |____|   |___    \__  
+      |     |        / \      |     \     /   |   \    |          \ 
+      |     |____   /   \     |      \___/    |    \   |____   |__/
 -------------------------------------------------------------------------
 
 |TEXTURE ANALYSIS TOOLBOX|
@@ -37,7 +42,7 @@ This toolbox is self-contained and can be used on its own outside of the
 <https://github.com/mvallieres/radiomics/> package.
 -------------------------------------------------------------------------
 DISCLAIMER:
-"I am not a programmer, I am just a scientist doing stuff!"
+"I'm not a programmer, I'm just a scientist doing stuff!"
 -------------------------------------------------------------------------
 
 
@@ -53,7 +58,7 @@ INPUTS:
 
 INSTRUCTIONS:
 
-1. Set MATLAB path to all subfolders of /Texture_Toolbox and /Utilities directories, which can be
+1. Set MATLAB path to all subfolders of the /Texture_Toolbox directory, which can be
    found at: <https://github.com/mvallieres/radiomics/>
 
 2. Prepare the input volume for texture analysis (isotropic resampling, quantization, etc.) by 
@@ -96,4 +101,6 @@ ACKNOWLEDGEMENTS: other software code
 - Wei's GLRLM toolbox: Xunkai Wei, Gray Level Run Length Matrix Toolbox
   v1.0, Software,Beijing Aeronautical Technology Research Center, 2007.
   <http://www.mathworks.com/matlabcentral/fileexchange/17482-gray-level-run-length-matrix-toolbox>
+- CERR development team: <http://www.cerr.info/>
+- Dirk-Jan Kroon (imresize3D.m): <http://www.mathworks.com/matlabcentral/fileexchange/21451-multimodality-non-rigid-demon-algorithm-image-registration/content//functions/imresize3d.m>
 ***************************************************************************************************

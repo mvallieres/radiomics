@@ -62,6 +62,8 @@ Let $P$ define the GLCM of a quantized volume $V(x,y,z)$ with isotropic voxel si
 		  \left[i\,p(i,j) + j\,p(i,j)\right]\]
 	\item Entropy \cite{HaralickRM1973}:
 		  \[entropy = -\sum_{i=1}^{N_g}\sum_{j=1}^{N_g} p(i,j)\,\text{log}_2\big(p(i,j)\big)\]
+	\item Dissimilarity \cite{ThibaultG2009t}:
+		  \[dissimilarity = \sum_{i=1}^{N_g}\sum_{j=1}^{N_g} \vert i-j \vert \,p(i,j)\]
 	\\	
 \end{itemize}
 
@@ -131,7 +133,7 @@ Let $P$ define the GLSZM of a quantized volume $V(x,y,z)$ with isotropic voxel s
 		  \[GLN = \sum_{i=1}^{N_g}\left(\sum_{j=1}^{L_z} p(i,j)\right)^2\]
 	\item Zone-Size Nonuniformity (ZSN) (adapted from \cite{GallowayMM1975,ThibaultG2009}):
 		  \[ZSN = \sum_{j=1}^{L_z}\left(\sum_{i=1}^{N_g} p(i,j)\right)^2\]
-	\item Zone Percentage (RP) \cite{GallowayMM1975,ThibaultG2009}:
+	\item Zone Percentage (RP) (adapted from \cite{GallowayMM1975,ThibaultG2009}):
 		  \[ZP = \frac{\sum_{i=1}^{N_g}\sum_{j=1}^{L_z} p(i,j)}{\sum_{j=1}^{L_z} j 
 		  \sum_{i=1}^{N_g} p(i,j)}\]
 	\item Low Gray-Level Zone Emphasis (LGZE) \cite{ChuA1990,ThibaultG2009}:
@@ -207,7 +209,7 @@ Let $P(i)$ define the NGTDM of a quantized volume $V(x,y,z)$ with isotropic voxe
 
 
 \section*{Online resources} 
-MATLAB$^{\textregistered}$ codes are available at: \url{https://github.com/mvallieres/radiomics}.
+MATLAB$^{\textregistered}$ software code is freely shared under the GNU General Public License at: \url{https://github.com/mvallieres/radiomics}.
 
 \footnotesize
 \begin{thebibliography}{99} % Referencing close to Harvard style, but better looking than in PMB
@@ -216,7 +218,11 @@ MATLAB$^{\textregistered}$ codes are available at: \url{https://github.com/mvall
 			{Textural features for image classification}.
 			{\em IEEE Transactions on Systems, Man, and Cybernetics}, smc \textbf{3}(6), 	
 			610-621.	
-			
+	
+	\bibitem{ThibaultG2009t}	 Thibault, G. (2009). 
+			{Indices de formes et de textures: de la 2D vers la 3D. Application au classement de noyaux de cellules}. 
+			{\em PhD Thesis}, Universit\'e AIX-Marseille: p.172.
+	
 	\bibitem{GallowayMM1975} Galloway, M.M. (1975).
 			{Texture analysis using gray level run lengths}.
 			{\em Computer Graphics and Image Processing}, \textbf{4}(2), 172-179.	

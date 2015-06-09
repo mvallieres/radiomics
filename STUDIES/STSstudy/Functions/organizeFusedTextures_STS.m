@@ -59,7 +59,7 @@ function organizeFusedTextures_STS(pathWORK,nPatient,MRIinv_cell,MRIweight_mat,R
 % algo_cell = {'Equal','Lloyd'};
 % Ng_mat = [8,16,32,64];
 % -------------------------------------------------------------------------
-% AUTHOR(S): Martin Vallieres, <mart.vallieres@gmail.com>
+% AUTHOR(S): Martin Vallieres <mart.vallieres@gmail.com>
 % -------------------------------------------------------------------------
 % HISTORY:
 % - Creation: May 2015
@@ -91,6 +91,7 @@ scans = {'PET_T1','PET_T2FS'};
 nScans = numel(scans);
 suffix = ['_TEXT'];
 
+fprintf('ORGANIZING TEXTURES FROM FUSED SCANS ... ')
 for scan = 1:numel(scans)
     cd([pathWORK,'/TEXTURES'])
     temp = load('Patient1_PET_T1_TEXT'); temp = struct2cell(temp); temp = temp{1}; % In order to get the necessary 'nameType' and 'nameFeature' fields
@@ -130,6 +131,7 @@ for scan = 1:numel(scans)
     end
     cd(pathWORK), save(['textures_',scans{scan}],'text')
 end
+fprintf('DONE\n')
 
 cd(startpath)
 end

@@ -1,8 +1,8 @@
- ___              ____    _____    ____     _    _   _____    ___    __
-|   |     /\     |    \     |     /    \   | \  / |    |     /   \  /  |
-|___|    /  \    |     |    |    |      |  |  \/  |    |    |       \ _
-|  \    /____\   |     |    |    |      |  |      |    |    |          \
-|   \  /      \  |____/   __|__   \____/   |      |  __|__   \___/  |__/
+ ___              ____    _____    ____     _    _   _____    ___     __
+|   |     /\     |    \     |     /    \   | \  / |    |     /   \   /  |
+|___|    /  \    |     |    |    |      |  |  \/  |    |    |        \__
+|  \    /____\   |     |    |    |      |  |      |    |    |           \
+|   \  /      \  |____/   __|__   \____/   |      |  __|__   \___/   |__/
 
 -------------------------------------------------------------------------
 
@@ -13,7 +13,8 @@
 REFERENCE:
 [1] Vallières, M. et al. (2015). A radiomics model from joint FDG-PET and 
     MRI texture features for the prediction of lung metastases in soft-tissue 
-    sarcomas of the extremities. Physics in Medicine and Biology, 00(0), xxx-yyy. 
+    sarcomas of the extremities. Physics in Medicine and Biology, 00(0), 
+    xxx-yyy. 
 -------------------------------------------------------------------------
 AUTHOR: Martin Vallières <mart.vallieres@gmail.com>
 -------------------------------------------------------------------------
@@ -21,7 +22,7 @@ HISTORY:
 - Version 1.0: May 2015
 -------------------------------------------------------------------------
 DISCLAIMER:
-"I am not a programmer, I am just a scientist doing stuff!"
+"I'm not a programmer, I'm just a scientist doing stuff!"
 -------------------------------------------------------------------------
 
 
@@ -40,7 +41,7 @@ This package contains 5 folders:
     quantization tools. Please see ref. [1] for more details.
 
 
-2. 'NonTextureFeatures': MATLAB codes to compute features other than texture
+2. 'NonTextureFeatures': MATLAB codes to compute features other than textures
     from an input 3D region of interest (ROI). Include features such as SUV 
     metrics, AUC-CSH, Percent Inactive, Size, Solidity, Volume and Eccentricity. 
     Please see ref. [1] for more details.
@@ -48,33 +49,35 @@ This package contains 5 folders:
 
 3. 'MultivariableModeling': MATLAB codes to perform multivariable analysis
     operations such as logistic regression, bootstrapping, feature set 
-    reduction, feature set selection, prediction performance estimation,
-    permutation tests, etc.
-
---> IMPORTANT: These codes will be put online during the week of June 8, 2015.
-    (Martin Vallières - June 1, 2015)
+    reduction, feature set selection, prediction performance estimation, etc.
 
 
 4. 'Utilities': MATLAB codes used to perform different operations including
-    the computation of SUV maps, 3D resampling, conversion of RTstruct DICOM
-    objects to 3D masks, 3D resampling, etc.
+    the computation of SUV maps, reading of directory containing DICOM imaging
+    data, conversion of RTstruct DICOM objects to 3D masks, etc.
 
 
 5. 'STUDIES': MATLAB codes used for specific studies. To reproduce the 
     experiments of a given study, please see its corresponding folder.
    
     - 'STSstudy': Ref. [1]. Imaging data and clinical information is 
-       available on The Cancer Imaging Archive (TCIA) website under the 
-       following DOI: <http://dx.doi.org/10.7937/K9/TCIA.2015.7GO2GSKS>.
+       	          available on The Cancer Imaging Archive (TCIA) website 
+                  under the following DOI: 
+		  <http://dx.doi.org/10.7937/K9/TCIA.2015.7GO2GSKS>.
+
  
 
-
-**************************************************************************************************
+***************************************************************************
 ACKNOWLEDGEMENTS: other software code
 - Wei's GLRLM toolbox: Xunkai Wei, Gray Level Run Length Matrix Toolbox
   v1.0, Software,Beijing Aeronautical Technology Research Center, 2007.
   <http://www.mathworks.com/matlabcentral/fileexchange/17482-gray-level-run-length-matrix-toolbox>
 - Q. Li: <http://www.mathworks.com/matlabcentral/fileexchange/23377-ellipsoid-fitting>
-- CERR development team <http://www.cerr.info/>
-- Dirk-Jan Kroon: <http://www.mathworks.com/matlabcentral/fileexchange/21451-multimodality-non-rigid-demon-algorithm-image-registration/content//functions/imresize3d.m>
-***************************************************************************************************
+- CERR development team: <http://www.cerr.info/>
+- Dirk-Jan Kroon (imresize3D.m): <http://www.mathworks.com/matlabcentral/fileexchange/21451-multimodality-non-rigid-demon-algorithm-image-registration/content//functions/imresize3d.m>
+- David Reshef and Yakir Reshef: MINE version 1.0.1d <http://www.exploredata.net/> 
+- DREES development team: <http://www.cerr.info/drees>
+- Enric Junqué de Fortuny (fastAUC.cpp): <http://www.mathworks.com/matlabcentral/fileexchange/41258-faster-roc-auc>
+- François Beauducel (roundsd.m): <http://www.mathworks.com/matlabcentral/fileexchange/26212-round-with-significant-digits>
+- Jos van der Geest (herrorbar.m): <http://www.mathworks.com/matlabcentral/fileexchange/3963-herrorbar> 
+***************************************************************************

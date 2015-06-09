@@ -45,7 +45,7 @@ function calcAllSeparateTextures_STS(pathWORK,nPatient,roiNumb,R_mat,scale_cell,
 % algo_cell = {'Equal','Lloyd'};
 % Ng_mat = [8,16,32,64];
 % -------------------------------------------------------------------------
-% AUTHOR(S): Martin Vallieres, <mart.vallieres@gmail.com>
+% AUTHOR(S): Martin Vallieres <mart.vallieres@gmail.com>
 % -------------------------------------------------------------------------
 % HISTORY:
 % - Creation: May 2015
@@ -70,7 +70,7 @@ function calcAllSeparateTextures_STS(pathWORK,nPatient,roiNumb,R_mat,scale_cell,
 % -------------------------------------------------------------------------
 
 startpath=pwd;
-cd(pathWORK), mkdir TEXTURES, cd('TEXTURES'), pathTEXT = pwd;
+cd(pathWORK), cd('TEXTURES'), pathTEXT = pwd;
 cd .., cd('DATA'), pathDATA = pwd;
 
 % INITIALIZATION
@@ -91,7 +91,7 @@ for i = 1:nPatient
             load(nameLoad) % Variable 'sData' now in MATLAB Workspace
         end
         tStart = tic;
-        fprintf(['\n**************************** COMPUTING TEXTURES: PATIENT %u, ',scans{j},' SCAN ****************************'],i)
+        fprintf(['\n*********************** COMPUTING TEXTURES: PATIENT %u, ',scans{j},' SCAN ***********************'],i)
         [textures] = calcPatientSepText_STS(sData,roiNumb(i),R_mat,scale_cell,algo_cell,Ng_mat);
         cd(pathTEXT), save(['Patient',num2str(i),'_',scans{j},suffix],'textures')
         time = toc(tStart);

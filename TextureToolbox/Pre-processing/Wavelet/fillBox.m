@@ -56,7 +56,6 @@ cumFunct = cumsum(histo);
 % RANDOM NUMBER GENERATOR SEED 
 if ~RandStream.getGlobalStream.Seed
     rng('shuffle')
-    RandStream.setGlobalStream(RandStream('mt19937ar','seed',RandStream.getGlobalStream.Seed));
 end
 
 

@@ -22,7 +22,7 @@ function readAllDICOM_STS(pathDICOM,nPatient)
 %              downloaded from the TCIA website.
 % - contourNumber: Number of patients to read. 
 % -------------------------------------------------------------------------
-% AUTHOR(S): Martin Vallieres, <mart.vallieres@gmail.com>
+% AUTHOR(S): Martin Vallieres <mart.vallieres@gmail.com>
 % -------------------------------------------------------------------------
 % HISTORY:
 % - Creation: May 2015
@@ -137,4 +137,5 @@ cd(pathDATA)
 load('Patient47_T1'), sData{2}.scan.sliceT = 4; save('Patient47_T1','sData')
 load('Patient47_T2FS'), sData{2}.scan.sliceT = 4; save('Patient47_T2FS','sData')
 
+cd ..
 end

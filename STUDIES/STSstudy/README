@@ -17,25 +17,26 @@ HISTORY:
 - Revision: May 2015
 -------------------------------------------------------------------------
 DISCLAIMER:
-"I am not a programmer, I am just a scientist doing stuff!"
+"I'm not a programmer, I'm just a scientist doing stuff!"
 -------------------------------------------------------------------------
 
 
 
---> This package (ref. [1] study) contains 2 folders:
+--> This package (ref. [1] study: <https://github.com/mvallieres/radiomics/STUDIES/STSstudy>)
+    contains 2 folders:
 
 1. 'Functions': MATLAB codes.
 
 2. 'WORKSPACE': Directory where the inputs and outputs of experiments are 
-    saved. It should contain five files. 
-       - 'outcome.mat': lung metastases status. 
+                saved. It should contain five files. 
+       - 'outcome.mat': lung metastases status for each patient. 
        - 'contour_Mass.mat': number in the RTstruct DICOM objects 
-          correspondingto the ROI without edema for each patient.
+          corresponding to the ROI without edema for each patient.
        - 'contour_Edema.mat': number in the RTstruct DICOM objects 
           corresponding to the ROI with edema for each patient. 
        - 'masterScript_STS.m': MATLAB master script to reproduce the 
           experiments of ref. [1]. 
-       - 'masterScriptExample_STS.m': faster example version of 
+       - 'masterScriptExample_STS.m': 'faster' example version of 
           masterScript_STS.m.
 
 
@@ -54,26 +55,28 @@ INSTRUCTIONS:
    'Utilities' of the <https://github.com/mvallieres/radiomics/> package.
     
 4. Run 'masterScript_STS.m' in MATLAB from the 'WORKSPACE' folder (run 
-   'masterScriptExample_STS.m' for a faster example version).
+   'masterScriptExample_STS.m' for a 'faster' example: total of ~1 day).
 
 
 
 NOTES:
 
-- IMPORTANT: Multivariable modeling codes will be put online during the week 
-  of June 8, 2015, and will be added to the master scripts. 
-  (Martin Vallières - June 1, 2015)
-
 - Over time, some codes have been improved since the creation of this package
-  (e.g., better ROI definition). Results may slightly  differ compared to what 
-  is found in ref. [1].
+  (e.g., better ROI and texture definition). Results may slightly  differ compared
+  to what is found in ref. [1].
 
 - Running 'masterScript_STS.m' on a single CPU core will take a very long time. 
   It is suggested to paralellize the computation of the following codes:
      --> calcAllSeparateTextures_STS.m, calcAllFusedTextures_STS.m: use
          patient-wise parallelization, for example.
+     --> calcAllFeatureSets_STS.m: use (degree of freedom) experiment-wise
+	 parallelization, for example.
+     --> computeAllModelChoice_STS: use (degree of freedom) experiment-wise
+	 parallelization, for example.
 
-- This software code have up to now been tested in a Linux OS (Ubuntu 14.04) 
-  using Matlab R2013b. It is expected to run fine in any Unix-based OS, but 
-  probably not in Windows due to differences in path definition and command
-  line functions. Windows-compatible code is currently a work in progress. 
+- This software code have up to now been tested on a Linux (Ubuntu 14.04) 
+  operating system (OS) using Matlab R2013b only. It is expected to run fine 
+  on any Unix-based OS, but probably not in Windows due to differences in path
+  definition and command line functions. Windows-compatible code is currently 
+  a work in progress. 
+

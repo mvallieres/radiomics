@@ -22,7 +22,7 @@ function [aucCSH] = getAUCCSH(ROIonlyPET)
 %           describing the percentage of total volume of the ROI above a 
 %           percentage threshold of maximum SUV.
 % -------------------------------------------------------------------------
-% AUTHOR(S): Martin Vallieres, <mart.vallieres@gmail.com>
+% AUTHOR(S): Martin Vallieres <mart.vallieres@gmail.com>
 % -------------------------------------------------------------------------
 % HISTORY:
 % - Creation: May 2015

@@ -1,0 +1,11 @@
+--> This folder contains functions from the Wei's GLRLM toolbox (Xunkai Wei, Gray Level Run Length Matrix Toolbox v1.0, Software,Beijing Aeronautical Technology Research Center, 2007):
+
+- 'findmaxnum.m'
+- 'grayrlmatrix.m'
+- 'grayrlprops.m'
+- 'rle_0.m'
+- 'rle_45.m'
+- 'zigzag.m'
+
+These functions are available at: <http://www.mathworks.com/matlabcentral/fileexchange/17482-gray-level-run-length-matrix-toolbox>. See 'license.txt' for more details.
+
