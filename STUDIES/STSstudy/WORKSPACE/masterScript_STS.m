@@ -65,27 +65,27 @@ freedomFUS = [unique(perms([0 0 0 0 0 0]),'rows');unique(perms([0 0 0 0 0 1]),'r
 nBoot = 1000;
 alpha = 0.5; delta = 0.5;
 setSize = 25;
-pathMINE = findMINE('Linux');
 fSetName = {'PET','SEPARATE','FUSED'};
 maxOrder = 10;
-try compileFastAUC('Linux'); end
           
 
 
 % ************** START COMPUTATION **************
           
 % 1. READ DATA DOWNLOADED FROM THE TCIA WEBSITE (http://dx.doi.org/10.7937/K9/TCIA.2015.7GO2GSKS)
-readAllDICOM_STS([pathWORK,'/Soft-tissue Sarcoma'],51)
+fprintf('\n\n*********************** ORGANIZING AND PROCESSING DICOM DATA FROM TCIA WEBSITE ***********************\n')
+readAllDICOM_STS([pathWORK,'/Soft-tissue-Sarcoma'],nPatient)
  
 % 2. COMPUTE NON-TEXTURE FEATURES
-calcAllNonTextureFeatures_STS(pathWORK,51,roiNumb,outcome)
+fprintf('\n\n*********************** COMPUTING NON-TEXTURE FEATURES ***********************\n')
+calcAllNonTextureFeatures_STS(pathWORK,nPatient,roiNumb,outcome)
 
 % 3. COMPUTE AND ORGANIZING ALL TEXTURE FEATURES
-mkdir('TEXTURES')
-calcAllSeparateTextures_STS(pathWORK,51,roiNumb,R_mat,scale_cell,algo_cell,Ng_mat)
-organizeSeparateTextures_STS(pathWORK,51,R_mat,scale_cell,algo_cell,Ng_mat)
-calcAllFusedTextures_STS(pathWORK,51,roiNumb,MRIinv_cell,MRIweight_mat,R_mat,scale_cell,algo_cell,Ng_mat)
-organizeFusedTextures_STS(pathWORK,51,MRIinv_cell,MRIweight_mat,R_mat,scale_cell,algo_cell,Ng_mat)
+mkdir('TEXTURES'), fprintf('\n')
+calcAllSeparateTextures_STS(pathWORK,nPatient,roiNumb,R_mat,scale_cell,algo_cell,Ng_mat)
+organizeSeparateTextures_STS(pathWORK,nPatient,R_mat,scale_cell,algo_cell,Ng_mat)
+calcAllFusedTextures_STS(pathWORK,nPatient,roiNumb,MRIinv_cell,MRIweight_mat,R_mat,scale_cell,algo_cell,Ng_mat)
+organizeFusedTextures_STS(pathWORK,nPatient,MRIinv_cell,MRIweight_mat,R_mat,scale_cell,algo_cell,Ng_mat)
 
 
 
@@ -97,6 +97,12 @@ T1   = load('textures_T1');   T1   = struct2cell(T1);   T1   = T1{1};
 T2FS = load('textures_T2FS'); T2FS = struct2cell(T2FS); T2FS = T2FS{1};
 PET_T1   = load('textures_PET_T1');   PET_T1   = struct2cell(PET_T1);   PET_T1   = PET_T1{1};
 PET_T2FS = load('textures_PET_T2FS'); PET_T2FS = struct2cell(PET_T2FS); PET_T2FS = PET_T2FS{1};
+
+tic
+fprintf('\n\nFinding the path to the ''MINE.jar'' application on the system ... ')
+pathMINE = findMINE('Linux');
+fprintf('DONE\n')
+toc
 
 % For Feature set 1: PET
 fprintf('\n*********************** PERFORMING FEATURE SET REDUCTION FOR ''PET'' FEATURE SET ***********************\n')
@@ -114,6 +120,13 @@ calcAllFeatureSets_STS(pathWORK,pathMINE,fSetName{3},outcome,setSize,nonTextures
 
 % 6. PERFORM FEATURE SET SELECTION
 mkdir('MODELS')
+fprintf('\n\nFinding the path to''fastAUC.cpp'' on the system --> COMPILATION ... ')
+try 
+    compileFastAUC('Linux')
+    fprintf('DONE\n') 
+catch
+    fprintf('FAILED (AUC computations will be slower)\n')
+end
  
 % For Feature set 1: PET
 fprintf('\n*********************** PERFORMING FEATURE SELECTION FOR ''PET'' FEATURE SET ***********************\n')
@@ -130,7 +143,7 @@ computeAllModelChoice_STS(pathWORK,fSetName{3},outcome,freedomFUS,maxOrder,nBoot
 
 
 % 7. PERFORM PREDICTION PERFORMANCE ESTIMATION
-mkdir('RESULTS')
+mkdir('RESULTS'), fprintf('\n')
 
 % For Feature set 1: PET
 fprintf('\n*********************** PERFORMING PREDICTION PERFORMANCE ESTIMATION FOR ''PET'' FEATURE SET ***********************\n')
@@ -152,6 +165,7 @@ groupExperiments_STS(pathWORK,fSetName{3},freedomFUS,maxOrder)
 
 
 % 8. CHOICE OF BEST PARSIMONIOUS MODEL (requires user input)
+fprintf('\n')
 plotPredictionResults_STS([pathWORK,'/RESULTS'],fSetName,{'AUC632','Sensitivity632','Specificity632'},maxOrder)
 while 1
     set = input(['\nWhich feature set provides the best parsimonious model? \n' ...
@@ -181,7 +195,7 @@ cd(pathWORK), mkdir('FINAL_MODEL'), cd('FINAL_MODEL'), save('finalModel', 'final
 
 
 % 9. COMPUTING THE LOGISTIC REGRESSION COEFFICIENTS AND BOOTSTRAP CONFIDENCE INTERVALS OF THE FINAL MODEL
-fprintf('\nCOMPUTING THE LOGISTIC REGRESSION COEFFICIENTS OF THE FINAL MODEL ... ')
+fprintf('\n\nCOMPUTING THE LOGISTIC REGRESSION COEFFICIENTS OF THE FINAL MODEL ... ')
 tic
 [coeff,response,modelCI] = computeModelCoefficients(finalModel.Data,outcome);
 save('coeff','coeff'), save('response','response'), save('modelCI','modelCI')
