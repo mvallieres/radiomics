@@ -16,7 +16,8 @@ function [bootSam,testSets] = buildBootSet(Y,nBoot,IABR)
 % REFERENCE:
 % [1] Vallieres, M. et al. (2015). A radiomics model from joint FDG-PET and 
 %     MRI texture features for the prediction of lung metastases in soft-tissue 
-%     sarcomas of the extremities. Physics in Medicine and Biology, 00(0), xxx-yyy. 
+%     sarcomas of the extremities. Physics in Medicine and Biology, 60(14), 
+%     5471-5496. doi:10.1088/0031-9155/60/14/5471
 % -------------------------------------------------------------------------
 % INPUTS:                             
 % - Y: Column vector of size [nInst X 1] specifying the outcome status 

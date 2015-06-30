@@ -10,7 +10,8 @@ function [fusedBox] = fusePETMRI(ROIbox_PET,ROIbox_MRI,maskBox_PET,MRIinv,MRIwei
 % REFERENCE:
 % [1] Vallieres, M. et al. (2015). A radiomics model from joint FDG-PET and 
 %     MRI texture features for the prediction of lung metastases in soft-tissue 
-%     sarcomas of the extremities. Physics in Medicine and Biology, 00(0), xxx-yyy. 
+%     sarcomas of the extremities. Physics in Medicine and Biology, 60(14), 
+%     5471-5496. doi:10.1088/0031-9155/60/14/5471
 % -------------------------------------------------------------------------
 % INPUTS:
 % - ROIbox_PET: 3D array of the smallest box containing the ROI of the PET 
