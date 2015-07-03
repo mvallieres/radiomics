@@ -6,7 +6,12 @@
 -------------------------------------------------------------------------
 
 |TEXTURE ANALYSIS TOOLBOX|
---> A toolkit to perform 2D/3D texture analysis in MATLAB.
+--> A toolkit to perform 3D/2D texture analysis in MATLAB.
+
+Features: - Gray-Level Co-occurence Matrix (GLCM)
+	  - Gray-Level Run-Length Matrix (GLRLM)
+	  - Gray-Level Size Zone Matrix (GLSZM)
+	  - Neighborhood Gray-Tone Difference Matrix (NGTDM)
 
 -------------------------------------------------------------------------
 REFERENCE:
