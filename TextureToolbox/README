@@ -72,7 +72,7 @@ INSTRUCTIONS:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % EXAMPLE:                                                                                   % 
 % Let a PET scan be defined by 'volume', with 'mask' defining the region of interest         % 
-% (ROI). The PET scan has in-plane resolution of 4 mm, with slice thickness of 3.27 mm.      %
+% (ROI). The PET scan has in-plane resolution of 4 mm, with slice spacing of 3.27 mm.        %
 %                                                                                            %
 % 1. To prepare 'volume' for matrix-based texture analysis at a scale of 5 mm, without WBPF, %
 %    using a Lloyd-Max quantization algorithm with 32 gray-levels, run:                      %

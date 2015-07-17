@@ -1,6 +1,6 @@
-function [solidity] = getSolidity(ROIonly,pixelW,sliceT)
+function [solidity] = getSolidity(ROIonly,pixelW,sliceS)
 % -------------------------------------------------------------------------
-% function [solidity] = getSolidity(ROIonly,pixelW,sliceT)
+% function [solidity] = getSolidity(ROIonly,pixelW,sliceS)
 % -------------------------------------------------------------------------
 % DESCRIPTION: 
 % This function computes the solidity metric of the region of interest 
@@ -9,7 +9,7 @@ function [solidity] = getSolidity(ROIonly,pixelW,sliceT)
 % INPUTS:
 % - ROIonly: 3D array, with voxels outside the ROI set to NaNs.
 % - pixelW: Pixel width, or in-plane resolution, in mm.
-% - sliceT: Slice thickness, in mm.
+% - sliceS: Slice spacing, in mm.
 % -------------------------------------------------------------------------
 % OUTPUTS:
 % - solidity: Ratio of the number of voxels in the ROI to the number of 
@@ -43,7 +43,7 @@ function [solidity] = getSolidity(ROIonly,pixelW,sliceT)
 mask = ~isnan(ROIonly); % Find mask covering the ROI
 
 % ISOTROPIC RESAMPLING
-sFactor = sliceT/pixelW; % scaling factor
+sFactor = sliceS/pixelW; % scaling factor
 mask = imresize3D(mask,[],[round(double(size(mask,1))),round(double(size(mask,2))),round(double(size(mask,3))*sFactor)],'nearest','fill');
 
 % SOLIDITY COMPUTATION

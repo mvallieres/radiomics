@@ -1,6 +1,6 @@
-function [sizeROI] = getSize(ROIonly,pixelW,sliceT)
+function [sizeROI] = getSize(ROIonly,pixelW,sliceS)
 % -------------------------------------------------------------------------
-% function [sizeROI] = getSize(ROIonly,pixelW,sliceT)
+% function [sizeROI] = getSize(ROIonly,pixelW,sliceS)
 % -------------------------------------------------------------------------
 % DESCRIPTION: 
 % This function computes the size (longest diameter) of the region of 
@@ -9,7 +9,7 @@ function [sizeROI] = getSize(ROIonly,pixelW,sliceT)
 % INPUTS:
 % - ROIonly: 3D array, with voxels outside the ROI set to NaNs.
 % - pixelW: Pixel width, or in-plane resolution, in mm.
-% - sliceT: Slice thickness, in mm.
+% - sliceS: Slice spacing, in mm.
 % -------------------------------------------------------------------------
 % OUTPUTS:
 % - sizeROI: Longest diameter of the ROI, in mm.
@@ -50,7 +50,7 @@ for i = 1:size(mask,3)
         temp = temp';
         vectX((i-1)*8 + 1:i*8) = temp(1,:) * pixelW;
         vectY((i-1)*8 + 1:i*8) = temp(2,:) * pixelW;
-        vectZ((i-1)*8 + 1:i*8) = (i-1) * sliceT;
+        vectZ((i-1)*8 + 1:i*8) = (i-1) * sliceS;
     catch % Will always work, except when the first slice contains all zeros
         vectX((i-1)*8 + 1:i*8) = vectX(((i-1)-1)*8 + 1:(i-1)*8);
         vectY((i-1)*8 + 1:i*8) = vectY(((i-1)-1)*8 + 1:(i-1)*8);

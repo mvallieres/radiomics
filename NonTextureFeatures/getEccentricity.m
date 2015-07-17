@@ -1,6 +1,6 @@
-function [eccentricity] = getEccentricity(ROIonly,pixelW,sliceT)
+function [eccentricity] = getEccentricity(ROIonly,pixelW,sliceS)
 % -------------------------------------------------------------------------
-% function [eccentricity] = getEccentricity(ROIonly,pixelW,sliceT)
+% function [eccentricity] = getEccentricity(ROIonly,pixelW,sliceS)
 % -------------------------------------------------------------------------
 % DESCRIPTION: 
 % This function computes the eccentricity metric of the region of interest 
@@ -16,7 +16,7 @@ function [eccentricity] = getEccentricity(ROIonly,pixelW,sliceT)
 % INPUTS:
 % - ROIonly: 3D array, with voxels outside the ROI set to NaNs.
 % - pixelW: Pixel width, or in-plane resolution, in mm.
-% - sliceT: Slice thickness, in mm.
+% - sliceS: Slice spacing, in mm.
 % -------------------------------------------------------------------------
 % OUTPUTS:
 % - eccentricity: Metric given by sqrt[1 - a*b/c^2] where c is the longest 
@@ -54,7 +54,7 @@ function [eccentricity] = getEccentricity(ROIonly,pixelW,sliceT)
 mask = ~isnan(ROIonly); % Find mask covering the ROI
 
 % ISOTROPIC RESAMPLING
-sFactor = sliceT/pixelW; % scaling factor
+sFactor = sliceS/pixelW; % scaling factor
 mask = imresize3D(mask,[],[round(double(size(mask,1))),round(double(size(mask,2))),round(double(size(mask,3))*sFactor)],'nearest','fill');
 
 

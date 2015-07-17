@@ -87,8 +87,8 @@ textures.Parameters.Ng = Ng_mat;
 nExperiment = numel(MRIinv_cell)*numel(MRIweight_mat)*numel(R_mat)*numel(scale_cell)*numel(algo_cell)*numel(Ng_mat);
 ROIbox_PET = getROIbox(sDataPET,roiNumb); ROIbox_MRI = getROIbox(sDataMRI,roiNumb);
 mask = sDataPET{2}.scan.contour(roiNumb).boxMask;
-[ROIbox_PET,ROIbox_MRI,mask]=checkFusionSliceDim(ROIbox_PET,ROIbox_MRI,mask);
-pixelW = sDataPET{2}.scan.pixelW; sliceT = sDataPET{2}.scan.sliceT; scanType = 'Other';
+[ROIbox_PET,ROIbox_MRI,mask] = checkFusionSliceDim(ROIbox_PET,ROIbox_MRI,mask);
+pixelW = sDataPET{2}.scan.pixelW; sliceS = sDataPET{2}.scan.sliceS; scanType = 'Other';
 wavelet = 'sym8'; % By default
 
 
@@ -99,7 +99,7 @@ for i = 1:numel(MRIinv_cell)
         [fusedBox] = fusePETMRI(ROIbox_PET,ROIbox_MRI,mask,MRIinv_cell{i},MRIweight_mat(w),wavelet);
         for r = 1:numel(R_mat)
             for s = 1:numel(scale_cell)
-                [ROIonly,~,ROIbox,maskBox] = prepareVolume(fusedBox,mask,scanType,pixelW,sliceT,R_mat(r),scale_cell{s},'Global');
+                [ROIonly,~,ROIbox,maskBox] = prepareVolume(fusedBox,mask,scanType,pixelW,sliceS,R_mat(r),scale_cell{s},'Global');
                 [Global_text] = getGlobalTextures(ROIonly,100);
                 for a = 1:numel(algo_cell)
                     for n = 1:numel(Ng_mat)
@@ -109,7 +109,7 @@ for i = 1:numel(MRIinv_cell)
                         nameExperiment = ['MRIinv=',MRIinv_cell{i},', MRIweight=',num2str(MRIweight_mat(w),'%.2f'),', R=',num2str(R_mat(r),'%.2f'),', Scale=',num2str(scale_cell{s}),', Quant.Algo=',algo_cell{a},', Ng=',num2str(Ng_mat(n))];
                         textures.List.(strExperiment) = nameExperiment;
                         fprintf(['PERFORMING EXPERIMENT %u OF %u: ''',nameExperiment,''' ... '],experiment,nExperiment)
-                        [ROIonly,levels] = prepareVolume(ROIbox,maskBox,'Other',pixelW,pixelW,1,'pixelW','Matrix',algo_cell{a},Ng_mat(n)); % Pre-processing, WBPF and resampling already applied. Thus, we insert 'Other', 'R=1', sliceT = pixelW /'Scale=pixelW', respectively
+                        [ROIonly,levels] = prepareVolume(ROIbox,maskBox,'Other',pixelW,pixelW,1,'pixelW','Matrix',algo_cell{a},Ng_mat(n)); % Pre-processing, WBPF and resampling already applied. Thus, we insert 'Other', R=1, sliceS = pixelW / Scale='pixelW', respectively
                         [GLCM] = getGLCM(ROIonly,levels); [GLCM_text] = getGLCMtextures(GLCM);
                         [GLRLM] = getGLRLM(ROIonly,levels); [GLRLM_text] = getGLRLMtextures(GLRLM);
                         [GLSZM] = getGLSZM(ROIonly,levels); [GLSZM_text] = getGLSZMtextures(GLSZM);

@@ -69,7 +69,7 @@ function [fusedBox] = fusePETMRI(ROIbox_PET,ROIbox_MRI,maskBox_PET,MRIinv,MRIwei
 ROIbox_PET = sqrt(ROIbox_PET);
 
 
-% RESAMPLING MRI VOLUME TO PET IN-PLANE RESOLUTION (slice thickness
+% RESAMPLING MRI VOLUME TO PET IN-PLANE RESOLUTION (slice spacing
 % previously verified to be the same)
 szPET = size(ROIbox_PET);
 temp=zeros(szPET);

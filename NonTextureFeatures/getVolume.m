@@ -1,6 +1,6 @@
-function [volume] = getVolume(ROIonly,pixelW,sliceT)
+function [volume] = getVolume(ROIonly,pixelW,sliceS)
 % -------------------------------------------------------------------------
-% function [volume] = getVolume(ROIonly,pixelW,sliceT)
+% function [volume] = getVolume(ROIonly,pixelW,sliceS)
 % -------------------------------------------------------------------------
 % DESCRIPTION: 
 % This function computes the volume an input region region of interest (ROI).
@@ -8,7 +8,7 @@ function [volume] = getVolume(ROIonly,pixelW,sliceT)
 % INPUTS:
 % - ROIonly: 3D array, with voxels outside the ROI set to NaNs.
 % - pixelW: Pixel width, or in-plane resolution, in mm.
-% - sliceT: Slice thickness, in mm.
+% - sliceS: Slice spacing, in mm.
 % -------------------------------------------------------------------------
 % OUTPUTS:
 % - volume: Number of voxels in the ROI multiplied by the voxel dimension, 
@@ -40,6 +40,6 @@ function [volume] = getVolume(ROIonly,pixelW,sliceT)
 
 mask = ~isnan(ROIonly); % Find mask covering the ROI
 numberVoxel = sum(mask(:));
-volume = numberVoxel * pixelW * pixelW * sliceT;
+volume = numberVoxel * pixelW * pixelW * sliceS;
 
 end

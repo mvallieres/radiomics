@@ -77,13 +77,13 @@ textures.Parameters.Algo = algo_cell;
 textures.Parameters.Ng = Ng_mat;
 nExperiment = numel(R_mat)*numel(scale_cell)*numel(algo_cell)*numel(Ng_mat);
 volume = getROIbox(sData,roiNumb); mask = sData{2}.scan.contour(roiNumb).boxMask;
-pixelW = sData{2}.scan.pixelW; sliceT = sData{2}.scan.sliceT; scanType = sData{2}.type;
+pixelW = sData{2}.scan.pixelW; sliceS = sData{2}.scan.sliceS; scanType = sData{2}.type;
 
 experiment = 0;
 fprintf('\n')
 for r = 1:numel(R_mat)
     for s = 1:numel(scale_cell)
-        [ROIonly,~,ROIbox,maskBox] = prepareVolume(volume,mask,scanType,pixelW,sliceT,R_mat(r),scale_cell{s},'Global');
+        [ROIonly,~,ROIbox,maskBox] = prepareVolume(volume,mask,scanType,pixelW,sliceS,R_mat(r),scale_cell{s},'Global');
         [Global_text] = getGlobalTextures(ROIonly,100);
         for a = 1:numel(algo_cell)
             for n = 1:numel(Ng_mat)
@@ -93,7 +93,7 @@ for r = 1:numel(R_mat)
                 nameExperiment = ['R=',num2str(R_mat(r),'%.2f'),', Scale=',num2str(scale_cell{s}),', Quant.Algo=',algo_cell{a},', Ng=',num2str(Ng_mat(n))];
                 textures.List.(strExperiment) = nameExperiment;
                 fprintf(['PERFORMING EXPERIMENT %u OF %u: ''',nameExperiment,''' ... '],experiment,nExperiment)
-                [ROIonly,levels] = prepareVolume(ROIbox,maskBox,'Other',pixelW,pixelW,1,'pixelW','Matrix',algo_cell{a},Ng_mat(n)); % Pre-processing, WBPF and resampling already applied. Thus, we insert 'Other', 'R=1', sliceT = pixelW /'Scale=pixelW', respectively
+                [ROIonly,levels] = prepareVolume(ROIbox,maskBox,'Other',pixelW,pixelW,1,'pixelW','Matrix',algo_cell{a},Ng_mat(n)); % Pre-processing, WBPF and resampling already applied. Thus, we insert 'Other', R=1, sliceS = pixelW / Scale='pixelW', respectively
                 [GLCM] = getGLCM(ROIonly,levels); [GLCM_text] = getGLCMtextures(GLCM);
                 [GLRLM] = getGLRLM(ROIonly,levels); [GLRLM_text] = getGLRLMtextures(GLRLM);
                 [GLSZM] = getGLSZM(ROIonly,levels); [GLSZM_text] = getGLSZMtextures(GLSZM);

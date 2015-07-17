@@ -1,6 +1,6 @@
-function [ROIonly,levels,ROIbox,maskBox] = prepareVolume(volume,mask,scanType,pixelW,sliceT,R,scale,textType,quantAlgo,Ng)
+function [ROIonly,levels,ROIbox,maskBox] = prepareVolume(volume,mask,scanType,pixelW,sliceS,R,scale,textType,quantAlgo,Ng)
 % -------------------------------------------------------------------------
-% function [ROIonly,levels] = prepareVolume(volume,mask,scanType,pixelW,sliceT,R,scale,textType,quantAlgo,Ng)
+% function [ROIonly,levels] = prepareVolume(volume,mask,scanType,pixelW,sliceS,R,scale,textType,quantAlgo,Ng)
 % -------------------------------------------------------------------------
 % DESCRIPTION: 
 % This function prepares the input volume for 3D texture analysis. The 
@@ -29,7 +29,7 @@ function [ROIonly,levels,ROIbox,maskBox] = prepareVolume(volume,mask,scanType,pi
 % - scanType: String specifying the type of scan analyzed. Either 'PETscan', 
 %             'MRscan' or 'Other'.
 % - pixelW: Numerical value specifying the in-plane resolution (mm) of 'volume'.
-% - sliceT: Numerical value specifying the slice thickness (mm) of 'volume'.
+% - sliceS: Numerical value specifying the slice spacing (mm) of 'volume'.
 %           Put a random number for 2D analysis.
 % - R: Numerical value specifying the ratio of weight to band-pass coefficients 
 %      over the weigth of the rest of coefficients (HHH and LLL). Provide R=1 
@@ -61,7 +61,7 @@ function [ROIonly,levels,ROIbox,maskBox] = prepareVolume(volume,mask,scanType,pi
 % -------------------------------------------------------------------------
 % EXAMPLE:
 % Let a PET scan be defined by 'volume', with 'mask' defining the ROI. The 
-% PET scan has in-plane resolution of 4 mm, with slice thickness of 3.27 mm.
+% PET scan has in-plane resolution of 4 mm, with slice spacing of 3.27 mm.
 %             
 % 1. To prepare 'volume' for matrix-based texture analysis at a scale of 
 %    5 mm, without WBPF, using a Lloyd-Max quantization algorithm with 32 
@@ -158,11 +158,11 @@ end
 if flagPW
     a = 1;
     b = 1;
-    c = sliceT/pixelW;
+    c = sliceS/pixelW;
 else
     a = pixelW/scale;
     b = pixelW/scale;
-    c = sliceT/scale;
+    c = sliceS/scale;
 end
 if numel(size(ROIbox))==3
     if a + b + c ~= 3 % If false, no resampling is needed

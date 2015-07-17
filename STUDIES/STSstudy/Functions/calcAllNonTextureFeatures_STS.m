@@ -78,18 +78,18 @@ for i = 1:nPatient
         load(['Patient',num2str(i),'_STIR']) % Variable 'sData' now in MATLAB Workspace
     end
     ROIonly = getROIonly(sData,roiNumb(i));
-    pixelW = sData{2}.scan.pixelW; sliceT = sData{2}.scan.sliceT;
+    pixelW = sData{2}.scan.pixelW; sliceS = sData{2}.scan.sliceS;
     fprintf(['COMPUTING ''VOLUME'' of Patient',num2str(i),'...'])
-    [volumeROI] = getVolume(ROIonly,pixelW,sliceT); nonText.Volume.Data(i,1) = volumeROI;
+    [volumeROI] = getVolume(ROIonly,pixelW,sliceS); nonText.Volume.Data(i,1) = volumeROI;
     fprintf('DONE\n')
     fprintf(['COMPUTING ''SIZE'' of Patient',num2str(i),'...'])
-    [sizeROI] = getSize(ROIonly,pixelW,sliceT); nonText.Size.Data(i,1) = sizeROI;
+    [sizeROI] = getSize(ROIonly,pixelW,sliceS); nonText.Size.Data(i,1) = sizeROI;
     fprintf('DONE\n')
     fprintf(['COMPUTING ''SOLIDITY'' of Patient',num2str(i),'...'])
-    [solidity] = getSolidity(ROIonly,pixelW,sliceT); nonText.Solidity.Data(i,1) = solidity;
+    [solidity] = getSolidity(ROIonly,pixelW,sliceS); nonText.Solidity.Data(i,1) = solidity;
     fprintf('DONE\n')
     fprintf(['COMPUTING ''ECCENTRICITY'' of Patient',num2str(i),'...'])
-    [eccentricity] = getEccentricity(ROIonly,pixelW,sliceT); nonText.Eccentricity.Data(i,1) = eccentricity;
+    [eccentricity] = getEccentricity(ROIonly,pixelW,sliceS); nonText.Eccentricity.Data(i,1) = eccentricity;
     fprintf('DONE\n')
     fprintf('\n')
 end

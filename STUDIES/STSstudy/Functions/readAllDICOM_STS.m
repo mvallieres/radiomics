@@ -26,7 +26,7 @@ function readAllDICOM_STS(pathDICOM,nPatient)
 % INPUTS:
 % - pathDICOM: Full path to the directory hosting the STS DICOM data 
 %              downloaded from the TCIA website.
-% - contourNumber: Number of patients to read. 
+% - nPatient: Number of patients to read. 
 % -------------------------------------------------------------------------
 % AUTHOR(S): Martin Vallieres <mart.vallieres@gmail.com>
 % -------------------------------------------------------------------------
@@ -115,7 +115,7 @@ for i = 1:nPatient
     fprintf('DONE\n')
 end
 cd(pathDICOM)
-fid=fopen('README.txt','w');
+fid = fopen('README.txt','w');
 fprintf(fid,'T1reg: T1 scan registered and resampled (axially) onto PET\n');
 fprintf(fid,'T2FSreg: T2FS scan registered and resampled (axially) onto PET');
 fclose(fid);
