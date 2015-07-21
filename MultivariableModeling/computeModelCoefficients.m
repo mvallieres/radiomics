@@ -1,13 +1,13 @@
-function [coeff,resp,modelCI] = computeModelCoefficients(X,Y)
+function [coeff,resp,modelCI] = computeModelCoefficients(X,Y,imbalance)
 % -------------------------------------------------------------------------
-% function [coeff,resp,modelCI] = computeModelCoefficients(X,Y)
+% function [coeff,resp,modelCI] = computeModelCoefficients(X,Y,imbalance)
 % -------------------------------------------------------------------------
 % DESCRIPTION: 
 % This function computes the final model logistic regression coefficients 
 % using bootstrap resampling, and it associated multivariable model 
 % response and bootstrap confidence intervals. See ref. [1] for more 
 % details. This function uses logistic regression utilities from DREES 
-% <http://www.cerr.info/drees >, as well as a rounding function written by 
+% <http://www.cerr.info/drees>, as well as a rounding function written by 
 % Francois Beauducel available at: 
 % <http://www.mathworks.com/matlabcentral/fileexchange/26212-round-with-significant-digits>
 % -------------------------------------------------------------------------
@@ -16,6 +16,7 @@ function [coeff,resp,modelCI] = computeModelCoefficients(X,Y)
 %     MRI texture features for the prediction of lung metastases in soft-tissue 
 %     sarcomas of the extremities. Physics in Medicine and Biology, 60(14), 
 %     5471-5496. doi:10.1088/0031-9155/60/14/5471
+% [2] Vallieres, M. et al. (2015).
 % -------------------------------------------------------------------------
 % INPUTS:
 % - X: Matrix of size [nInst X nFeat], specifying the numerical data of the 
@@ -24,6 +25,10 @@ function [coeff,resp,modelCI] = computeModelCoefficients(X,Y)
 %      Each column is a different feature.
 % - Y: Column vector of size [nInst X 1] specifying the outcome status 
 %      (1 or 0) for all instances.
+% - imbalance: String specifying the type of imbalance-adjustement strategy
+%              employed. Either 'IABR' for imbalance-adjusted bootstrap
+%              resampling (see ref.[1]), or 'IALR' for imbalance-adjusted
+%              logistic regression (see ref.[2]).
 % -------------------------------------------------------------------------
 % OUTPUTS:
 % - coeff: Column vector of size [nCoeff+1 X 1] specifying the final 
@@ -44,6 +49,7 @@ function [coeff,resp,modelCI] = computeModelCoefficients(X,Y)
 % -------------------------------------------------------------------------
 % HISTORY:
 % - Creation: May 2015
+% - Revision I: July 2015 (including imbalance-adjusted logistic regression) 
 %--------------------------------------------------------------------------
 % STATEMENT:
 % This file is part of <https://github.com/mvallieres/radiomics/>, 
@@ -99,6 +105,13 @@ bound = 1; % One standard error
 order = size(X,2);
 coeff = zeros(order+1,nBoot);
 tol = 10^6; % To avoid extremely large coefficients
+if strcmp(imbalance,'IABR')
+    logisticRegression = @(x,y) applyStandardLR(x,y);
+    adjust = 'adjust';
+elseif strcmp(imbalance,'IALR')
+    logisticRegression = @(x,y) applyEnsembleLR(x,y);
+    adjust = 'NoAdjust';
+end
 
 
 % RANDOM NUMBER GENERATOR SEED
@@ -113,9 +126,9 @@ modelCI = zeros(size(X,1),2);
 for n = 1:nBoot
     average = inf;
     while average > tol
-        [bootSam,~] = buildBootSet(Y,1,'adjust');
+        [bootSam,~] = buildBootSet(Y,1,adjust);
         Xtrain = X(bootSam,:); Ytrain = Y(bootSam,1);
-        [~,coeff(:,n),~] = drxlr_apply_logistic_regression(Xtrain,Ytrain);
+        [coeff(:,n)] = logisticRegression(Xtrain,Ytrain);
         average = mean(abs(coeff(:,n)));
     end
     [respBoot(:,n)]=responseLR(X,coeff(:,n));

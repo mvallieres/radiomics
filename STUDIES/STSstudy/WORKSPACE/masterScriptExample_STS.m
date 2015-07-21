@@ -194,7 +194,7 @@ cd(pathWORK), mkdir('FINAL_MODEL'), cd('FINAL_MODEL'), save('finalModel', 'final
 % 9. COMPUTING THE LOGISTIC REGRESSION COEFFICIENTS AND BOOTSTRAP CONFIDENCE INTERVALS OF THE FINAL MODEL
 fprintf('\n\nCOMPUTING THE LOGISTIC REGRESSION COEFFICIENTS OF THE FINAL MODEL ... ')
 tic
-[coeff,response,modelCI] = computeModelCoefficients(finalModel.Data,outcome);
+[coeff,response,modelCI] = computeModelCoefficients(finalModel.Data,outcome,'IABR');
 save('coeff','coeff'), save('response','response'), save('modelCI','modelCI')
 fprintf('DONE\n')
 toc

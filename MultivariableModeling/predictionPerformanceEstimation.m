@@ -1,6 +1,6 @@
-function [results] = predictionPerformanceEstimation(X,Y,nBoot,batchNum)
+function [results] = predictionPerformanceEstimation(X,Y,nBoot,imbalance,batchNum)
 % -------------------------------------------------------------------------
-% function [results] = predictionPerformanceEstimation(X,Y,nBoot,batchNum)
+% function [results] = predictionPerformanceEstimation(X,Y,nBoot,imbalance,batchNum)
 % -------------------------------------------------------------------------
 % DESCRIPTION: 
 % This function computes prediction performance estimation in terms of AUC, 
@@ -15,6 +15,7 @@ function [results] = predictionPerformanceEstimation(X,Y,nBoot,batchNum)
 %     MRI texture features for the prediction of lung metastases in soft-tissue 
 %     sarcomas of the extremities. Physics in Medicine and Biology, 60(14), 
 %     5471-5496. doi:10.1088/0031-9155/60/14/5471 
+% [2] Vallieres, M. et al. (2015).
 % -------------------------------------------------------------------------
 % INPUTS:
 % - X: Matrix of size [nInst X nFeat], specifying the numerical data of the 
@@ -24,6 +25,10 @@ function [results] = predictionPerformanceEstimation(X,Y,nBoot,batchNum)
 % - Y: Column vector of size [nInst X 1] specifying the outcome status 
 %      (1 or 0) for all instances.
 % - nBoot: Number of bootstrap samples to use.
+% - imbalance: String specifying the type of imbalance-adjustement strategy
+%              employed. Either 'IABR' for imbalance-adjusted bootstrap
+%              resampling (see ref.[1]), or 'IALR' for imbalance-adjusted
+%              logistic regression (see ref.[2]).
 % - batchNum: (optional input). If present, integer that specifies the
 %             batch number for parallelization purposes
 % -------------------------------------------------------------------------
@@ -42,6 +47,7 @@ function [results] = predictionPerformanceEstimation(X,Y,nBoot,batchNum)
 % -------------------------------------------------------------------------
 % HISTORY:
 % - Creation: May 2015
+% - Revision I: July 2015 (including imbalance-adjusted logistic regression) 
 %--------------------------------------------------------------------------
 % STATEMENT:
 % This file is part of <https://github.com/mvallieres/radiomics/>, 
@@ -94,7 +100,7 @@ function [results] = predictionPerformanceEstimation(X,Y,nBoot,batchNum)
 % RANDOM NUMBER GENERATOR SEED
 if ~RandStream.getGlobalStream.Seed
     rng('shuffle')
-    if nargin == 4
+    if nargin == 5
         % To avoid similar seeds when different batch are started with minimal time delay
         RandStream.setGlobalStream(RandStream('mt19937ar','seed',RandStream.getGlobalStream.Seed/(batchNum)^3))
     end
@@ -111,13 +117,20 @@ SPEC=zeros(1,nBoot);SPEC632=zeros(1,nBoot);
 ACCU=zeros(1,nBoot);ACCU632=zeros(1,nBoot);
 
 
-% GETTING BOOTSTRAP SAMPLES TO BE USED FOR ALL EXPERIMENTS (using imbalance-adjusted resampling)
-[trainSets,testSets] = buildBootSet(Y,nBoot,'adjust'); % 'trainSets' is a matrix, 'testSets' is a cell 
+% GETTING BOOTSTRAP SAMPLES FOR ALL EXPERIMENTS + LOGISTIC REGRESSION TYPE
+if strcmp(imbalance,'IABR')
+    logisticRegression = @(x,y) applyStandardLR(x,y);
+    [trainSets,testSets] = buildBootSet(Y,nBoot,'adjust'); % 'trainSets' is a matrix, 'testSets' is a cell 
+elseif strcmp(imbalance,'IALR')
+    logisticRegression = @(x,y) applyEnsembleLR(x,y);
+    [trainSets,testSets] = buildBootSet(Y,nBoot); % 'trainSets' is a matrix, 'testSets' is a cell 
+end
+
 
 
 % COMPUTING RESULTS FOR THE WHOLE DATASET
 [Xtrain] = normalizeZeroOne(X);
-[~,coeff,~] = drxlr_apply_logistic_regression(Xtrain,Y);
+[coeff] = logisticRegression(Xtrain,Y);
 [resp] = responseLR(Xtrain,coeff);
 [aucData,sensData,specData,accuData] = calcPerformMetrics(resp,Y,0);
 
@@ -126,7 +139,7 @@ ACCU=zeros(1,nBoot);ACCU632=zeros(1,nBoot);
 for n = 1:nBoot
     Xtrain = X(trainSets(:,n),:); Xtest = X(testSets{n},:); Ytrain = Y(trainSets(:,n),1); Ytest = Y(testSets{n},1);
     [Xtrain,Xtest] = normalizeZeroOne(Xtrain,Xtest);
-    [~,coeff,~] = drxlr_apply_logistic_regression(Xtrain,Ytrain);
+    [coeff] = logisticRegression(Xtrain,Ytrain);
     [resp] = responseLR(Xtest,coeff);
     [aucBoot,sensBoot,specBoot,accuBoot] = calcPerformMetrics(resp,Ytest,0);
     AUC(n) = aucBoot; SENS(n) = sensBoot; SPEC(n) = specBoot; ACCU(n) = accuBoot;

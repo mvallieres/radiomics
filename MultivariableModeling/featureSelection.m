@@ -1,6 +1,6 @@
-function [models] = featureSelection(X,Y,maxOrder,nBoot,Info,batchNum)
+function [models] = featureSelection(X,Y,maxOrder,nBoot,Info,imbalance,batchNum)
 % -------------------------------------------------------------------------
-% function [models] = featureSelection(X,Y,maxOrder,nBoot,Info,batchNum)
+% function [models] = featureSelection(X,Y,maxOrder,nBoot,Info,imbalance,batchNum)
 % -------------------------------------------------------------------------
 % DESCRIPTION: 
 % This function computes feature set selection according to the 0.632+ 
@@ -16,6 +16,7 @@ function [models] = featureSelection(X,Y,maxOrder,nBoot,Info,batchNum)
 %     MRI texture features for the prediction of lung metastases in soft-tissue 
 %     sarcomas of the extremities. Physics in Medicine and Biology, 60(14), 
 %     5471-5496. doi:10.1088/0031-9155/60/14/5471
+% [2] Vallieres, M. et al. (2015).
 % -------------------------------------------------------------------------
 % INPUTS:
 % - X: Matrix of size [nInst X nFeat], specifying the numerical data of the 
@@ -28,6 +29,10 @@ function [models] = featureSelection(X,Y,maxOrder,nBoot,Info,batchNum)
 % - nBoot: Number of bootstrap samples to use.
 % - Info: Cell of size [nFeat X 1] of strings specifying the name of each 
 %         feature in 'X'.
+% - imbalance: String specifying the type of imbalance-adjustement strategy
+%              employed. Either 'IABR' for imbalance-adjusted bootstrap
+%              resampling (see ref.[1]), or 'IALR' for imbalance-adjusted
+%              logistic regression (see ref.[2]).
 % - batchNum: (optional input). If present, integer that specifies the
 %             batch number for parallelization purposes.
 % -------------------------------------------------------------------------
@@ -48,6 +53,7 @@ function [models] = featureSelection(X,Y,maxOrder,nBoot,Info,batchNum)
 % -------------------------------------------------------------------------
 % HISTORY:
 % - Creation: May 2015
+% - Revision I: July 2015 (including imbalance-adjusted logistic regression) 
 %--------------------------------------------------------------------------
 % STATEMENT:
 % This file is part of <https://github.com/mvallieres/radiomics/>, 
@@ -100,7 +106,7 @@ function [models] = featureSelection(X,Y,maxOrder,nBoot,Info,batchNum)
 % RANDOM NUMBER GENERATOR SEED
 if ~RandStream.getGlobalStream.Seed
     rng('shuffle')
-    if nargin == 6
+    if nargin == 7
         % To avoid similar seeds when different batch are started with minimal time delay
         RandStream.setGlobalStream(RandStream('mt19937ar','seed',RandStream.getGlobalStream.Seed/(batchNum)^3))
     end
@@ -114,8 +120,14 @@ nFeat = size(X,2);
 models = struct; % Final model structure
 
 
-% GETTING BOOTSTRAP SAMPLES TO BE USED FOR ALL EXPERIMENTS (using imbalance-adjusted resampling)
-[trainSets,testSets] = buildBootSet(Y,nBoot,'adjust'); % 'trainSets' is a matrix, 'testSets' is a cell 
+% GETTING BOOTSTRAP SAMPLES FOR ALL EXPERIMENTS + LOGISTIC REGRESSION TYPE
+if strcmp(imbalance,'IABR')
+    logisticRegression = @(x,y) applyStandardLR(x,y);
+    [trainSets,testSets] = buildBootSet(Y,nBoot,'adjust'); % 'trainSets' is a matrix, 'testSets' is a cell 
+elseif strcmp(imbalance,'IALR')
+    logisticRegression = @(x,y) applyEnsembleLR(x,y);
+    [trainSets,testSets] = buildBootSet(Y,nBoot); % 'trainSets' is a matrix, 'testSets' is a cell 
+end
 
 
 % FORWARD FEATURE SELECTION (for all different starters)
@@ -127,8 +139,8 @@ for i = 1:nFeat
      indLeft(i) = [];
      modelMat(i,1) = i;
      Xtrain = X(:,i); 
-     Xtrain = normalizeZeroOne(Xtrain);
-     [~,coeff,~] = drxlr_apply_logistic_regression(Xtrain,Y);
+     [Xtrain] = normalizeZeroOne(Xtrain);
+     [coeff] = logisticRegression(Xtrain,Y);
      [resp] = responseLR(Xtrain,coeff);
      try 
          aucData = fastAUC(Y,resp,1); % Computed on the whole dataset
@@ -139,7 +151,7 @@ for i = 1:nFeat
      for n = 1:nBoot
          Xtrain = X(trainSets(:,n),i);Xtest = X(testSets{n},i); Ytrain = Y(trainSets(:,n),1); Ytest = Y(testSets{n},1);
          [Xtrain,Xtest] = normalizeZeroOne(Xtrain,Xtest);
-         [~,coeff,~] = drxlr_apply_logistic_regression(Xtrain,Ytrain);
+         [coeff] = logisticRegression(Xtrain,Ytrain);
          [resp] = responseLR(Xtest,coeff);
          try 
             aucBoot = fastAUC(Ytest,resp,1); % Computed in bootstrap samples
@@ -166,8 +178,8 @@ for i = 1:nFeat
          for k = 1:(nFeat-j+1)
              indexModel = [modelMat(i,1:(j-1)),indLeft(k)];
              Xtrain = X(:,indexModel);
-             Xtrain = normalizeZeroOne(Xtrain);
-             [~,coeff,~] = drxlr_apply_logistic_regression(Xtrain,Y);
+             [Xtrain] = normalizeZeroOne(Xtrain);
+             [coeff] = logisticRegression(Xtrain,Y);
              [resp] = responseLR(Xtrain,coeff);
              try 
                 aucData = fastAUC(Y,resp,1); % Computed on the whole dataset
@@ -178,7 +190,7 @@ for i = 1:nFeat
              for n=1:nBoot
                  Xtrain = X(trainSets(:,n),indexModel); Xtest = X(testSets{n},indexModel); Ytrain = Y(trainSets(:,n),1); Ytest = Y(testSets{n},1);
                  [Xtrain,Xtest] = normalizeZeroOne(Xtrain,Xtest);
-                 [~,coeff,~] = drxlr_apply_logistic_regression(Xtrain,Ytrain);
+                 [coeff] = logisticRegression(Xtrain,Ytrain);
                  [resp] = responseLR(Xtest,coeff);
                  try 
                     aucBoot = fastAUC(Ytest,resp,1); % Computed in bootstrap samples

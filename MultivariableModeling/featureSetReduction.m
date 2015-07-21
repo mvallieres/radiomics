@@ -75,7 +75,7 @@ function [fSet] = featureSetReduction(pathMINE,fSetNameType,outcome,setSize,nonT
 % algo_cell = {'Equal','Lloyd'};
 % Ng_mat = [8,16,32,64];
 %
-% FOR USED SCANS
+% FOR FUSED SCANS
 % paramAll = {MRIinv_cell,MRIweight_mat,R_mat,scale_cell,algo_cell,Ng_mat};
 % paramUsed = [1 1 0 0 0 1]; (example for a given experiment)
 % baseline = [1 3 3 1 2 3];
@@ -234,7 +234,7 @@ matCorr = abs(matCorr./nBoot);
 
 
 
-% GETTING FIRST FEATURE CHOSEN (depends only on Spearman's correlation)
+% CHOOSING FIRST FEATURE(depends only on Spearman's correlation)
 indChosen = zeros(setSize-1,1);
 
 % Choosing feature

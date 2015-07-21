@@ -63,7 +63,8 @@ for i = 1:nPatient
     ROIonly = getROIonly(sData,roiNumb(i));
     [SUVmap] = computeSUVmap(ROIonly,sData{3}(1));
     fprintf(['COMPUTING ''SUV METRICS'' of Patient',num2str(i),'...'])
-    [SUVmax,SUVpeak,SUVmean,aucCSH,percentInactive] = getSUVmetrics(SUVmap);
+    [SUVmax,SUVpeak,SUVmean,aucCSH] = getSUVmetrics(SUVmap);
+    [percentInactive] = getPercentInactive(SUVmap,0.005);
     fprintf('DONE\n')
     nonText.SUVmax.Data(i,1) = SUVmax;
     nonText.SUVpeak.Data(i,1) = SUVpeak;

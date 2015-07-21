@@ -1,6 +1,6 @@
-function [SUVmax,SUVpeak,SUVmean,aucCSH,percentInactive] = getSUVmetrics(ROIonlyPET)
+function [SUVmax,SUVpeak,SUVmean,aucCSH] = getSUVmetrics(ROIonlyPET)
 % -------------------------------------------------------------------------
-% function [SUVmax,SUVpeak,SUVmean,aucCSH,percentInactive] = getSUVmetrics(ROIonlyPET)
+% function [SUVmax,SUVpeak,SUVmean,aucCSH] = getSUVmetrics(ROIonlyPET)
 % -------------------------------------------------------------------------
 % DESCRIPTION: 
 % This function computes SUVmax, SUVpeak and SUVmean, AUC-CSH and Percent 
@@ -19,7 +19,6 @@ function [SUVmax,SUVpeak,SUVmean,aucCSH,percentInactive] = getSUVmetrics(ROIonly
 %           describing the percentage of total volume of the ROI above a 
 %           percentage threshold of maximum SUV.
 %           (van Velden et al., Eur J Nucl Med Mol Imaging 38(9), 2011).
-% - percentInactive: Percentage of the ROI that is inactive.
 % -------------------------------------------------------------------------
 % AUTHOR(S): Martin Vallieres <mart.vallieres@gmail.com>
 % -------------------------------------------------------------------------
@@ -67,8 +66,5 @@ SUVmean=mean(ROIonlyPET(~isnan(ROIonlyPET)));
 
 % AUC-CSH
 [aucCSH] = getAUCCSH(ROIonlyPET);
-
-% Percent Inactive
-[percentInactive] = getPercentInactive(ROIonlyPET);
 
 end

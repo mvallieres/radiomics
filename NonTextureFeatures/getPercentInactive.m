@@ -1,16 +1,18 @@
-function [percentInactive] = getPercentInactive(ROIonlyPET)
+function [percentInactive] = getPercentInactive(ROIonlyPET,thresh)
 % -------------------------------------------------------------------------
 % function [percentInactive] = getPercentInactive(ROIonlyPET,thresh)
 % -------------------------------------------------------------------------
 % DESCRIPTION: 
 % This function computes the percentage of inactive PET volume from the 
 % region of interest (ROI) of an input volume. A typical threshold of 
-% 0.005 × (SUVmax)^2 followed by closing and opening morphological 
+% thresh × (SUVmax)^2 followed by closing and opening morphological 
 % operations is used to differentiate active and inactive regions.
 % -------------------------------------------------------------------------
 % INPUTS:
 % - ROIonlyPET: 3D array representing the PET volume in SUV format, with 
 %               voxels outside the ROI set to NaNs.
+% - thresh: Numerical value specifying the threshold threshold thresh × 
+%           (SUVmax)^2.
 % -------------------------------------------------------------------------
 % OUTPUTS:
 % - percentInactive: Percentage of the ROI that is inactive.
@@ -40,7 +42,6 @@ function [percentInactive] = getPercentInactive(ROIonlyPET)
 % -------------------------------------------------------------------------
 
 % APPLYING INITIAL THRESHOLD
-thresh = 0.005; % By default
 mask = ~isnan(ROIonlyPET);
 ROIonlyPET(isnan(ROIonlyPET)) = 0;
 maskInactive = ROIonlyPET > thresh*(max(ROIonlyPET(:)))^2;
