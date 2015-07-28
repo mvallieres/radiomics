@@ -133,6 +133,11 @@ if nargin == 14
 else
     micName = 'master';
 end
+if ~isempty(strfind(textCellsName{1},'CT'))
+    name = 'CT';
+else
+    name = 'MR';
+end
 
 % Initializing names
 nonTextName = fieldnames(nonTextStruct); nNonText = numel(nonTextName);
@@ -268,7 +273,7 @@ if row <= nScan*nText
                 indFinal(i) = indBase(i);
             end
         end
-        string = [cellNames{row,1},'(MRInv=',paramAll{1}{indFinal(1)},',MRw=',num2str(paramAll{2}(indFinal(2)),'%.2f'),',R=',num2str(paramAll{3}(indFinal(3)),'%.2f'),',Scale=',num2str(paramAll{4}{indFinal(4)}),',Quant.algo=',paramAll{5}{indFinal(5)},',Ng=',num2str(paramAll{6}(indFinal(6))),')--',cellNames{row,2}];
+        string = [cellNames{row,1},'(',name,'Inv=',paramAll{1}{indFinal(1)},',',name,'w=',num2str(paramAll{2}(indFinal(2)),'%.2f'),',R=',num2str(paramAll{3}(indFinal(3)),'%.2f'),',Scale=',num2str(paramAll{4}{indFinal(4)}),',Quant.algo=',paramAll{5}{indFinal(5)},',Ng=',num2str(paramAll{6}(indFinal(6))),')--',cellNames{row,2}];
     end
 else % This is a nonTexture feature
     string = cellNames{row,1};
@@ -331,7 +336,7 @@ for f = 1:setSize-1
                     indFinal(i) = indBase(i);
                 end
             end
-            string = [cellNames{row,1},'(MRInv=',paramAll{1}{indFinal(1)},',MRw=',num2str(paramAll{2}(indFinal(2)),'%.2f'),',R=',num2str(paramAll{3}(indFinal(3)),'%.2f'),',Scale=',num2str(paramAll{4}{indFinal(4)}),',Quant.algo=',paramAll{5}{indFinal(5)},',Ng=',num2str(paramAll{6}(indFinal(6))),')--',cellNames{row,2}];
+            string = [cellNames{row,1},'(',name,'Inv=',paramAll{1}{indFinal(1)},',',name,'w=',num2str(paramAll{2}(indFinal(2)),'%.2f'),',R=',num2str(paramAll{3}(indFinal(3)),'%.2f'),',Scale=',num2str(paramAll{4}{indFinal(4)}),',Quant.algo=',paramAll{5}{indFinal(5)},',Ng=',num2str(paramAll{6}(indFinal(6))),')--',cellNames{row,2}];
         end
     else % This is a nonTexture feature
         string = cellNames{row,1};

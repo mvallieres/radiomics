@@ -158,7 +158,7 @@ for i = 1:nFeat
          catch  % If fast.cpp was not previously compiled by MATLAB
             [~,~,~,aucBoot] = perfcurve(Ytest,resp,1);
          end
-         alpha = top/(1-low*(aucData-aucBoot)/(aucData-0.5));
+         alpha = top/(1-low*(aucData-aucBoot)/(aucData-0.5+eps));
          if alpha > 1
              alpha = 1;
          elseif alpha < top
@@ -197,7 +197,7 @@ for i = 1:nFeat
                  catch  % If fast.cpp was not previously compiled by MATLAB
                     [~,~,~,aucBoot] = perfcurve(Ytest,resp,1);
                  end
-                 alpha = top/(1-low*(aucData-aucBoot)/(aucData-0.5));
+                 alpha = top/(1-low*(aucData-aucBoot)/(aucData-0.5+eps));
                  if alpha > 1
                     alpha = 1;
                  elseif alpha < top

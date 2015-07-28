@@ -145,7 +145,7 @@ for n = 1:nBoot
     AUC(n) = aucBoot; SENS(n) = sensBoot; SPEC(n) = specBoot; ACCU(n) = accuBoot;
     
     % For AUC
-    alpha = top/(1-low*(aucData-aucBoot)/(aucData-0.5));
+    alpha = top/(1-low*(aucData-aucBoot)/(aucData-0.5+eps));
     if alpha > 1
        alpha = 1;
     elseif alpha < top
@@ -157,21 +157,21 @@ for n = 1:nBoot
     AUC632(n) = (1-alpha)*aucData+alpha*aucBoot;
     
     % For Sens
-    alpha = top/(1-low*(sensData-sensBoot)/sensData);
+    alpha = top/(1-low*(sensData-sensBoot)/(sensData+eps));
     if alpha < top
         alpha = top;
     end
     SENS632(n) = (1-alpha)*sensData+alpha*sensBoot;
     
     % For Spec
-    alpha = top/(1-low*(specData-specBoot)/specData);
+    alpha = top/(1-low*(specData-specBoot)/(specData+eps));
     if alpha < top
         alpha = top;
     end
     SPEC632(n) = (1-alpha)*specData+alpha*specBoot;
     
     % For Accu
-    alpha = top/(1-low*(accuData-accuBoot)/accuData);
+    alpha = top/(1-low*(accuData-accuBoot)/(accuData+eps));
     if alpha < top
         alpha = top;
     end
