@@ -70,7 +70,7 @@ for i = 1:nFreedom
     fSet = load(nameOpen); fSet = struct2cell(fSet); fSet = fSet{1};
     fprintf(['SELECTING FEATURES (MODEL ORDERS OF 1 to % u) FOR ',nameOpen,' ... '],maxOrder)
     tic
-    [models] = featureSelection(fSet.Data,outcome,maxOrder,nBoot,fSet.Info,'IABR');
+    [models] = featureSelection_STS(fSet.Data,outcome,maxOrder,nBoot,fSet.Info,'IABR');
     toc
     cd(pathModels)
     save(['MODELS',nameOpen(5:end)],'models')

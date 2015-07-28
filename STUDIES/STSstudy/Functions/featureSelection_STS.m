@@ -1,4 +1,4 @@
-function [models] = featureSelection(X,Y,maxOrder,nBoot,Info,imbalance,batchNum)
+function [models] = featureSelection_STS(X,Y,maxOrder,nBoot,Info,imbalance,batchNum)
 % -------------------------------------------------------------------------
 % function [models] = featureSelection(X,Y,maxOrder,nBoot,Info,imbalance,batchNum)
 % -------------------------------------------------------------------------
@@ -10,8 +10,6 @@ function [models] = featureSelection(X,Y,maxOrder,nBoot,Info,imbalance,batchNum)
 % utilities from DREES <http://www.cerr.info/drees>, and a fast 
 % implementation of AUC calculation by Enric Junqué de Fortuny that is
 % available at: <http://www.mathworks.com/matlabcentral/fileexchange/41258-faster-roc-auc>
-% 
-% NOTE: This function now maximizes 0.5*AUC + 0.5*(1-abs(SENSITIVITY-SPECIFICITY))
 % -------------------------------------------------------------------------
 % REFERENCE:
 % [1] Vallieres, M. et al. (2015). A radiomics model from joint FDG-PET and 
@@ -53,9 +51,8 @@ function [models] = featureSelection(X,Y,maxOrder,nBoot,Info,imbalance,batchNum)
 % - Enric Junqué de Fortuny (fastAUC.cpp)
 % -------------------------------------------------------------------------
 % HISTORY:
-% - Creation - May 2015
-% - Revision I - July 2015: including imbalance-adjusted logistic regression 
-% - Revision II - July 2015: maximizing 0.5*AUC + 0.5*(1-abs(SENSITIVITY-SPECIFICITY))
+% - Creation: May 2015
+% - Revision I: July 2015 (including imbalance-adjusted logistic regression) 
 %--------------------------------------------------------------------------
 % STATEMENT:
 % This file is part of <https://github.com/mvallieres/radiomics/>, 
@@ -134,7 +131,7 @@ end
 
 % FORWARD FEATURE SELECTION (for all different starters)
 modelMat = zeros(nFeat,maxOrder);
-metricMat = zeros(nFeat,maxOrder);
+aucMat = zeros(nFeat,maxOrder);
 for i = 1:nFeat 
      indLeft = 1:nFeat;
      % Order 1
@@ -144,16 +141,22 @@ for i = 1:nFeat
      [Xtrain] = normalizeZeroOne(Xtrain);
      [coeff] = logisticRegression(Xtrain,Y);
      [resp] = responseLR(Xtrain,coeff);
-     [aucData,sensData,specData,~] = calcPerformMetrics(resp,Y,0);
-     aucTemp = 0; sensTemp = 0; specTemp = 0;
+     try 
+         aucData = fastAUC(Y,resp,1); % Computed on the whole dataset
+     catch  % If fast.cpp was not previously compiled by MATLAB
+        [~,~,~,aucData] = perfcurve(Y,resp,1);
+     end
+     aucTemp = 0;
      for n = 1:nBoot
          Xtrain = X(trainSets(:,n),i);Xtest = X(testSets{n},i); Ytrain = Y(trainSets(:,n),1); Ytest = Y(testSets{n},1);
          [Xtrain,Xtest] = normalizeZeroOne(Xtrain,Xtest);
          [coeff] = logisticRegression(Xtrain,Ytrain);
          [resp] = responseLR(Xtest,coeff);
-         [aucBoot,sensBoot,specBoot,~] = calcPerformMetrics(resp,Ytest,0);
-         
-         % FOR AUC
+         try 
+            aucBoot = fastAUC(Ytest,resp,1); % Computed in bootstrap samples
+         catch  % If fast.cpp was not previously compiled by MATLAB
+            [~,~,~,aucBoot] = perfcurve(Ytest,resp,1);
+         end
          alpha = top/(1-low*(aucData-aucBoot)/(aucData-0.5+eps));
          if alpha > 1
              alpha = 1;
@@ -164,86 +167,61 @@ for i = 1:nFeat
              aucBoot = 0.5;
          end
          aucTemp = aucTemp + (1-alpha)*aucData + alpha*aucBoot;
-         
-         % For SENSITIVITY
-         alpha = top/(1-low*(sensData-sensBoot)/(sensData+eps));
-         if alpha < top
-             alpha = top;
-         end
-         sensTemp = sensTemp + (1-alpha)*sensData+alpha*sensBoot;
-        
-         % For SPECIFICITY
-         alpha = top/(1-low*(specData-specBoot)/(specData+eps));
-         if alpha < top
-             alpha = top;
-         end
-         specTemp = specTemp + (1-alpha)*specData+alpha*specBoot;
-         
      end
-     aucTemp = aucTemp/nBoot; sensTemp = sensTemp/nBoot; specTemp = specTemp/nBoot;
-     metricMat(i,1) = 0.5*aucTemp + 0.5*(1-abs(sensTemp-specTemp));
+     aucTemp = aucTemp/nBoot;
+     aucMat(i,1) = aucTemp;
      
      % Going for orders 2 to maxOrder
      for j = 2:maxOrder
-         maxMetric = 0;
+         maxAUC = 0;
          for k = 1:(nFeat-j+1)
              indexModel = [modelMat(i,1:(j-1)),indLeft(k)];
              Xtrain = X(:,indexModel);
              [Xtrain] = normalizeZeroOne(Xtrain);
              [coeff] = logisticRegression(Xtrain,Y);
              [resp] = responseLR(Xtrain,coeff);
-             [aucData,sensData,specData,~] = calcPerformMetrics(resp,Y,0);
-             aucTemp = 0; sensTemp = 0; specTemp = 0;
+             try 
+                aucData = fastAUC(Y,resp,1); % Computed on the whole dataset
+             catch  % If fast.cpp was not previously compiled by MATLAB
+                [~,~,~,aucData] = perfcurve(Y,resp,1);
+             end
+             aucTemp = 0;
              for n=1:nBoot
                  Xtrain = X(trainSets(:,n),indexModel); Xtest = X(testSets{n},indexModel); Ytrain = Y(trainSets(:,n),1); Ytest = Y(testSets{n},1);
                  [Xtrain,Xtest] = normalizeZeroOne(Xtrain,Xtest);
                  [coeff] = logisticRegression(Xtrain,Ytrain);
                  [resp] = responseLR(Xtest,coeff);
-                 [aucBoot,sensBoot,specBoot,~] = calcPerformMetrics(resp,Ytest,0);
-         
-                 % FOR AUC
+                 try 
+                    aucBoot = fastAUC(Ytest,resp,1); % Computed in bootstrap samples
+                 catch  % If fast.cpp was not previously compiled by MATLAB
+                    [~,~,~,aucBoot] = perfcurve(Ytest,resp,1);
+                 end
                  alpha = top/(1-low*(aucData-aucBoot)/(aucData-0.5+eps));
                  if alpha > 1
-                     alpha = 1;
+                    alpha = 1;
                  elseif alpha < top
-                     alpha = top;
+                    alpha = top;
                  end
                  if aucBoot < 0.5
                      aucBoot = 0.5;
                  end
                  aucTemp = aucTemp + (1-alpha)*aucData + alpha*aucBoot;
-
-                 % For SENSITIVITY
-                 alpha = top/(1-low*(sensData-sensBoot)/(sensData+eps));
-                 if alpha < top
-                     alpha = top;
-                 end
-                 sensTemp = sensTemp + (1-alpha)*sensData+alpha*sensBoot;
-
-                 % For SPECIFICITY
-                 alpha = top/(1-low*(specData-specBoot)/(specData+eps));
-                 if alpha < top
-                     alpha = top;
-                 end
-                 specTemp = specTemp + (1-alpha)*specData+alpha*specBoot;
-                 
              end
-             aucTemp = aucTemp/nBoot; sensTemp = sensTemp/nBoot; specTemp = specTemp/nBoot;
-             metricTemp = 0.5*aucTemp + 0.5*(1-abs(sensTemp-specTemp));
-             if metricTemp >= maxMetric
-                 maxMetric = metricTemp;
+             aucTemp = aucTemp/nBoot;
+             if aucTemp >= maxAUC
+                 maxAUC = aucTemp;
                  index = indLeft(k);
              end
          end
          modelMat(i,j) = index;
-         metricMat(i,j) = maxMetric;
+         aucMat(i,j) = maxAUC;
          indLeft(find(indLeft==index)) = [];
      end
 end
 
 
 % OBTAINING MAXIMUM RESULTS FOR EVERY MODEL ORDER (maximum from all different starters)
-[~,indMax] = max(metricMat);
+[~,indMax] = max(aucMat);
 for i = 1:maxOrder
     nameOrder = ['Order',num2str(i)];
     models.(nameOrder).Data = X(:,modelMat(indMax(i),1:i));
