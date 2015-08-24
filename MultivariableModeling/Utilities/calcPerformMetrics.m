@@ -77,30 +77,7 @@ function [AUC,sensitivity,specificity,accuracy] = calcPerformMetrics(response,Y,
 % -------------------------------------------------------------------------
 
 
-TP = sum(response>=thresh & Y==1);
-TN = sum(response<thresh & Y==0);
-FP = sum(response>=thresh & Y==0);
-FN = sum(response<thresh & Y==1);
-
-try
-    sensitivity = TP/(TP + FN);
-catch
-    sensitivity = 0;
-end
-
-try
-    specificity = TN/(TN + FP);
-catch
-    specificity = 0;
-end
-
-try
-    accuracy = (TP + TN)/(TP + TN + FP + FN);
-catch
-    accuracy = 0;
-end
-
-
+% Computing AUC
 try
     AUC = fastAUC(Y,response,1);
 catch
@@ -116,5 +93,22 @@ catch
         end 
     end
 end
+
+% Classifications
+TP = sum(response>=thresh & Y==1);
+TN = sum(response<thresh & Y==0);
+FP = sum(response>=thresh & Y==0);
+FN = sum(response<thresh & Y==1);
+
+% Computing performance metrics
+sensitivity = TP/(TP + FN);
+specificity = TN/(TN + FP);
+accuracy = (TP + TN)/(TP + TN + FP + FN);
+
+% Validation check of metrics
+AUC(isnan(AUC)) = 0.5;
+sensitivity(isnan(sensitivity)) = 0;
+specificity(isnan(specificity)) = 0;
+accuracy(isnan(accuracy)) = 0;
 
 end
