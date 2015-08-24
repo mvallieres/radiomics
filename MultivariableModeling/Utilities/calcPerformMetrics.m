@@ -105,10 +105,15 @@ try
     AUC = fastAUC(Y,response,1);
 catch
     try
-        [~,~,~,AUC] = perfcurve(Y,response,1);
+        compileFastAUC('Linux')
+        AUC = fastAUC(Y,response,1);
     catch
-        AUC = 0.5;
-        fprintf('\nSomething went wrong with the AUC calculations\n')
+        try
+            [~,~,~,AUC] = perfcurve(Y,response,1);
+        catch
+            AUC = 0.5;
+            fprintf('\nSomething went wrong with the AUC calculations\n')
+        end 
     end
 end
 

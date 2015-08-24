@@ -1,6 +1,6 @@
-function [coeff,resp,modelCI] = computeModelCoefficients(X,Y,imbalance)
+function [coeff,resp,modelCI] = computeModelCoefficients(X,Y,imbalance,batchNum)
 % -------------------------------------------------------------------------
-% function [coeff,resp,modelCI] = computeModelCoefficients(X,Y,imbalance)
+% function [coeff,resp,modelCI] = computeModelCoefficients(X,Y,imbalance,batchNum)
 % -------------------------------------------------------------------------
 % DESCRIPTION: 
 % This function computes the final model logistic regression coefficients 
@@ -29,6 +29,8 @@ function [coeff,resp,modelCI] = computeModelCoefficients(X,Y,imbalance)
 %              employed. Either 'IABR' for imbalance-adjusted bootstrap
 %              resampling (see ref.[1]), or 'IALR' for imbalance-adjusted
 %              logistic regression (see ref.[2]).
+% - batchNum: (optional input). If present, integer that specifies the
+%             batch number for parallelization purposes.
 % -------------------------------------------------------------------------
 % OUTPUTS:
 % - coeff: Column vector of size [nCoeff+1 X 1] specifying the final 
@@ -99,6 +101,7 @@ function [coeff,resp,modelCI] = computeModelCoefficients(X,Y,imbalance)
 
 
 % INITIALIZATION
+warning off
 nBoot = 1000;
 alpha = 0.05;
 bound = 1; % One standard error
@@ -117,7 +120,12 @@ end
 % RANDOM NUMBER GENERATOR SEED
 if ~RandStream.getGlobalStream.Seed
     rng('shuffle')
+    if nargin == 4
+        % To avoid similar seeds when different batch are started with minimal time delay
+        RandStream.setGlobalStream(RandStream('mt19937ar','seed',RandStream.getGlobalStream.Seed/(batchNum)^3))
+    end
 end
+
 
 
 % COMPUTING OVER ALL BOOTSTRAP SAMPLES
@@ -131,7 +139,7 @@ for n = 1:nBoot
         [coeff(:,n)] = logisticRegression(Xtrain,Ytrain);
         average = mean(abs(coeff(:,n)));
     end
-    [respBoot(:,n)]=responseLR(X,coeff(:,n));
+    [respBoot(:,n)] = responseLR(X,coeff(:,n));
 end
 SE_coeff = bound.*(std(coeff')')./sqrt(nBoot);
 coeff = mean(coeff')';
