@@ -49,7 +49,8 @@ INSTRUCTIONS:
    at: <http://dx.doi.org/10.7937/K9/TCIA.2015.7GO2GSKS>. The data is 
    automatically saved in a folder named 'Soft-tissue-Sarcoma'.
 
-2. Move the 'Soft-tissue-Sarcoma' folder in the 'WORKSPACE' folder.
+2. Move the 'Soft-tissue-Sarcoma' folder in the 'WORKSPACE' folder
+   described above.
 
 3. Set up the MATLAB path to contain all sub-folders of the folder 'Functions'
    of this package (ref. [1] study), and all sub-folders of the folders 
