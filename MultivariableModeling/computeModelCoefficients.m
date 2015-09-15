@@ -136,7 +136,9 @@ for n = 1:nBoot
     while average > tol
         [bootSam,~] = buildBootSet(Y,1,adjust);
         Xtrain = X(bootSam,:); Ytrain = Y(bootSam,1);
-        [coeff(:,n)] = logisticRegression(Xtrain,Ytrain);
+        coeff_temp = logisticRegression(Xtrain,Ytrain);
+        coeff_temp(isnan(coeff_temp)) = 0;
+        coeff(:,n) = coeff_temp;
         average = mean(abs(coeff(:,n)));
     end
     [respBoot(:,n)] = responseLR(X,coeff(:,n));
