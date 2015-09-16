@@ -65,8 +65,10 @@ end
 
 
 figure
-[sortResp,ind] = sort(resp);
-h = plot(sortResp,prob(ind),'-k','LineWidth',3);
+[sortResp,~] = sort(resp);
+sigX = (sortResp(1)-5):0.1:sortResp(end)+5;
+sigY = 1./(1 + exp(-sigX));
+h = plot(sigX,sigY,'-k','LineWidth',3);
 hold on
 h = herrorbar(respPos,probPos,lowXpos,highXpos,'ob');
 hold on
