@@ -54,9 +54,7 @@ cumFunct = cumsum(histo);
 
 
 % RANDOM NUMBER GENERATOR SEED 
-if ~RandStream.getGlobalStream.Seed
-    rng('shuffle')
-end
+rng(1000000); % Set the random generator to a specific seed, to obtain reproducible fusions.
 
 
 % FILLING THE BOX
