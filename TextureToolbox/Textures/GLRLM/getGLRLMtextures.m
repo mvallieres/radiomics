@@ -100,7 +100,7 @@ textures.LRHGE = sum(sum(GLRLM.*(rMat.^2).*(cMat.^2)))/nRuns;
 
 
 % New features according to Ref.[4]
-GLRLM = GLRLM./nRuns;
+GLRLM = GLRLM./nRuns; % In the future, this operation will be applied at the beginning of the function
 pg = sum(GLRLM,2)'; pr = sum(GLRLM);
 ug = (pg*rVect')/(sz(1)*sz(2));
 ur = (pr*cVect')/(sz(1)*sz(2));

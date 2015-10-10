@@ -100,7 +100,8 @@ textures.LZHGE = sum(sum(GLSZM.*(rMat.^2).*(cMat.^2)))/nRuns;
 
 
 % New features according to Ref.[4]
-pg = sum(GLSZM,2)'; pr = sum(GLSZM);
+GLSZM = GLSZM./nRuns; % In the future, this operation will be applied at the beginning of the function
+pg=sum(GLSZM,2)'; pr=sum(GLSZM);
 ug = (pg*rVect')/(sz(1)*sz(2));
 ur = (pr*cVect')/(sz(1)*sz(2));
 
