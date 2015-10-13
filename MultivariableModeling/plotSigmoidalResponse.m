@@ -21,10 +21,11 @@ function plotSigmoidalResponse(resp,Y,modelCI,nameOutcome)
 % - modelCI: Column vector of size [nInst X 2] specifying the 95%
 %            confidence interval on the multivariable model response as
 %            defined by the 2.5 (modelCI(i,1)) and the 97.5 (modelCI(i,2))
-%            percentiles, for the ith instance. See ref. [1] for more 
+%            percentiles, for the ith instance. To plot without CIs, use []
+%            for the 3rd argument.See ref. [1] for more 
 %            details.
 % - nameOutcome: (optional input). String specifying the name of the
-%                modeled outcome.
+%                modeled outcome. 
 % -------------------------------------------------------------------------
 % AUTHOR(S): Martin Vallieres <mart.vallieres@gmail.com>
 % -------------------------------------------------------------------------
@@ -55,14 +56,12 @@ respPos = resp(Y==1);
 respNeg = resp(Y==0); 
 probPos = prob(Y==1);
 probNeg = prob(Y==0);
-lowXpos = modelCI(Y==1,1); highXpos = modelCI(Y==1,2);
-lowXneg = modelCI(Y==0,1); highXneg = modelCI(Y==0,2);
 if nargin == 4
     name = nameOutcome;
 else
     name = 'Y';
 end
-
+symbols = {'ob','xr'}; % First entry for positive instances, second entry for negative instances
 
 figure
 [sortResp,~] = sort(resp);
@@ -70,13 +69,22 @@ sigX = (sortResp(1)-5):0.1:sortResp(end)+5;
 sigY = 1./(1 + exp(-sigX));
 h = plot(sigX,sigY,'-k','LineWidth',3);
 hold on
-h = herrorbar(respPos,probPos,lowXpos,highXpos,'ob');
-hold on
-h = herrorbar(respNeg,probNeg,lowXneg,highXneg,'xr');
-xlabel('Multivariable model response','FontSize',24)
-ylabel(['Probability that ',name,' = 1'],'FontSize',24)
-legend('Sigmoidal response',['95% CI: ',name,' = 1'],['Status: ',name,' = 1'],['95% CI: ',name,' = 0'],['Status: ',name,' = 0'],'Location','NorthWest')
+if ~isempty(modelCI)
+    lowXpos = modelCI(Y==1,1); highXpos = modelCI(Y==1,2);
+    lowXneg = modelCI(Y==0,1); highXneg = modelCI(Y==0,2);
+    h = herrorbar(respPos,probPos,respPos-lowXpos,highXpos-respPos,'ob');
+    hold on
+    h = herrorbar(respNeg,probNeg,respNeg-lowXneg,highXneg-respNeg,'xr');
+    legend('Sigmoidal response',['95% CI: ',name,' = 1'],['Status: ',name,' = 1'],['95% CI: ',name,' = 0'],['Status: ',name,' = 0'],'Location','NorthWest')
+else
+    h = plot(respPos,probPos,symbols{1},'LineWidth',6,'MarkerSize',18,'MarkerFaceColor',symbols{1}(end),'MarkerEdgeColor',symbols{1}(end));
+    hold on
+    h = plot(respNeg,probNeg,symbols{2},'LineWidth',6,'MarkerSize',20,'MarkerFaceColor',symbols{2}(end),'MarkerEdgeColor',symbols{2}(end));
+    legend('Sigmoidal response',['Status: ',name,' = 1'],['Status: ',name,' = 0'],'Location','NorthWest')
+end
+xlabel('Multivariable model response','FontSize',30)
+ylabel(['Probability that ',name,' = 1'],'FontSize',30)
 axis([sortResp(1)-5,sortResp(end)+5,-0.05,1.05])
-set(gca,'FontSize',20)
+set(gca,'FontSize',24)
 
 end
