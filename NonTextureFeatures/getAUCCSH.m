@@ -48,13 +48,17 @@ function [aucCSH] = getAUCCSH(ROIonlyPET)
 
 nBins = 1000; % By default.
 
-ROIonlyPET=ROIonlyPET-min(ROIonlyPET(:));
-ROIonlyPET=ROIonlyPET./max(ROIonlyPET(:));
-volume=ROIonlyPET(~isnan(ROIonlyPET));
-nVoxel=numel(volume);
+outliers = find(ROIonlyPET > mean(ROIonlyPET(~isnan(ROIonlyPET(:)))) + 3*std(ROIonlyPET(~isnan(ROIonlyPET(:)))));
+goodVoxels = find(ROIonlyPET <= mean(ROIonlyPET(~isnan(ROIonlyPET(:)))) + 3*std(ROIonlyPET(~isnan(ROIonlyPET(:)))));
+ROIonlyPET(outliers) = mean(ROIonlyPET(goodVoxels));
 
-bins=hist(volume,nBins);
-CSH=fliplr(cumsum(fliplr(bins))./nVoxel);
-aucCSH=sum(CSH./nBins);
+ROIonlyPET = ROIonlyPET-min(ROIonlyPET(:));
+ROIonlyPET = ROIonlyPET./max(ROIonlyPET(:));
+volume = ROIonlyPET(~isnan(ROIonlyPET));
+nVoxel = numel(volume);
+
+bins = hist(volume,nBins);
+CSH = fliplr(cumsum(fliplr(bins))./nVoxel);
+aucCSH = sum(CSH./nBins);
 
 end
