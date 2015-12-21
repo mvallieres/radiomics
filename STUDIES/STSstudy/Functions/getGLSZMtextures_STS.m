@@ -1,10 +1,10 @@
-function [textures] = getGLRLMtextures(GLRLM)
+function [textures] = getGLSZMtextures_STS(GLSZM)
 % -------------------------------------------------------------------------
-% function [textures] = getGLRLMtextures(GLRLM)
+% function [textures] = getGLSZMtextures_STS(GLSZM)
 % -------------------------------------------------------------------------
 % DESCRIPTION:
-% This function computes texture features from an input Gray-Level 
-% Run-Length Matrix (GLRLM).
+% This function computes texture features from an input Gray-Level Size
+% Zone Matrix (GLSZM). (STS study)
 % -------------------------------------------------------------------------
 % REFERENCES:
 % [1] Galloway, M. M. (1975). Texture analysis using gray level run lengths. 
@@ -21,20 +21,19 @@ function [textures] = getGLRLMtextures(GLRLM)
 %     Recognition and Information Processing (PRIP) (pp. 140–145).
 % -------------------------------------------------------------------------
 % INPUTS:
-% - GLRLM: Gray-Level Run-Length Matrix.
+% - GLSZM: Gray-Level Size Zone Matrix.
 %
-% ** 'GLRLM' should be the output from 'getGLRLM.m' **
+% ** 'GLSZM' should be the output from 'getGLSZM.m' **
 % -------------------------------------------------------------------------
 % OUTPUTS:
-% - textures: Struture specifying the values of different GLRLM texture
+% - textures: Struture specifying the values of different GLSZM texture
 %             features as defined below.
 % -------------------------------------------------------------------------
 % AUTHOR(S): Martin Vallieres <mart.vallieres@gmail.com>
 % -------------------------------------------------------------------------
 % HISTORY:
 % - Creation: January 2013
-% - Revision I: May 2015
-% - Revision II: December 2015 (GLRLM = GLRLM./sum(GLRLM(:)))
+% - Revision: May 2015
 % -------------------------------------------------------------------------
 % STATEMENT:
 % This file is part of <https://github.com/mvallieres/radiomics/>, 
@@ -55,68 +54,73 @@ function [textures] = getGLRLMtextures(GLRLM)
 %    along with this package.  If not, see <http://www.gnu.org/licenses/>.
 % -------------------------------------------------------------------------
 
-GLRLM = GLRLM./sum(GLRLM(:)); % Normalization of GLCM
 
 % USEFUL MATRICES, VECTORS AND QUANTITIES
-sz = size(GLRLM); % Size of GLRLM
+sz = size(GLSZM); % Size of GLSZM
+nRuns = sum(GLSZM(:));
 cVect = 1:sz(2); rVect = 1:sz(1);% Row and column vectors
-[cMat,rMat] = meshgrid(cVect,rVect); % Column and row indicators for each entry of the GLRLM
-pg = sum(GLRLM,2)'; % Gray-Level Run-Number Vector
-pr = sum(GLRLM); % Run-Length Run-Number Vector
-ug = (pg*rVect')/(sz(1)*sz(2));
-ur = (pr*cVect')/(sz(1)*sz(2));
+[cMat,rMat] = meshgrid(cVect,rVect); % Column and row indicators for each entry of the GLSZM
+pg = sum(GLSZM,2)'; % Gray-Level Run-Number Vector
+pr = sum(GLSZM); % Run-Length Run-Number Vector
 
 
 % COMPUTATION OF TEXTURE FEATURES
-% 1. Short Run Emphasis (SRE), Ref.[1]
-textures.SRE = pr*(cVect.^(-2))';
+% 1. Small Zone Emphasis (SZE), Ref.[1,4]
+textures.SZE = (pr*(cVect.^(-2))')/nRuns;
 
-% 2. Long Run Emphasis (LRE), Ref.[1]
-textures.LRE = pr*(cVect.^2)';
+% 2. Large Zone Emphasis (LZE), Ref.[1,4]
+textures.LZE = (pr*(cVect.^2)')/nRuns;
 
-% 3. Gray-Level Nonuniformity (GLN), adapted from Ref.[1]
-textures.GLN = sum(pg.^2);
+% 3. Gray-Level Nonuniformity (GLN), adapted from Ref.[1,4]
+textures.GLN = sum(pg.^2)/nRuns;
 
-% 4. Run-Length Nonuniformity (RLN), adapted from Ref.[1]
-textures.RLN = sum(pr.^2);
+% 4. Zone-Size Nonuniformity (ZSN), adapted from Ref.[1,4]
+textures.ZSN = sum(pr.^2)/nRuns;
 
-% 5. Run Percentage (RP), adapted from Ref.[1]
-textures.RP = sum(pg)/(pr*cVect');
+% 5. Zone Percentage (ZP), adapted from Ref.[1,4]
+textures.ZP = nRuns/(pr*cVect');
 
-% 6. Low Gray-Level Run Emphasis (LGRE), Ref.[2]
-textures.LGRE = pg*(rVect.^(-2))';
+% 6. Low Gray-Level Zone Emphasis (LGZE), Ref.[2,4]
+textures.LGZE = (pg*(rVect.^(-2))')/nRuns;
 
-% 7. High Gray-Level Run Emphasis (HGRE), Ref.[2]
-textures.HGRE = pg*(rVect.^2)';
+% 7. High Gray-Level Zone Emphasis (HGZE), Ref.[2,4]
+textures.HGZE = (pg*(rVect.^2)')/nRuns;
 
-% 8. Short Run Low Gray-Level Emphasis (SRLGE), Ref.[3]
-textures.SRLGE = sum(sum(GLRLM.*(rMat.^(-2)).*(cMat.^(-2))));
+% 8. Small Zone Low Gray-Level Emphasis (SZLGE), Ref.[3,4]
+textures.SZLGE = sum(sum(GLSZM.*(rMat.^(-2)).*(cMat.^(-2))))/nRuns;
 
-% 9. Short Run High Gray-Level Emphasis (SRHGE), Ref.[3]
-textures.SRHGE = sum(sum(GLRLM.*(rMat.^2).*(cMat.^(-2))));
+% 9. Small Zone High Gray-Level Emphasis (SZHGE), Ref.[3,4]
+textures.SZHGE = sum(sum(GLSZM.*(rMat.^2).*(cMat.^(-2))))/nRuns;
 
-% 10. Long Run Low Gray-Level Emphasis (LRLGE), Ref.[3]
-textures.LRLGE = sum(sum(GLRLM.*(rMat.^(-2)).*(cMat.^2)));
+% 10. Large Zone Low Gray-Level Emphasis (LZLGE), Ref.[3,4]
+textures.LZLGE = sum(sum(GLSZM.*(rMat.^(-2)).*(cMat.^2)))/nRuns;
 
-% 11. Long Run High Gray-Level Emphasis (LRHGE), Ref.[3]
-textures.LRHGE = sum(sum(GLRLM.*(rMat.^2).*(cMat.^2)));
+% 11. Large Zone High Gray-Level Emphasis (LZHGE), Ref.[3,4]
+textures.LZHGE = sum(sum(GLSZM.*(rMat.^2).*(cMat.^2)))/nRuns;
+
+
+% New features according to Ref.[4]
+GLSZM = GLSZM./nRuns; % In the future, this operation will be applied at the beginning of the function
+pg=sum(GLSZM,2)'; pr=sum(GLSZM);
+ug = (pg*rVect')/(sz(1)*sz(2));
+ur = (pr*cVect')/(sz(1)*sz(2));
 
 % 12. Gray-Level Variance (GLV), adapted from Ref.[4]
 GLV = 0;
 for g = 1:sz(1)
     for r = 1:sz(2)
-        GLV = GLV + (GLRLM(g,r)*g-ug)^2;
+        GLV = GLV + (GLSZM(g,r)*g-ug)^2;
     end
 end
 textures.GLV = GLV/(sz(1)*sz(2));
 
-% 13. Run-Length Variance (RLV), adapted from Ref.[4]
-RLV = 0;
+% 13. Zone-Size Variance (ZSV), adapted from Ref.[4]
+ZSV = 0;
 for g = 1:sz(1)
     for r = 1:sz(2)
-        RLV = RLV + (GLRLM(g,r)*r-ur)^2;
+        ZSV = ZSV + (GLSZM(g,r)*r-ur)^2;
     end
 end
-textures.RLV = RLV/(sz(1)*sz(2));
+textures.ZSV = ZSV/(sz(1)*sz(2));
 
 end

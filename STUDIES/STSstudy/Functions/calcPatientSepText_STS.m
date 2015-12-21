@@ -95,8 +95,8 @@ for r = 1:numel(R_mat)
                 fprintf(['PERFORMING EXPERIMENT %u OF %u: ''',nameExperiment,''' ... '],experiment,nExperiment)
                 [ROIonly,levels] = prepareVolume(ROIbox,maskBox,'Other',pixelW,pixelW,1,'pixelW','Matrix',algo_cell{a},Ng_mat(n)); % Pre-processing, WBPF and resampling already applied. Thus, we insert 'Other', R=1, sliceS = pixelW / Scale='pixelW', respectively
                 [GLCM] = getGLCM(ROIonly,levels); [GLCM_text] = getGLCMtextures(GLCM);
-                [GLRLM] = getGLRLM(ROIonly,levels); [GLRLM_text] = getGLRLMtextures(GLRLM);
-                [GLSZM] = getGLSZM(ROIonly,levels); [GLSZM_text] = getGLSZMtextures(GLSZM);
+                [GLRLM] = getGLRLM(ROIonly,levels); [GLRLM_text] = getGLRLMtextures_STS(GLRLM);
+                [GLSZM] = getGLSZM(ROIonly,levels); [GLSZM_text] = getGLSZMtextures_STS(GLSZM);
                 [NGTDM,countValid] = getNGTDM(ROIonly,levels); [NGTDM_text] = getNGTDMtextures(NGTDM,countValid);
                 textures.(strExperiment).Global = Global_text;
                 textures.(strExperiment).GLCM = GLCM_text;

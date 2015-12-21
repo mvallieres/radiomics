@@ -33,7 +33,8 @@ function [textures] = getGLSZMtextures(GLSZM)
 % -------------------------------------------------------------------------
 % HISTORY:
 % - Creation: January 2013
-% - Revision: May 2015
+% - Revision I: May 2015
+% - Revision II: December 2015 (GLSZM = GLSZM./sum(GLSZM(:)))
 % -------------------------------------------------------------------------
 % STATEMENT:
 % This file is part of <https://github.com/mvallieres/radiomics/>, 
@@ -54,56 +55,51 @@ function [textures] = getGLSZMtextures(GLSZM)
 %    along with this package.  If not, see <http://www.gnu.org/licenses/>.
 % -------------------------------------------------------------------------
 
+GLSZM = GLSZM./sum(GLSZM(:)); % Normalization of GLCM
 
 % USEFUL MATRICES, VECTORS AND QUANTITIES
 sz = size(GLSZM); % Size of GLSZM
-nRuns = sum(GLSZM(:));
 cVect = 1:sz(2); rVect = 1:sz(1);% Row and column vectors
 [cMat,rMat] = meshgrid(cVect,rVect); % Column and row indicators for each entry of the GLSZM
 pg = sum(GLSZM,2)'; % Gray-Level Run-Number Vector
 pr = sum(GLSZM); % Run-Length Run-Number Vector
+ug = (pg*rVect')/(sz(1)*sz(2));
+ur = (pr*cVect')/(sz(1)*sz(2));
 
 
 % COMPUTATION OF TEXTURE FEATURES
 % 1. Small Zone Emphasis (SZE), Ref.[1,4]
-textures.SZE = (pr*(cVect.^(-2))')/nRuns;
+textures.SZE = pr*(cVect.^(-2))';
 
 % 2. Large Zone Emphasis (LZE), Ref.[1,4]
-textures.LZE = (pr*(cVect.^2)')/nRuns;
+textures.LZE = pr*(cVect.^2)';
 
 % 3. Gray-Level Nonuniformity (GLN), adapted from Ref.[1,4]
-textures.GLN = sum(pg.^2)/nRuns;
+textures.GLN = sum(pg.^2);
 
 % 4. Zone-Size Nonuniformity (ZSN), adapted from Ref.[1,4]
-textures.ZSN = sum(pr.^2)/nRuns;
+textures.ZSN = sum(pr.^2);
 
 % 5. Zone Percentage (ZP), adapted from Ref.[1,4]
-textures.ZP = nRuns/(pr*cVect');
+textures.ZP = sum(pg)/(pr*cVect');
 
 % 6. Low Gray-Level Zone Emphasis (LGZE), Ref.[2,4]
-textures.LGZE = (pg*(rVect.^(-2))')/nRuns;
+textures.LGZE = pg*(rVect.^(-2))';
 
 % 7. High Gray-Level Zone Emphasis (HGZE), Ref.[2,4]
-textures.HGZE = (pg*(rVect.^2)')/nRuns;
+textures.HGZE = pg*(rVect.^2)';
 
 % 8. Small Zone Low Gray-Level Emphasis (SZLGE), Ref.[3,4]
-textures.SZLGE = sum(sum(GLSZM.*(rMat.^(-2)).*(cMat.^(-2))))/nRuns;
+textures.SZLGE = sum(sum(GLSZM.*(rMat.^(-2)).*(cMat.^(-2))));
 
 % 9. Small Zone High Gray-Level Emphasis (SZHGE), Ref.[3,4]
-textures.SZHGE = sum(sum(GLSZM.*(rMat.^2).*(cMat.^(-2))))/nRuns;
+textures.SZHGE = sum(sum(GLSZM.*(rMat.^2).*(cMat.^(-2))));
 
 % 10. Large Zone Low Gray-Level Emphasis (LZLGE), Ref.[3,4]
-textures.LZLGE = sum(sum(GLSZM.*(rMat.^(-2)).*(cMat.^2)))/nRuns;
+textures.LZLGE = sum(sum(GLSZM.*(rMat.^(-2)).*(cMat.^2)));
 
 % 11. Large Zone High Gray-Level Emphasis (LZHGE), Ref.[3,4]
-textures.LZHGE = sum(sum(GLSZM.*(rMat.^2).*(cMat.^2)))/nRuns;
-
-
-% New features according to Ref.[4]
-GLSZM = GLSZM./nRuns; % In the future, this operation will be applied at the beginning of the function
-pg=sum(GLSZM,2)'; pr=sum(GLSZM);
-ug = (pg*rVect')/(sz(1)*sz(2));
-ur = (pr*cVect')/(sz(1)*sz(2));
+textures.LZHGE = sum(sum(GLSZM.*(rMat.^2).*(cMat.^2)));
 
 % 12. Gray-Level Variance (GLV), adapted from Ref.[4]
 GLV = 0;

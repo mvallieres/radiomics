@@ -1,10 +1,10 @@
-function [textures] = getGLRLMtextures(GLRLM)
+function [textures] = getGLRLMtextures_STS(GLRLM)
 % -------------------------------------------------------------------------
-% function [textures] = getGLRLMtextures(GLRLM)
+% function [textures] = getGLRLMtextures_STS(GLRLM)
 % -------------------------------------------------------------------------
 % DESCRIPTION:
 % This function computes texture features from an input Gray-Level 
-% Run-Length Matrix (GLRLM).
+% Run-Length Matrix (GLRLM). (STS study)
 % -------------------------------------------------------------------------
 % REFERENCES:
 % [1] Galloway, M. M. (1975). Texture analysis using gray level run lengths. 
@@ -33,8 +33,7 @@ function [textures] = getGLRLMtextures(GLRLM)
 % -------------------------------------------------------------------------
 % HISTORY:
 % - Creation: January 2013
-% - Revision I: May 2015
-% - Revision II: December 2015 (GLRLM = GLRLM./sum(GLRLM(:)))
+% - Revision: May 2015
 % -------------------------------------------------------------------------
 % STATEMENT:
 % This file is part of <https://github.com/mvallieres/radiomics/>, 
@@ -55,51 +54,56 @@ function [textures] = getGLRLMtextures(GLRLM)
 %    along with this package.  If not, see <http://www.gnu.org/licenses/>.
 % -------------------------------------------------------------------------
 
-GLRLM = GLRLM./sum(GLRLM(:)); % Normalization of GLCM
 
 % USEFUL MATRICES, VECTORS AND QUANTITIES
 sz = size(GLRLM); % Size of GLRLM
+nRuns = sum(GLRLM(:));
 cVect = 1:sz(2); rVect = 1:sz(1);% Row and column vectors
 [cMat,rMat] = meshgrid(cVect,rVect); % Column and row indicators for each entry of the GLRLM
 pg = sum(GLRLM,2)'; % Gray-Level Run-Number Vector
 pr = sum(GLRLM); % Run-Length Run-Number Vector
-ug = (pg*rVect')/(sz(1)*sz(2));
-ur = (pr*cVect')/(sz(1)*sz(2));
 
 
 % COMPUTATION OF TEXTURE FEATURES
 % 1. Short Run Emphasis (SRE), Ref.[1]
-textures.SRE = pr*(cVect.^(-2))';
+textures.SRE = (pr*(cVect.^(-2))')/nRuns;
 
 % 2. Long Run Emphasis (LRE), Ref.[1]
-textures.LRE = pr*(cVect.^2)';
+textures.LRE = (pr*(cVect.^2)')/nRuns;
 
 % 3. Gray-Level Nonuniformity (GLN), adapted from Ref.[1]
-textures.GLN = sum(pg.^2);
+textures.GLN = sum(pg.^2)/nRuns;
 
 % 4. Run-Length Nonuniformity (RLN), adapted from Ref.[1]
-textures.RLN = sum(pr.^2);
+textures.RLN = sum(pr.^2)/nRuns;
 
 % 5. Run Percentage (RP), adapted from Ref.[1]
-textures.RP = sum(pg)/(pr*cVect');
+textures.RP = nRuns/(pr*cVect');
 
 % 6. Low Gray-Level Run Emphasis (LGRE), Ref.[2]
-textures.LGRE = pg*(rVect.^(-2))';
+textures.LGRE = (pg*(rVect.^(-2))')/nRuns;
 
 % 7. High Gray-Level Run Emphasis (HGRE), Ref.[2]
-textures.HGRE = pg*(rVect.^2)';
+textures.HGRE = (pg*(rVect.^2)')/nRuns;
 
 % 8. Short Run Low Gray-Level Emphasis (SRLGE), Ref.[3]
-textures.SRLGE = sum(sum(GLRLM.*(rMat.^(-2)).*(cMat.^(-2))));
+textures.SRLGE = sum(sum(GLRLM.*(rMat.^(-2)).*(cMat.^(-2))))/nRuns;
 
 % 9. Short Run High Gray-Level Emphasis (SRHGE), Ref.[3]
-textures.SRHGE = sum(sum(GLRLM.*(rMat.^2).*(cMat.^(-2))));
+textures.SRHGE = sum(sum(GLRLM.*(rMat.^2).*(cMat.^(-2))))/nRuns;
 
 % 10. Long Run Low Gray-Level Emphasis (LRLGE), Ref.[3]
-textures.LRLGE = sum(sum(GLRLM.*(rMat.^(-2)).*(cMat.^2)));
+textures.LRLGE = sum(sum(GLRLM.*(rMat.^(-2)).*(cMat.^2)))/nRuns;
 
 % 11. Long Run High Gray-Level Emphasis (LRHGE), Ref.[3]
-textures.LRHGE = sum(sum(GLRLM.*(rMat.^2).*(cMat.^2)));
+textures.LRHGE = sum(sum(GLRLM.*(rMat.^2).*(cMat.^2)))/nRuns;
+
+
+% New features according to Ref.[4]
+GLRLM = GLRLM./nRuns; % In the future, this operation will be applied at the beginning of the function
+pg = sum(GLRLM,2)'; pr = sum(GLRLM);
+ug = (pg*rVect')/(sz(1)*sz(2));
+ur = (pr*cVect')/(sz(1)*sz(2));
 
 % 12. Gray-Level Variance (GLV), adapted from Ref.[4]
 GLV = 0;
@@ -108,15 +112,17 @@ for g = 1:sz(1)
         GLV = GLV + (GLRLM(g,r)*g-ug)^2;
     end
 end
-textures.GLV = GLV/(sz(1)*sz(2));
+GLV = GLV/(sz(1)*sz(2));
+textures.GLV = GLV;
 
 % 13. Run-Length Variance (RLV), adapted from Ref.[4]
 RLV = 0;
 for g = 1:sz(1)
     for r = 1:sz(2)
-        RLV = RLV + (GLRLM(g,r)*r-ur)^2;
+        RLV = RLV + (GLRLM(g,r)*r-ug)^2;
     end
 end
-textures.RLV = RLV/(sz(1)*sz(2));
+RLV = RLV/(sz(1)*sz(2));
+textures.RLV = RLV;
 
 end
