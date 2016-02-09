@@ -10,10 +10,10 @@ function [textures] = getGlobalTextures(ROIonly,Nbins)
 % - ROIonly: Smallest box containing the ROI, with the imaging data ready 
 %            for texture analysis computations. Voxels outside the ROI are 
 %            set to NaNs.
-% - levels: Vector containing the quantized gray-levels in the tumor region
-%           (or reconstruction levels of quantization).
+% - Nbins: Numerical value specifying the number of bins to use in the
+%          histogram prior to global textures calculations.
 %
-% ** 'ROIonly' and 'levels' should be outputs from 'prepareVolume.m' **
+% ** 'ROIonly' should be output from 'prepareVolume.m' **
 % -------------------------------------------------------------------------
 % OUTPUTS:
 % - textures: Struture specifying the values of different Global texture
