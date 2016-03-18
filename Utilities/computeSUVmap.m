@@ -47,6 +47,11 @@ if isfield(dicomH,'PatientWeight')
     weight = dicomH.PatientWeight*1000;  % in grams
 elseif isfield(dicomH,'PatientsWeight')
     weight = dicomH.PatientsWeight*1000;  % in grams
+else
+    weight = [];
+end
+if isempty(weight)
+    weight = 75000;
 end
 
 % Get Scan time

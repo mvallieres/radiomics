@@ -76,7 +76,7 @@ function [ROIonly,levels,ROIbox,maskBox] = prepareVolume(volume,mask,scanType,pi
 % 2. To prepare 'volume' for global texture analysis at a scale equal to the 
 %    in-plane resolution, with R=2, run:
 %
-%    [ROIonly] = prepareVolume(volume,mask,'PETscan',4,3.27,2,'pixelW','Global)
+%    [ROIonly] = prepareVolume(volume,mask,'PETscan',4,3.27,2,'pixelW','Global')
 % 
 %    Next, use 'ROIonly' as input to 'getGlobalTextures.m'.
 % -------------------------------------------------------------------------
