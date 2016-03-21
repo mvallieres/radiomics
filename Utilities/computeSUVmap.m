@@ -51,9 +51,10 @@ else
     weight = [];
 end
 if isempty(weight)
-    weight = 75000;
+    weight = 75000; % Estimation
 end
 
+try
 % Get Scan time
 scantime = dcm_hhmmss(dicomH.AcquisitionTime);
 % Start Time for the Radiopharmaceutical Injection
@@ -67,6 +68,11 @@ injected_dose = dicomH.RadiopharmaceuticalInformationSequence.Item_1.Radionuclid
 decay = exp(-log(2)*(scantime-injection_time)/half_life);
 % Calculate the dose decayed during procedure
 injected_dose_decay = injected_dose*decay; % in Bq
+
+catch % Estimation
+    decay = exp(-log(2)*(1.75*3600)/6588); % 90 min waiting time, 15 min preparation
+    injected_dose_decay = 420000000 * decay; % 420 MBq
+end
 
 % Calculate SUV
 SUVmap = rawPET*weight/injected_dose_decay;
