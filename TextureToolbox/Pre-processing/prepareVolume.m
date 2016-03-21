@@ -131,7 +131,7 @@ ROIbox = volume(boxBound(1,1):boxBound(1,2),boxBound(2,1):boxBound(2,2),boxBound
 
 % PRE-PROCESSING OF ROI BOX
 ROIbox = double(ROIbox);
-if strcmp(scanType,'PETscan')
+if strcmp(scanType,'PETscan') || strcmp(scanType,'PTscan')
     ROIbox = sqrt(ROIbox);
 elseif strcmp(scanType,'MRscan')
     ROIonly = ROIbox;
