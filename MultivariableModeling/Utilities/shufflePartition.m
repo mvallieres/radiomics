@@ -45,7 +45,16 @@ end
 
 n = size(Xin,1);
 nF = size(Xin,2);
-Xout = zeros(n,nF);
+if isa(Xin,'table')
+    varName = Xin.Properties.VariableNames;
+    Xin = table2cell(Xin);
+    Xout = cell(n,nF);
+    table = true;
+else
+    Xout = zeros(n,nF);
+    table = false;
+end
+
 if nargout == 2
     Yout = zeros(n,1);
 end
@@ -60,6 +69,10 @@ for i = 1:n
     if nargin == 2
         Yin(index) = [];
     end
+end
+
+if table
+    Xout = cell2table(Xout,'VariableNames',varName);
 end
 
 end
