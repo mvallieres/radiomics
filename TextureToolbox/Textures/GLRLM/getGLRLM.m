@@ -150,13 +150,13 @@ for i = 1:nComp
     seq = zigzag(image);
     GLRLMtemp = rle_45(seq,NLtemp);
     nRun = size(GLRLMtemp,2);
-    GLRLM(indexRow(1:NLtemp),1:nRun) = GLRLM(indexRow(1:NLtemp),1:nRun) + GLRLMtemp(1:NLtemp,1:nRun); % Cumulative addition into the GLRLM
+    GLRLM(indexRow(1:NLtemp),1:nRun) = GLRLM(indexRow(1:NLtemp),1:nRun) + GLRLMtemp(1:NLtemp,1:nRun)*sqrt(2); % Cumulative addition into the GLRLM
     
     % [-1 1 0]
     seq = zigzag(fliplr(image));
     GLRLMtemp = rle_45(seq,NLtemp);
     nRun = size(GLRLMtemp,2);
-    GLRLM(indexRow(1:NLtemp),1:nRun) = GLRLM(indexRow(1:NLtemp),1:nRun) + GLRLMtemp(1:NLtemp,1:nRun); % Cumulative addition into the GLRLM
+    GLRLM(indexRow(1:NLtemp),1:nRun) = GLRLM(indexRow(1:NLtemp),1:nRun) + GLRLMtemp(1:NLtemp,1:nRun)*sqrt(2); % Cumulative addition into the GLRLM
 end
 
 if numel(size(ROIonly)) == 3 % 3D DIRECTIONS
@@ -186,13 +186,13 @@ if numel(size(ROIonly)) == 3 % 3D DIRECTIONS
         seq = zigzag(image);
         GLRLMtemp = rle_45(seq,NLtemp);
         nRun = size(GLRLMtemp,2);
-        GLRLM(indexRow(1:NLtemp),1:nRun) = GLRLM(indexRow(1:NLtemp),1:nRun) + GLRLMtemp(1:NLtemp,1:nRun); % Cumulative addition into the GLRLM
+        GLRLM(indexRow(1:NLtemp),1:nRun) = GLRLM(indexRow(1:NLtemp),1:nRun) + GLRLMtemp(1:NLtemp,1:nRun)*sqrt(2); % Cumulative addition into the GLRLM
         
         % [-1 0 1]
         seq = zigzag(fliplr(image));
         GLRLMtemp = rle_45(seq,NLtemp);
         nRun = size(GLRLMtemp,2);
-        GLRLM(indexRow(1:NLtemp),1:nRun) = GLRLM(indexRow(1:NLtemp),1:nRun) + GLRLMtemp(1:NLtemp,1:nRun); % Cumulative addition into the GLRLM
+        GLRLM(indexRow(1:NLtemp),1:nRun) = GLRLM(indexRow(1:NLtemp),1:nRun) + GLRLMtemp(1:NLtemp,1:nRun)*sqrt(2); % Cumulative addition into the GLRLM
     end
 
     % Directions [0,1,1] and [0 -1 1]
@@ -216,13 +216,13 @@ if numel(size(ROIonly)) == 3 % 3D DIRECTIONS
         seq = zigzag(image);
         GLRLMtemp = rle_45(seq,NLtemp);
         nRun = size(GLRLMtemp,2);
-        GLRLM(indexRow(1:NLtemp),1:nRun) = GLRLM(indexRow(1:NLtemp),1:nRun) + GLRLMtemp(1:NLtemp,1:nRun); % Cumulative addition into the GLRLM
+        GLRLM(indexRow(1:NLtemp),1:nRun) = GLRLM(indexRow(1:NLtemp),1:nRun) + GLRLMtemp(1:NLtemp,1:nRun)*sqrt(2); % Cumulative addition into the GLRLM
         
         % [0 -1 1]
         seq = zigzag(fliplr(image));
         GLRLMtemp = rle_45(seq,NLtemp);
         nRun = size(GLRLMtemp,2);
-        GLRLM(indexRow(1:NLtemp),1:nRun) = GLRLM(indexRow(1:NLtemp),1:nRun) + GLRLMtemp(1:NLtemp,1:nRun); % Cumulative addition into the GLRLM
+        GLRLM(indexRow(1:NLtemp),1:nRun) = GLRLM(indexRow(1:NLtemp),1:nRun) + GLRLMtemp(1:NLtemp,1:nRun)*sqrt(2); % Cumulative addition into the GLRLM
     end
 
     % Four corners: [1,1,1], [-1,1,1], [-1,1,-1], [1,1,-1]
@@ -286,11 +286,11 @@ if numel(size(ROIonly)) == 3 % 3D DIRECTIONS
         seq = zigzag(image1);
         GLRLMtemp = rle_45(seq,NLtemp);
         nRun = size(GLRLMtemp,2);
-        GLRLM(indexRow(1:NLtemp),1:nRun) = GLRLM(indexRow(1:NLtemp),1:nRun) + GLRLMtemp(1:NLtemp,1:nRun); % Cumulative addition into the GLRLM
+        GLRLM(indexRow(1:NLtemp),1:nRun) = GLRLM(indexRow(1:NLtemp),1:nRun) + GLRLMtemp(1:NLtemp,1:nRun)*sqrt(3); % Cumulative addition into the GLRLM
         seq = zigzag(fliplr(image1));
         GLRLMtemp = rle_45(seq,NLtemp);
         nRun = size(GLRLMtemp,2);
-        GLRLM(indexRow(1:NLtemp),1:nRun) = GLRLM(indexRow(1:NLtemp),1:nRun) + GLRLMtemp(1:NLtemp,1:nRun); % Cumulative addition into the GLRLM
+        GLRLM(indexRow(1:NLtemp),1:nRun) = GLRLM(indexRow(1:NLtemp),1:nRun) + GLRLMtemp(1:NLtemp,1:nRun)*sqrt(3); % Cumulative addition into the GLRLM
         
         % 2 last corners
         uniqueIm = unique(image2);
@@ -304,11 +304,11 @@ if numel(size(ROIonly)) == 3 % 3D DIRECTIONS
         seq = zigzag(image2);
         GLRLMtemp = rle_45(seq,NLtemp);
         nRun = size(GLRLMtemp,2);
-        GLRLM(indexRow(1:NLtemp),1:nRun) = GLRLM(indexRow(1:NLtemp),1:nRun) + GLRLMtemp(1:NLtemp,1:nRun); % Cumulative addition into the GLRLM
+        GLRLM(indexRow(1:NLtemp),1:nRun) = GLRLM(indexRow(1:NLtemp),1:nRun) + GLRLMtemp(1:NLtemp,1:nRun)*sqrt(3); % Cumulative addition into the GLRLM
         seq = zigzag(fliplr(image2));
         GLRLMtemp = rle_45(seq,NLtemp);
         nRun = size(GLRLMtemp,2);
-        GLRLM(indexRow(1:NLtemp),1:nRun) = GLRLM(indexRow(1:NLtemp),1:nRun) + GLRLMtemp(1:NLtemp,1:nRun); % Cumulative addition into the GLRLM
+        GLRLM(indexRow(1:NLtemp),1:nRun) = GLRLM(indexRow(1:NLtemp),1:nRun) + GLRLMtemp(1:NLtemp,1:nRun)*sqrt(3); % Cumulative addition into the GLRLM
     end
 end
 
