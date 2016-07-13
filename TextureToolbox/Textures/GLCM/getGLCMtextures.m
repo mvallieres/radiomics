@@ -18,6 +18,9 @@ function [textures] = getGLCMtextures(GLCM)
 % [3] Thibault, G. (2009). Indices de formes et de textures: de la 2D vers 
 %     la 3D. Application au classement de noyaux de cellules. PhD Thesis, 
 %     Université AIX-Marseille: p.172.
+% [4] Aerts, H.J.W.L. et al. Decoding tumour phenotype by noninvasive
+%     imaging using a quantitative radiomics approach. Nat. Commun. 5:4006
+%     doi: 10.1038/ncomms5006 (2014).
 % -------------------------------------------------------------------------
 % INPUTS:
 % - GLCM: Gray-Level Co-occurence Matrix.
@@ -116,6 +119,10 @@ textures.Variance = 0.5*sum(tempV(:))/(nL^2);
 diffMat = abs(rowGrid-colGrid);
 temp = diffMat.*GLCM;
 textures.Dissimilarity = sum(temp(:));
+
+% 9. AutoCorrelation, Ref.[4]
+temp = rowGrid .* colGrid .* GLCM;
+textures.AutoCorrelation = sum(temp(:));
 
 
 end
