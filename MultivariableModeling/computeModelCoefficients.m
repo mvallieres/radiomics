@@ -1,4 +1,4 @@
-function [coeff,resp,modelCI] = computeModelCoefficients(X,Y,imbalance,batchNum)
+function [coeff,resp,modelCI,coeff_boot] = computeModelCoefficients(X,Y,imbalance,batchNum)
 % -------------------------------------------------------------------------
 % function [coeff,resp,modelCI] = computeModelCoefficients(X,Y,imbalance,batchNum)
 % -------------------------------------------------------------------------
@@ -43,6 +43,13 @@ function [coeff,resp,modelCI] = computeModelCoefficients(X,Y,imbalance,batchNum)
 %            defined by the 2.5 (modelCI(i,1)) and the 97.5 (modelCI(i,2))
 %            percentiles, for the ith instance. See ref. [1] for more 
 %            details.
+% - coeff_boot: Array of size [nCoeff X 1000], where 1000 is the number of 
+%               bootstrap samples used to calculate the mean coefficients 
+%               ('coeff' output #1). Each column thus specify the logisitic 
+%               regression model coefficients for a particular bootstrap
+%               training sample. These set of bootstrap coeffcients could
+%               therafter be used to calculate the confidence intervals on
+%               predictions in new testing data.
 % -------------------------------------------------------------------------
 % AUTHOR(S): 
 % - Martin Vallieres <mart.vallieres@gmail.com>
@@ -143,7 +150,8 @@ for n = 1:nBoot
     end
     [respBoot(:,n)] = responseLR(X,coeff(:,n));
 end
-SE_coeff = bound.*(std(coeff')')./sqrt(nBoot);
+SE_coeff = bound.*(std(coeff')')./sqrt(nBoot); % Not used at the moment
+coeff_boot = coeff;
 coeff = mean(coeff')';
 
 
