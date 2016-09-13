@@ -84,7 +84,7 @@ textures.Busyness = ((countValid')*NGTDM)/denom;
 val = 0;
 for i = 1:nValid
     for j = 1:nValid
-        val = val + (abs(pValid(i)-pValid(j))/(nTot*(countValid(pValid(i)) + countValid(pValid(j)))))*(countValid(pValid(i))*NGTDM(i) + countValid(pValid(j))*NGTDM(j));
+        val = val + (abs(pValid(i)-pValid(j))/(nTot*(countValid(pValid(i)) + countValid(pValid(j)))))*(countValid(pValid(i))*NGTDM(pValid(i)) + countValid(pValid(j))*NGTDM(pValid(j)));
     end
 end
 textures.Complexity = val;
