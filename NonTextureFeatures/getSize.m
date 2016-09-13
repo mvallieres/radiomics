@@ -38,6 +38,14 @@ function [sizeROI] = getSize(ROIonly,pixelW,sliceS)
 %    along with this package.  If not, see <http://www.gnu.org/licenses/>.
 % -------------------------------------------------------------------------
 
+% IMPORTANT: SMALL ERROR DUE TO Z EXTREMA DEFINED BY CENTER OF VOXELS, AND
+% NOT BY EXTREME FACE DISTANCES OF VOXELS (as in regionprops.m). ANOTHER
+% WAY WOULD BE TO NOT CONSIDER FACE EXTREMA AND ONLY CENTER OF VOXEL. ONE
+% OR THE OTHER SOLUTION SHOULD BE USED, BUT NOT A HYBRID SOLUTION LIKE
+% RIGHT NOW.
+% --> TO BE CORRECTED ON NEXT RELEASE (message written on Sep 12, 2016)
+
+
 mask = ~isnan(ROIonly); % Find mask covering the ROI
 vectX = zeros(1,8*size(mask,3));
 vectY = zeros(1,8*size(mask,3));

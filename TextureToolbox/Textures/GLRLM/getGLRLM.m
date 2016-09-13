@@ -271,7 +271,7 @@ if numel(size(ROIonly)) == 3 % 3D DIRECTIONS
         image2 = zeros(sizeV(1),nTemp);
         for k = 1:sizeV(1)
             image1(k,1:nTemp) = diagMat1(index(1:end),j,k)';
-            image2(k,1:nTemp) = diagMat1(index(1:end),j,k)';
+            image2(k,1:nTemp) = diagMat2(index(1:end),j,k)';
         end
         
         % 2 first corners
