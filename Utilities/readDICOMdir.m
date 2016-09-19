@@ -133,8 +133,8 @@ sData{1} = struct('Cell_1','Explanation of cell content', ...
 
 sData{2}.scan.volume = volume;
 sData{2}.scan.orientation = orientation;
-try sData{2}.scan.pixelW = dicomHeaders(1).PixelSpacing(1); catch sData{2}.scan.pixelW = []; end % Pixel Width
-try sData{2}.scan.sliceT = dicomHeaders(1).SliceThickness; catch sData{2}.scan.sliceT = []; end % Slice Thickness
+try sData{2}.scan.pixelW = dicomHeaders(1).PixelSpacing(1); catch, sData{2}.scan.pixelW = []; end % Pixel Width
+try sData{2}.scan.sliceT = dicomHeaders(1).SliceThickness; catch, sData{2}.scan.sliceT = []; end % Slice Thickness
 s1 = round(0.5*nSlices); s2 = round(0.5*nSlices) + 1; % Slices selected to calculate slice spacing
 sData{2}.scan.sliceS = sqrt(sum((dicomHeaders(s1).ImagePositionPatient - dicomHeaders(s2).ImagePositionPatient).^2)); % Slice Spacing
 sData{2}.type = type;
