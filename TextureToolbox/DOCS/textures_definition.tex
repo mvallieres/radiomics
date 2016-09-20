@@ -64,6 +64,8 @@ Let $P$ define the GLCM of a quantized volume $V(x,y,z)$ with isotropic voxel si
 		  \[entropy = -\sum_{i=1}^{N_g}\sum_{j=1}^{N_g} p(i,j)\,\text{log}_2\big(p(i,j)\big)\]
 	\item Dissimilarity \cite{ThibaultG2009t}:
 		  \[dissimilarity = \sum_{i=1}^{N_g}\sum_{j=1}^{N_g} \vert i-j \vert \,p(i,j)\]
+	\item Autocorrelation \cite{AertsHJWL2014}
+		  \[autocorrelation = \sum_{i=1}^{N_g}\sum_{j=1}^{N_g} ij \,p(i,j)\]
 	\\	
 \end{itemize}
 
@@ -222,14 +224,19 @@ MATLAB$^{\textregistered}$ software code is freely shared under the GNU General 
 	\bibitem{ThibaultG2009t}	 Thibault, G. (2009). 
 			{Indices de formes et de textures: de la 2D vers la 3D. Application au classement de noyaux de cellules}. 
 			{\em PhD Thesis}, Universit\'e AIX-Marseille: p.172.
+			
+	\bibitem{AertsHJWL2014} Aerts, H.J.W.L., Velazquez, E.R., Leijenaar, R.T.H. \textit{et al.} (2014).
+			{Decoding tumour phenotype by noninvasive imaging using a quantitative radiomics approach}.
+			{\em Nat. Commun.}. 5:4006, doi: 10.1038/ncomms5006.
+			
+	\bibitem{WeiX2008} Wei, X. (2007). 
+			{Gray Level Run Length Matrix Toolbox v1.0, computer software}.
+			{Beijing Aeronautical Technology Research Center}.
+			{Available from: http://www.mathworks.com/matlabcentral/fileexchange/17482-gray-level-run-length-matrix-toolbox}. [11 January 2013]
 	
 	\bibitem{GallowayMM1975} Galloway, M.M. (1975).
 			{Texture analysis using gray level run lengths}.
 			{\em Computer Graphics and Image Processing}, \textbf{4}(2), 172-179.	
-			
-	\bibitem{AmadasunM1989} Amadasun, M. and King, R. (1989).
-			{Textural features corresponding to textural properties}.
-			{\em IEEE Transactions on Systems, Man, and Cybernetics}, \textbf{19}(5), 1264-1274. 
 			
 	\bibitem{ChuA1990} Chu, A. Sehgal, C.M. and Greenleaf, J.F. (1990).
 			{Use of gray value distribution of run lengths for texture analysis}.
@@ -238,17 +245,16 @@ MATLAB$^{\textregistered}$ software code is freely shared under the GNU General 
 	\bibitem{DasarathyBV1991} Dasarathy, B.V. and Holder, E.B. (1991).
 			{Image characterization based on joint gray level-run length distributions}.
 			{\em Pattern Recognition Letters}, \textbf{12}(8), 497-502.
-			
+	
 	\bibitem{ThibaultG2009} Thibault, G. et al. (2009).
 			{Texture indexes and gray level size zone matrix. Application to cell nuclei 
 			classification}. In {\em Pattern Recognition and Information Processing}. 
 			Minsk, Belarus, 140-145.
-			
-	\bibitem{WeiX2008} Wei, X. (2007). 
-			{Gray Level Run Length Matrix Toolbox v1.0, computer software}.
-			{Beijing Aeronautical Technology Research Center}.
-			{Available from: http://www.mathworks.com/matlabcentral/fileexchange/17482-gray-level-run-length-matrix-toolbox}. [11 January 2013]
-			
+					
+	\bibitem{AmadasunM1989} Amadasun, M. and King, R. (1989).
+			{Textural features corresponding to textural properties}.
+			{\em IEEE Transactions on Systems, Man, and Cybernetics}, \textbf{19}(5), 1264-1274. 		
+					
 \end{thebibliography}
 
 \end{document}
