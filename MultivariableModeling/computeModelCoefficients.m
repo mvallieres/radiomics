@@ -1,6 +1,6 @@
-function [coeff,resp,modelCI,coeff_boot] = computeModelCoefficients(X,Y,imbalance,batchNum)
+function [coeff,resp,modelCI,coeff_boot] = computeModelCoefficients(X,Y,imbalance,seed)
 % -------------------------------------------------------------------------
-% function [coeff,resp,modelCI] = computeModelCoefficients(X,Y,imbalance,batchNum)
+% function [coeff,resp,modelCI] = computeModelCoefficients(X,Y,imbalance,seed)
 % -------------------------------------------------------------------------
 % DESCRIPTION: 
 % This function computes the final model logistic regression coefficients 
@@ -16,7 +16,6 @@ function [coeff,resp,modelCI,coeff_boot] = computeModelCoefficients(X,Y,imbalanc
 %     MRI texture features for the prediction of lung metastases in soft-tissue 
 %     sarcomas of the extremities. Physics in Medicine and Biology, 60(14), 
 %     5471-5496. doi:10.1088/0031-9155/60/14/5471
-% [2] Vallieres, M. et al. (2015).
 % -------------------------------------------------------------------------
 % INPUTS:
 % - X: Matrix of size [nInst X nFeat], specifying the numerical data of the 
@@ -28,9 +27,10 @@ function [coeff,resp,modelCI,coeff_boot] = computeModelCoefficients(X,Y,imbalanc
 % - imbalance: String specifying the type of imbalance-adjustement strategy
 %              employed. Either 'IABR' for imbalance-adjusted bootstrap
 %              resampling (see ref.[1]), or 'IALR' for imbalance-adjusted
-%              logistic regression (see ref.[2]).
-% - batchNum: (optional input). If present, integer that specifies the
-%             batch number for parallelization purposes.
+%              logistic regression (formal reference to come).
+% - seed: (optional input). Numerical number to use as random generator 
+%         seed for bootstrapping experiments.
+%         --> Ex: 54288
 % -------------------------------------------------------------------------
 % OUTPUTS:
 % - coeff: Column vector of size [nCoeff+1 X 1] specifying the final 
@@ -57,8 +57,10 @@ function [coeff,resp,modelCI,coeff_boot] = computeModelCoefficients(X,Y,imbalanc
 % - Francois Beauducel (roundsd.m)
 % -------------------------------------------------------------------------
 % HISTORY:
-% - Creation: May 2015
-% - Revision I: July 2015 (including imbalance-adjusted logistic regression) 
+% - Creation - May 2015
+% - Revision I - July 2015: (including imbalance-adjusted logistic regression) 
+% - Revision II - December 2016: Including initial seed as input (optional)
+%                                for reproducibility of bootstrapping experiments
 %--------------------------------------------------------------------------
 % STATEMENT:
 % This file is part of <https://github.com/mvallieres/radiomics/>, 
@@ -125,11 +127,11 @@ end
 
 
 % RANDOM NUMBER GENERATOR SEED
-if ~RandStream.getGlobalStream.Seed
-    rng('shuffle')
-    if nargin == 4
-        % To avoid similar seeds when different batch are started with minimal time delay
-        RandStream.setGlobalStream(RandStream('mt19937ar','seed',RandStream.getGlobalStream.Seed/(batchNum)^3))
+if nargin == 4
+    rng(seed)
+else
+    if ~RandStream.getGlobalStream.Seed
+        rng('shuffle')
     end
 end
 

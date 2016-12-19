@@ -1,6 +1,6 @@
-function [results] = predictionPerformanceEstimation(X,Y,nBoot,imbalance,seed)
+function [results] = predictionPerformanceEstimation_STS(X,Y,nBoot,imbalance,batchNum)
 % -------------------------------------------------------------------------
-% function [results] = predictionPerformanceEstimation(X,Y,nBoot,imbalance,seed)
+% function [results] = predictionPerformanceEstimation(X,Y,nBoot,imbalance,batchNum)
 % -------------------------------------------------------------------------
 % DESCRIPTION: 
 % This function computes prediction performance estimation in terms of AUC, 
@@ -29,9 +29,8 @@ function [results] = predictionPerformanceEstimation(X,Y,nBoot,imbalance,seed)
 %              employed. Either 'IABR' for imbalance-adjusted bootstrap
 %              resampling (see ref.[1]), or 'IALR' for imbalance-adjusted
 %              logistic regression (see ref.[2]).
-% - seed: (optional input). Numerical number to use as random generator 
-%         seed for bootstrapping experiments.
-%         --> Ex: 54288
+% - batchNum: (optional input). If present, integer that specifies the
+%             batch number for parallelization purposes
 % -------------------------------------------------------------------------
 % OUTPUTS:
 % - results: Structure specifying the prediction performance estimation
@@ -48,9 +47,7 @@ function [results] = predictionPerformanceEstimation(X,Y,nBoot,imbalance,seed)
 % -------------------------------------------------------------------------
 % HISTORY:
 % - Creation: May 2015
-% - Revision I: July 2015 (including imbalance-adjusted logistic regression)
-% - Revision II - December 2016: Including initial seed as input (optional)
-%                                for reproducibility of bootstrapping experiments
+% - Revision I: July 2015 (including imbalance-adjusted logistic regression) 
 %--------------------------------------------------------------------------
 % STATEMENT:
 % This file is part of <https://github.com/mvallieres/radiomics/>, 
@@ -101,11 +98,11 @@ function [results] = predictionPerformanceEstimation(X,Y,nBoot,imbalance,seed)
 
 
 % RANDOM NUMBER GENERATOR SEED
-if nargin == 5
-    rng(seed)
-else
-    if ~RandStream.getGlobalStream.Seed
-        rng('shuffle')
+if ~RandStream.getGlobalStream.Seed
+    rng('shuffle')
+    if nargin == 5
+        % To avoid similar seeds when different batch are started with minimal time delay
+        RandStream.setGlobalStream(RandStream('mt19937ar','seed',RandStream.getGlobalStream.Seed/(batchNum)^3))
     end
 end
 

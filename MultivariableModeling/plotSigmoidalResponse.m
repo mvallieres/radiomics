@@ -63,28 +63,28 @@ else
 end
 symbols = {'ob','xr'}; % First entry for positive instances, second entry for negative instances
 
-figure
+h = figure;
 [sortResp,~] = sort(resp);
 sigX = (sortResp(1)-5):0.1:sortResp(end)+5;
 sigY = 1./(1 + exp(-sigX));
-h = plot(sigX,sigY,'-k','LineWidth',3);
+plot(sigX,sigY,'-k','LineWidth',3);
 hold on
 if ~isempty(modelCI)
     lowXpos = modelCI(Y==1,1); highXpos = modelCI(Y==1,2);
     lowXneg = modelCI(Y==0,1); highXneg = modelCI(Y==0,2);
-    h = herrorbar(respPos,probPos,respPos-lowXpos,highXpos-respPos,'ob');
+    [~]= herrorbar(respPos,probPos,respPos-lowXpos,highXpos-respPos,'ob');
     hold on
-    h = herrorbar(respNeg,probNeg,respNeg-lowXneg,highXneg-respNeg,'xr');
+    [~] = herrorbar(respNeg,probNeg,respNeg-lowXneg,highXneg-respNeg,'xr');
     legend('Sigmoidal response',['95% CI: ',name,' = 1'],['Status: ',name,' = 1'],['95% CI: ',name,' = 0'],['Status: ',name,' = 0'],'Location','NorthWest')
 else
-    h = plot(respPos,probPos,symbols{1},'LineWidth',6,'MarkerSize',18,'MarkerFaceColor',symbols{1}(end),'MarkerEdgeColor',symbols{1}(end));
+    plot(respPos,probPos,symbols{1},'LineWidth',6,'MarkerSize',18,'MarkerFaceColor',symbols{1}(end),'MarkerEdgeColor',symbols{1}(end));
     hold on
-    h = plot(respNeg,probNeg,symbols{2},'LineWidth',6,'MarkerSize',20,'MarkerFaceColor',symbols{2}(end),'MarkerEdgeColor',symbols{2}(end));
+    plot(respNeg,probNeg,symbols{2},'LineWidth',6,'MarkerSize',20,'MarkerFaceColor',symbols{2}(end),'MarkerEdgeColor',symbols{2}(end));
     legend('Sigmoidal response',['Status: ',name,' = 1'],['Status: ',name,' = 0'],'Location','NorthWest')
 end
 xlabel('Multivariable model response','FontSize',30)
 ylabel(['Probability that ',name,' = 1'],'FontSize',30)
-axis([sortResp(1)-5,sortResp(end)+5,-0.05,1.05])
+axis([sortResp(1)-0.25*abs(sortResp(1)),sortResp(end)+0.25*abs(sortResp(end)),-0.05,1.05])
 set(gca,'FontSize',24)
 
 end

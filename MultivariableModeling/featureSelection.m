@@ -1,6 +1,6 @@
-function [models] = featureSelection(X,Y,maxOrder,nBoot,Info,imbalance,batchNum)
+function [models] = featureSelection(X,Y,maxOrder,nBoot,Info,imbalance,seed)
 % -------------------------------------------------------------------------
-% function [models] = featureSelection(X,Y,maxOrder,nBoot,Info,imbalance,batchNum)
+% function [models] = featureSelection(X,Y,maxOrder,nBoot,Info,imbalance,seed)
 % -------------------------------------------------------------------------
 % DESCRIPTION: 
 % This function computes feature set selection according to the 0.632+ 
@@ -33,9 +33,10 @@ function [models] = featureSelection(X,Y,maxOrder,nBoot,Info,imbalance,batchNum)
 % - imbalance: String specifying the type of imbalance-adjustement strategy
 %              employed. Either 'IABR' for imbalance-adjusted bootstrap
 %              resampling (see ref.[1]), or 'IALR' for imbalance-adjusted
-%              logistic regression.
-% - batchNum: (optional input). If present, integer that specifies the
-%             batch number for parallelization purposes.
+%              logistic regression (formal reference to come).
+% - seed: (optional input). Numerical number to use as random generator 
+%         seed for bootstrapping experiments.
+%         --> Ex: 54288
 % -------------------------------------------------------------------------
 % OUTPUTS:
 % - models: Structure specifying the resulting multivariable models for the
@@ -56,11 +57,13 @@ function [models] = featureSelection(X,Y,maxOrder,nBoot,Info,imbalance,batchNum)
 % - Creation - May 2015
 % - Revision I - July 2015: including imbalance-adjusted logistic regression 
 % - Revision II - July 2015: maximizing 0.5*AUC + 0.5*(1-abs(SENSITIVITY-SPECIFICITY))
+% - Revision III - December 2016: Including initial seed as input (optional)
+%                                 for reproducibility of bootstrapping experiments
 %--------------------------------------------------------------------------
 % STATEMENT:
 % This file is part of <https://github.com/mvallieres/radiomics/>, 
 % a package providing MATLAB programming tools for radiomics analysis.
-% --> Copyright (C) 2015  Martin Vallieres
+% --> Copyright (C) 2015-2016  Martin Vallieres
 % --> Copyright 2010, Joseph O. Deasy, on behalf of the DREES development team.
 %
 %    This package is free software: you can redistribute it and/or modify
@@ -106,11 +109,11 @@ function [models] = featureSelection(X,Y,maxOrder,nBoot,Info,imbalance,batchNum)
 
 
 % RANDOM NUMBER GENERATOR SEED
-if ~RandStream.getGlobalStream.Seed
-    rng('shuffle')
-    if nargin == 7
-        % To avoid similar seeds when different batch are started with minimal time delay
-        RandStream.setGlobalStream(RandStream('mt19937ar','seed',RandStream.getGlobalStream.Seed/(batchNum)^3))
+if nargin == 7
+    rng(seed)
+else
+    if ~RandStream.getGlobalStream.Seed
+        rng('shuffle')
     end
 end
 
