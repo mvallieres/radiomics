@@ -47,7 +47,7 @@ function [ROIonlyLloyd,levels] = lloydQuantization(ROIonly,Ng)
 % -------------------------------------------------------------------------
 
 ROIonly = double(ROIonly);
-ROIonly = ROIonly./max(ROIonly(:));
+ROIonly = (ROIonly - min(ROIonly(:)))./(max(ROIonly(:)) - min(ROIonly(:)));
 qmax = max(ROIonly(:));
 qmin = min(ROIonly(:));
 ROIonly(isnan(ROIonly)) = qmax + 1;
