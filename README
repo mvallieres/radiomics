@@ -10,11 +10,15 @@
 --> A package providing MATLAB programming tools for radiomics analysis.
 
 -------------------------------------------------------------------------
-REFERENCE:
+REFERENCES:
 [1] Vallières, M. et al. (2015). A radiomics model from joint FDG-PET and 
     MRI texture features for the prediction of lung metastases in soft-tissue 
     sarcomas of the extremities. Physics in Medicine and Biology, 60(14), 
     5471-5496. doi:10.1088/0031-9155/60/14/5471
+
+[2] Zhou, H., Vallieres, M., Bai, H.X. et al. (2017). MRI features predict
+    survival and molecular markers in diffuse lower-grade gliomas.      
+    Neuro-Oncology, XX(XX), 1-10. doi:10.1093/neuonc/now256
 -------------------------------------------------------------------------
 AUTHOR: Martin Vallières <mart.vallieres@gmail.com>
 -------------------------------------------------------------------------
@@ -60,12 +64,19 @@ This package contains 5 folders:
 5. 'STUDIES': MATLAB codes used for specific studies. To reproduce the 
     experiments of a given study, please see its corresponding folder.
    
-    - 'STSstudy': Ref. [1]. Imaging data and clinical information is 
-       	          available on The Cancer Imaging Archive (TCIA) website 
-                  under the following DOI: 
-		  <http://dx.doi.org/10.7937/K9/TCIA.2015.7GO2GSKS>.
-
- 
+    - 'STS_study': Ref. [1]
+		   A. Imaging data and clinical information is 
+       	              available on The Cancer Imaging Archive (TCIA) website 
+                      under the following DOI: 
+		      <http://dx.doi.org/10.7937/K9/TCIA.2015.7GO2GSKS>.
+    - 'LGG_study': Ref. [2]
+		   A. Texture data ("TEXTURES_TCGA.zip") available
+                      on Google Drive: 
+                      <https://drive.google.com/open?id=0B0fcZCGXT3nZWXM5d0t3OXVjQzA>
+		   B. Imaging data available on the TCIA website:
+		      <http://doi.org/10.7937/K9/TCIA.2016.L4LTD3TK>
+		   C. ROI data: Being uploaded on the TCIA website (26 Jan 2017)	
+ 		      --> Will be available late February 2017.
 
 ***************************************************************************
 ACKNOWLEDGEMENTS: other software code

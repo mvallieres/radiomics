@@ -1,0 +1,189 @@
+Tumor,1p_19q_co_del_status,neoplasm_histologic_grade,ProgFreeSurvEvent01,ProgFreeSurvTime_days,IDH1,IDH/1p19q Subtype,death01,daystolastordeath,,TERT-Promoter,ATRX,CIC,EGFR,PDGFRA,TP53,histological_type,neoplasm_histologic_grade,laterality,tumor_location,gender,age_at_initial_pathologic,cqcf_method_of_sample_procuremen,karnofsky_performance_sco,primary_radiation_therapy,primary_pharma_therapy,IDH/1p19q Subtype,RNASeqCluster,MethylationCluster,miRNACluster,CNCluster,RPPACluster,OncosignCluster,COCCluster
+TCGA-CS-4938,0,G2,0,143,1,2,0,143,,NA,Mutant,wt,wt,wt,Mutant,Astrocytoma,G2,Right,"Supratentorial, Frontal Lobe",FEMALE,31,Gross Total Resection,90,NA,NA,IDHmut-non-codel,R1,M5,mi1,C1,P1,O2,coc1
+TCGA-CS-4941,0,G3,1,9,0,0,1,234,,NA,wt,wt,wt,wt,wt,Astrocytoma,G3,Right,"Supratentorial, Frontal Lobe",MALE,67,Gross Total Resection,90,NO,NA,IDHwt,R2,M4,mi2,C2,NA,O3,coc2
+TCGA-CS-4942,0,G3,1,1184,1,2,1,1335,,NA,Mutant,wt,wt,wt,Mutant,Astrocytoma,G3,Right,"Supratentorial, Frontal Lobe",FEMALE,44,Gross Total Resection,90,NO,NO,IDHmut-non-codel,R1,M5,mi2,C1,P1,O2,coc1
+TCGA-CS-4943,0,G3,0,552,1,2,0,552,,NA,Mutant,wt,wt,wt,Mutant,Astrocytoma,G3,Left,"Supratentorial, Frontal Lobe",MALE,37,Gross Total Resection,50,NA,NO,IDHmut-non-codel,R1,M5,mi2,C1,P2,O2,coc1
+TCGA-CS-4944,0,G2,NA,NA,1,2,0,323,,NA,wt,wt,wt,wt,wt,Astrocytoma,G2,Right,"Supratentorial, Temporal Lobe",MALE,50,Gross Total Resection,90,NA,NA,IDHmut-non-codel,NA,M5,mi2,C1,P2,O1,coc1
+TCGA-CS-5390,1,G2,0,1966,1,1,0,1966,,NA,wt,wt,wt,wt,wt,Oligodendroglioma,G2,Right,"Supratentorial, Parietal Lobe",FEMALE,47,Gross Total Resection,100,YES,NO,IDHmut-codel,R3,M2,mi2,C3,P1,O1,coc3
+TCGA-CS-5393,0,G3,0,1222,1,2,0,1222,,NA,wt,wt,wt,wt,Mutant,Astrocytoma,G3,Left,"Supratentorial, Temporal Lobe",MALE,39,Gross Total Resection,100,NA,NA,IDHmut-non-codel,R4,M5,mi2,C1,P2,O3,coc1
+TCGA-CS-5394,1,G3,NA,NA,1,1,0,3,,NA,wt,Mutant,wt,wt,wt,Astrocytoma,G3,Left,"Supratentorial, Frontal Lobe",MALE,40,Gross Total Resection,NA,NA,NA,IDHmut-codel,R3,M2,mi2,C3,P2,O1,coc3
+TCGA-CS-5395,0,G2,1,287,0,0,1,639,,Mutant,wt,wt,wt,wt,wt,Oligodendroglioma,G2,Right,"Supratentorial, Parietal Lobe",MALE,43,Gross Total Resection,90,YES,NO,IDHwt,R2,M4,mi2,C2,NA,O3,coc2
+TCGA-CS-5396,1,G3,0,303,1,1,0,303,,NA,wt,wt,wt,wt,Mutant,Oligodendroglioma,G3,Right,"Supratentorial, Frontal Lobe",FEMALE,53,Gross Total Resection,90,YES,YES,IDHmut-codel,R3,M3,mi2,C3,P2,O2,coc3
+TCGA-CS-5397,0,G3,1,194,0,0,1,194,,NA,wt,wt,wt,wt,wt,Astrocytoma,G3,Left,"Supratentorial, Temporal Lobe",FEMALE,54,Gross Total Resection,80,YES,YES,IDHwt,NA,M4,mi1,C2,P3,O3,coc2
+TCGA-CS-6186,0,G3,1,188,0,0,1,538,,NA,wt,wt,wt,wt,wt,Oligoastrocytoma,G3,Right,"Supratentorial, Frontal Lobe",MALE,58,Gross Total Resection,90,YES,NO,IDHwt,R2,M4,mi1,C2,P1,O3,coc2
+TCGA-CS-6188,0,G3,1,647,0,0,0,725,,NA,wt,wt,wt,wt,wt,Astrocytoma,G3,Right,"Supratentorial, Temporal Lobe",MALE,48,Gross Total Resection,90,YES,NA,IDHwt,R2,M4,mi3,C2,P3,O3,coc2
+TCGA-CS-6290,0,G3,0,546,1,2,0,546,,NA,wt,wt,wt,wt,Mutant,Astrocytoma,G3,Left,"Supratentorial, Temporal Lobe",MALE,31,Gross Total Resection,90,NA,NA,IDHmut-non-codel,R1,M5,mi2,C1,NA,O2,coc1
+TCGA-CS-6665,0,G3,0,378,1,2,0,378,,NA,wt,wt,wt,wt,Mutant,Astrocytoma,G3,Right,"Supratentorial, Temporal Lobe",FEMALE,51,Gross Total Resection,90,YES,NA,IDHmut-non-codel,R2,M5,mi1,C1,P1,O2,coc1
+TCGA-CS-6666,0,G3,0,258,1,2,0,258,,NA,Mutant,wt,wt,wt,Mutant,Astrocytoma,G3,Right,"Supratentorial, Parietal Lobe",MALE,22,Gross Total Resection,90,NA,NA,IDHmut-non-codel,NA,M5,mi2,C1,P3,O2,coc1
+TCGA-CS-6667,0,G2,0,230,1,2,0,230,,NA,wt,wt,wt,wt,Mutant,Astrocytoma,G2,Left,"Supratentorial, Parietal Lobe",FEMALE,39,Gross Total Resection,90,YES,NA,IDHmut-non-codel,R1,M3,mi1,C1,NA,O2,coc1
+TCGA-CS-6668,1,G2,0,244,1,1,0,244,,Mutant,wt,Mutant,wt,wt,wt,Oligodendroglioma,G2,Left,"Supratentorial, Frontal Lobe",FEMALE,57,Gross Total Resection,90,NA,NA,IDHmut-codel,R3,M2,mi2,C3,P2,O1,coc3
+TCGA-CS-6669,0,G2,0,225,0,0,0,225,,wt,wt,wt,wt,wt,wt,Oligodendroglioma,G2,Right,"Supratentorial, Temporal Lobe",FEMALE,26,Gross Total Resection,90,NA,YES,IDHwt,R4,M1,mi1,C1,P4,O1,coc1
+TCGA-DU-5849,1,G2,0,443,0,1,0,443,,NA,wt,wt,wt,wt,wt,Oligodendroglioma,G2,Left,"Supratentorial, Frontal Lobe",MALE,48,Biopsy Only,NA,NA,YES,IDHmut-codel,R4,M2,mi2,C3,P1,O1,coc3
+TCGA-DU-5851,0,G3,0,531,1,2,0,531,,NA,Mutant,wt,wt,wt,Mutant,Oligoastrocytoma,G3,Right,"Supratentorial, Temporal Lobe",FEMALE,40,Biopsy Only,90,YES,YES,IDHmut-non-codel,R4,M5,mi1,C1,P4,O2,coc1
+TCGA-DU-5852,0,G3,1,24,0,0,1,205,,NA,wt,wt,Mutant,wt,wt,Oligoastrocytoma,G3,Left,"Supratentorial, Temporal Lobe",FEMALE,61,Subtotal Resection,80,NO,NA,IDHwt,R2,M4,mi4,C2,P2,O3,coc2
+TCGA-DU-5853,0,G2,0,407,1,2,0,407,,NA,Mutant,wt,wt,wt,Mutant,Oligoastrocytoma,G2,Left,"Supratentorial, Frontal Lobe",MALE,29,Gross Total Resection,100,YES,YES,IDHmut-non-codel,R1,M5,mi2,C1,P1,O2,coc1
+TCGA-DU-5854,0,G3,1,202,0,0,0,257,,NA,wt,wt,wt,wt,wt,Astrocytoma,G3,Right,"Supratentorial, Frontal Lobe",FEMALE,57,Biopsy Only,90,NA,NA,IDHwt,R2,M4,mi1,C2,P3,O3,coc2
+TCGA-DU-5855,0,G3,0,207,1,2,0,207,,NA,Mutant,wt,wt,wt,Mutant,Oligoastrocytoma,G3,Right,"Supratentorial, Frontal Lobe",FEMALE,49,Subtotal Resection,100,YES,YES,IDHmut-non-codel,R1,M3,mi4,C1,P3,O2,coc1
+TCGA-DU-5871,0,G2,0,576,1,2,0,576,,NA,Mutant,wt,wt,wt,Mutant,Oligoastrocytoma,G2,Left,"Supratentorial, Frontal Lobe",FEMALE,37,Biopsy Only,100,NA,NA,IDHmut-non-codel,R1,M5,mi2,C1,P2,O2,coc1
+TCGA-DU-5872,0,G2,1,265,1,2,0,532,,NA,Mutant,wt,wt,wt,Mutant,Oligoastrocytoma,G2,Left,"Supratentorial, Frontal Lobe",FEMALE,43,Biopsy Only,NA,YES,YES,IDHmut-non-codel,NA,M5,mi4,C1,P2,O2,coc1
+TCGA-DU-5874,1,G2,0,461,1,1,0,461,,Mutant,wt,wt,wt,wt,wt,Oligodendroglioma,G2,Left,"Supratentorial, Frontal Lobe",FEMALE,62,Subtotal Resection,100,NA,YES,IDHmut-codel,R3,M2,mi2,C3,P1,O1,coc3
+TCGA-DU-6395,0,G2,1,1197,1,2,1,1491,,NA,Mutant,wt,wt,wt,Mutant,Oligoastrocytoma,G2,Left,"Supratentorial, Frontal Lobe",MALE,31,Subtotal Resection,NA,NA,NO,IDHmut-non-codel,R1,M5,mi2,C1,P1,O2,coc1
+TCGA-DU-6397,1,G3,1,837,1,1,1,1401,,NA,wt,wt,wt,wt,wt,Oligodendroglioma,G3,Right,"Supratentorial, Temporal Lobe",MALE,45,Subtotal Resection,NA,YES,NO,IDHmut-codel,R3,NA,mi2,C3,P2,O1,coc3
+TCGA-DU-6399,0,G2,1,1629,0,0,1,2000,,NA,Mutant,wt,wt,wt,Mutant,Oligodendroglioma,G2,Right,"Supratentorial, Temporal Lobe",MALE,54,Subtotal Resection,NA,YES,NA,IDHwt,R1,M3,mi2,C1,P2,O2,coc1
+TCGA-DU-6400,1,G2,1,37,1,1,1,37,,NA,wt,Mutant,wt,wt,wt,Oligodendroglioma,G2,Left,"Supratentorial, Temporal Lobe",FEMALE,66,Subtotal Resection,NA,NA,NA,IDHmut-codel,R3,M2,mi2,C3,P2,O1,coc3
+TCGA-DU-6401,0,G2,1,1886,1,2,1,2660,,wt,Mutant,wt,wt,wt,Mutant,Oligodendroglioma,G2,Left,"Supratentorial, Frontal Lobe",FEMALE,31,Subtotal Resection,NA,NO,NO,IDHmut-non-codel,R1,M5,mi2,C1,P2,O2,coc1
+TCGA-DU-6402,0,G3,1,103,0,0,1,214,,NA,wt,wt,wt,wt,wt,Astrocytoma,G3,Right,"Supratentorial, Frontal Lobe",MALE,52,Subtotal Resection,NA,YES,NO,IDHwt,R2,NA,mi3,C2,P3,O3,coc2
+TCGA-DU-6404,0,G3,1,1154,0,0,1,4068,,NA,wt,wt,wt,wt,wt,Oligodendroglioma,G3,Right,"Supratentorial, Frontal Lobe",FEMALE,24,Gross Total Resection,100,NA,NA,IDHwt,R2,M4,mi1,C1,P3,O2,coc2
+TCGA-DU-6405,0,G3,1,486,0,0,1,605,,NA,wt,wt,wt,wt,wt,Astrocytoma,G3,Right,"Supratentorial, Frontal Lobe",FEMALE,51,Subtotal Resection,90,YES,YES,IDHwt,R2,M4,mi1,C2,P3,O3,coc2
+TCGA-DU-6407,0,G2,1,2397,1,2,1,2875,,wt,Mutant,wt,wt,wt,Mutant,Oligodendroglioma,G2,Right,"Supratentorial, Temporal Lobe",FEMALE,35,Subtotal Resection,90,NA,NA,IDHmut-non-codel,R1,M3,mi1,C1,P2,O2,coc1
+TCGA-DU-6408,0,G3,1,2097,1,2,1,3470,,NA,Mutant,wt,wt,wt,Mutant,Oligodendroglioma,G3,Right,"Supratentorial, Frontal Lobe",FEMALE,23,Subtotal Resection,90,NA,NO,IDHmut-non-codel,NA,M5,mi2,C1,P2,O2,coc1
+TCGA-DU-6410,1,G3,0,242,1,1,0,242,,NA,wt,wt,wt,wt,wt,Oligodendroglioma,G3,Midline,"Supratentorial, Frontal Lobe",MALE,56,Subtotal Resection,50,NA,YES,IDHmut-codel,R3,M3,mi4,C3,P2,O1,coc1
+TCGA-DU-6542,0,G3,NA,NA,1,2,0,235,,NA,wt,wt,wt,wt,Mutant,Oligoastrocytoma,G3,Right,"Supratentorial, Temporal Lobe",MALE,25,Subtotal Resection,NA,NA,NA,IDHmut-non-codel,NA,M5,mi2,C1,P2,O2,coc1
+TCGA-DU-7008,0,G2,1,330,1,2,0,4752,,NA,Mutant,wt,wt,wt,Mutant,Oligodendroglioma,G2,Right,"Supratentorial, Frontal Lobe",FEMALE,41,Subtotal Resection,NA,NA,NA,IDHmut-non-codel,R4,M3,mi2,C1,P2,O2,coc1
+TCGA-DU-7010,0,G3,1,193,1,2,1,456,,NA,wt,wt,wt,wt,Mutant,Astrocytoma,G3,Left,"Supratentorial, Frontal Lobe",FEMALE,58,Subtotal Resection,NA,NA,NA,IDHmut-non-codel,R2,M5,mi2,C2,P1,O2,coc2
+TCGA-DU-7013,0,G3,1,187,0,0,1,269,,NA,wt,wt,wt,wt,Mutant,Astrocytoma,G3,Left,"Supratentorial, Temporal Lobe",MALE,59,Subtotal Resection,80,NA,NA,IDHwt,R2,M4,mi3,C2,P3,O2,coc2
+TCGA-DU-7014,0,G2,1,3437,NA,NA,1,3571,,NA,NA,NA,NA,NA,NA,Oligodendroglioma,G2,Right,"Supratentorial, Frontal Lobe",MALE,59,Subtotal Resection,100,NA,NA,NA,R1,M3,mi1,C1,P2,NA,coc1
+TCGA-DU-7015,0,G2,1,591,1,2,0,2761,,NA,Mutant,wt,wt,wt,Mutant,Oligodendroglioma,G2,Right,"Supratentorial, Temporal Lobe",FEMALE,41,Subtotal Resection,90,NA,NA,IDHmut-non-codel,R1,M5,mi2,C1,P2,O2,coc1
+TCGA-DU-7018,1,G3,1,338,1,1,1,933,,NA,wt,Mutant,wt,wt,wt,Oligodendroglioma,G3,Right,"Supratentorial, Frontal Lobe",FEMALE,57,Subtotal Resection,90,NA,NA,IDHmut-codel,R3,M2,mi2,C3,P2,O1,coc3
+TCGA-DU-7019,0,G3,0,800,1,2,0,800,,NA,wt,wt,wt,wt,Mutant,Oligoastrocytoma,G3,Right,"Supratentorial, Temporal Lobe",MALE,39,Subtotal Resection,100,YES,YES,IDHmut-non-codel,NA,M3,mi2,C1,P2,O2,coc1
+TCGA-DU-7294,1,G2,0,2869,1,1,0,2869,,NA,wt,Mutant,wt,wt,wt,Oligodendroglioma,G2,Right,"Supratentorial, Frontal Lobe",FEMALE,53,Subtotal Resection,100,NA,NA,IDHmut-codel,R3,M3,mi2,C3,P1,O1,coc3
+TCGA-DU-7298,0,G3,1,200,1,2,1,576,,NA,Mutant,wt,wt,wt,Mutant,Astrocytoma,G3,Left,"Supratentorial, Temporal Lobe",FEMALE,38,Subtotal Resection,80,NA,NA,IDHmut-non-codel,R4,M3,mi2,C1,P1,O2,coc1
+TCGA-DU-7299,0,G3,1,675,1,2,1,1339,,NA,wt,wt,wt,wt,Mutant,Astrocytoma,G3,Left,"Supratentorial, Parietal Lobe",MALE,33,Subtotal Resection,90,YES,NA,IDHmut-non-codel,NA,M3,mi4,C1,NA,O2,coc1
+TCGA-DU-7300,1,G3,1,317,1,1,1,1886,,NA,wt,wt,wt,wt,Mutant,Oligodendroglioma,G3,Right,"Supratentorial, Frontal Lobe",FEMALE,53,Subtotal Resection,90,NA,NA,IDHmut-codel,R4,M2,mi1,C3,P4,O1,coc3
+TCGA-DU-7301,0,G2,1,366,1,2,1,788,,wt,Mutant,wt,wt,wt,Mutant,Oligodendroglioma,G2,Left,"Supratentorial, Temporal Lobe",MALE,53,Subtotal Resection,100,NA,NA,IDHmut-non-codel,R1,M3,mi2,C1,P3,O2,coc1
+TCGA-DU-7302,1,G3,1,1374,1,1,0,1834,,NA,wt,Mutant,wt,wt,wt,Oligodendroglioma,G3,Left,"Supratentorial, Frontal Lobe",FEMALE,48,Subtotal Resection,90,NA,NA,IDHmut-codel,R4,M2,mi2,C3,P4,O1,coc3
+TCGA-DU-7304,0,G3,1,309,1,2,1,709,,NA,Mutant,wt,wt,wt,Mutant,Oligoastrocytoma,G3,Left,"Supratentorial, Frontal Lobe",MALE,43,Gross Total Resection,80,NA,NA,IDHmut-non-codel,R4,M3,mi1,C1,P1,O2,coc1
+TCGA-DU-7306,0,G2,1,1250,1,2,0,1277,,NA,Mutant,wt,wt,wt,Mutant,Oligoastrocytoma,G2,Right,"Supratentorial, Temporal Lobe",MALE,67,Subtotal Resection,100,YES,YES,IDHmut-non-codel,NA,M3,mi2,C1,P2,O2,coc1
+TCGA-DU-7309,0,G3,0,84,0,2,0,84,,NA,Mutant,wt,wt,wt,Mutant,Oligodendroglioma,G3,Left,"Supratentorial, Frontal Lobe",FEMALE,41,Gross Total Resection,90,NA,NA,IDHmut-non-codel,R4,M3,mi1,C1,P4,O2,coc1
+TCGA-HT-7684,0,G3,0,184,1,2,0,184,,NA,wt,Mutant,wt,wt,wt,Oligoastrocytoma,G2,Right,"Supratentorial, Frontal Lobe",FEMALE,29,Gross Total Resection,NA,NO,NO,IDHmut-codel,R4,M3,mi2,C3,P1,O1,coc3
+TCGA-HT-7681,1,G2,0,1359,0,1,0,1359,,NA,wt,wt,wt,wt,wt,Oligoastrocytoma,G3,Left,"Supratentorial, Frontal Lobe",MALE,58,Gross Total Resection,NA,NA,NA,IDHmut-non-codel,NA,M5,mi1,C3,P2,O1,coc3
+TCGA-HT-7686,0,G3,0,1300,1,2,0,1300,,NA,Mutant,wt,wt,wt,Mutant,Astrocytoma,G3,Left,"Supratentorial, Parietal Lobe",FEMALE,29,Gross Total Resection,NA,YES,YES,IDHmut-non-codel,R2,M5,mi3,C1,P1,O2,coc2
+TCGA-HT-7687,1,G3,NA,NA,1,1,0,3,,NA,wt,wt,wt,wt,wt,Oligodendroglioma,G3,Right,"Supratentorial, Frontal Lobe",MALE,74,Gross Total Resection,NA,NA,NA,IDHmut-codel,R3,M2,mi2,C3,P4,O1,coc3
+TCGA-HT-7688,0,G3,0,964,1,2,0,964,,NA,wt,wt,wt,wt,Mutant,Oligodendroglioma,G3,Left,"Supratentorial, Frontal Lobe",MALE,59,Gross Total Resection,NA,YES,YES,IDHmut-non-codel,R4,M3,mi1,C1,P4,O2,coc1
+TCGA-HT-7689,0,G2,0,455,1,2,0,455,,wt,Mutant,wt,wt,wt,Mutant,Oligodendroglioma,G2,Left,"Supratentorial, Frontal Lobe",FEMALE,58,Gross Total Resection,60,YES,YES,IDHmut-non-codel,R1,M5,mi2,C1,P1,O2,coc1
+TCGA-HT-7690,0,G3,0,3,1,2,0,3,,NA,Mutant,wt,wt,wt,Mutant,Oligoastrocytoma,G3,Right,"Supratentorial, Frontal Lobe",MALE,29,Gross Total Resection,NA,NA,NA,IDHmut-non-codel,R2,M5,mi2,C1,P2,O2,coc1
+TCGA-HT-7691,0,G2,0,3,0,0,0,3,,NA,wt,wt,wt,wt,wt,Astrocytoma,G2,Right,"Supratentorial, Not Otherwise Sp",FEMALE,31,Gross Total Resection,NA,NA,NA,IDHwt,R2,M1,mi1,C1,P1,O1,coc1
+TCGA-HT-7692,1,G2,0,90,1,1,0,90,,NA,wt,wt,wt,wt,wt,Oligoastrocytoma,G2,Left,"Supratentorial, Frontal Lobe",MALE,43,Gross Total Resection,100,YES,NA,IDHmut-codel,R3,M3,mi2,C3,P1,O1,coc3
+TCGA-HT-7693,0,G2,0,533,1,2,0,533,,NA,Mutant,wt,wt,wt,Mutant,Oligodendroglioma,G2,Right,"Supratentorial, Frontal Lobe",FEMALE,51,Gross Total Resection,90,NA,NA,IDHmut-non-codel,R1,M3,mi2,C3,P3,O2,coc3
+TCGA-HT-7694,1,G3,0,210,1,1,0,210,,NA,wt,Mutant,wt,wt,wt,Oligodendroglioma,G3,Right,"Supratentorial, Frontal Lobe",MALE,60,Gross Total Resection,90,YES,NA,IDHmut-codel,R4,M2,mi1,C3,P4,O1,coc3
+TCGA-HT-7695,1,G2,0,442,1,1,0,442,,Mutant,wt,Mutant,wt,wt,wt,Oligodendroglioma,G2,Left,"Supratentorial, Frontal Lobe",FEMALE,29,Gross Total Resection,NA,YES,YES,IDHmut-codel,R4,M3,mi1,C3,P4,O1,coc3
+TCGA-HT-7854,0,G2,1,1147,0,0,0,1201,,NA,wt,wt,wt,wt,wt,Astrocytoma,G2,Left,"Supratentorial, Temporal Lobe",MALE,62,Gross Total Resection,100,NO,NA,IDHwt,R2,M4,mi1,C1,P1,O3,coc2
+TCGA-HT-7855,0,G3,0,585,1,2,0,585,,NA,Mutant,wt,wt,wt,Mutant,Astrocytoma,G3,Left,"Supratentorial, Parietal Lobe",MALE,39,Gross Total Resection,NA,YES,YES,IDHmut-non-codel,R1,M3,mi2,C1,P2,O2,coc1
+TCGA-HT-7856,1,G3,0,1189,0,1,0,1189,,NA,wt,wt,wt,wt,wt,Oligodendroglioma,G3,Left,"Supratentorial, Frontal Lobe",MALE,35,Gross Total Resection,NA,YES,YES,IDHmut-codel,R4,M3,mi1,C3,P4,O1,coc3
+TCGA-HT-7857,0,G3,0,7,0,0,0,7,,NA,wt,wt,wt,wt,wt,Astrocytoma,G3,Left,"Supratentorial, Not Otherwise Sp",FEMALE,24,Gross Total Resection,NA,NA,NA,IDHwt,R2,M4,mi3,C1,P3,O2,coc2
+TCGA-HT-7858,0,G2,0,1540,1,2,0,1540,,NA,Mutant,wt,wt,wt,Mutant,Astrocytoma,G2,Right,"Supratentorial, Frontal Lobe",MALE,28,Gross Total Resection,NA,YES,NA,IDHmut-non-codel,R1,M5,mi1,C1,P1,O2,coc1
+TCGA-HT-7860,0,G3,NA,NA,0,0,0,15,,NA,wt,wt,wt,wt,wt,Astrocytoma,G3,Left,"Supratentorial, Frontal Lobe",FEMALE,60,Gross Total Resection,NA,NA,NA,IDHwt,R2,M4,mi1,C2,P3,O3,coc2
+TCGA-HT-7873,0,G2,0,718,1,2,0,718,,NA,Mutant,wt,wt,wt,Mutant,Oligoastrocytoma,G2,Right,"Supratentorial, Frontal Lobe",MALE,29,Gross Total Resection,NA,YES,NA,IDHmut-non-codel,R1,M5,mi2,C1,P1,O2,coc1
+TCGA-HT-7874,1,G3,0,1130,1,1,0,1130,,NA,wt,wt,wt,wt,wt,Oligodendroglioma,G3,Right,"Supratentorial, Frontal Lobe",FEMALE,41,Gross Total Resection,NA,YES,YES,IDHmut-codel,R4,M3,mi1,C3,P4,O1,coc3
+TCGA-HT-7875,1,G2,0,10,1,1,0,10,,NA,wt,Mutant,wt,wt,wt,Oligodendroglioma,G2,Left,"Supratentorial, Frontal Lobe",MALE,56,Gross Total Resection,80,NA,NA,IDHmut-codel,R4,M3,mi2,C3,P2,O1,coc3
+TCGA-HT-7877,1,G2,0,4,1,1,0,4,,NA,wt,Mutant,wt,wt,wt,Oligodendroglioma,G2,Left,"Supratentorial, Frontal Lobe",FEMALE,20,Gross Total Resection,NA,NA,NA,IDHmut-codel,R4,M3,mi2,C3,P4,O1,coc3
+TCGA-HT-7879,0,G3,0,112,1,2,0,112,,NA,Mutant,wt,wt,wt,Mutant,Oligoastrocytoma,G3,Right,"Supratentorial, Temporal Lobe",MALE,31,Gross Total Resection,NA,YES,YES,IDHmut-non-codel,R1,M5,mi2,C1,P1,O2,coc1
+TCGA-HT-7880,0,G2,0,162,1,2,0,162,,NA,Mutant,wt,wt,wt,Mutant,Oligoastrocytoma,G2,Right,"Supratentorial, Parietal Lobe",MALE,30,Gross Total Resection,NA,NA,NA,IDHmut-non-codel,R4,M5,mi1,C1,P1,O2,coc1
+TCGA-HT-7881,1,G2,0,89,1,1,0,89,,NA,wt,wt,wt,wt,wt,Oligodendroglioma,G2,Left,"Supratentorial, Temporal Lobe",MALE,38,Gross Total Resection,NA,YES,NA,IDHmut-codel,R4,M3,mi1,C3,P1,O1,coc3
+TCGA-HT-7882,0,G3,1,113,0,0,1,113,,NA,wt,wt,wt,Mutant,wt,Oligodendroglioma,G3,Left,"Supratentorial, Frontal Lobe",MALE,66,Gross Total Resection,NA,NA,NA,IDHwt,R2,M4,mi3,C1,P3,O1,coc2
+TCGA-HT-7884,0,G2,0,343,1,2,0,343,,NA,Mutant,wt,wt,wt,Mutant,Astrocytoma,G2,Left,"Supratentorial, Frontal Lobe",FEMALE,44,Gross Total Resection,80,YES,YES,IDHmut-non-codel,NA,M3,mi2,C1,P1,O2,coc1
+TCGA-HT-7902,0,G2,0,956,1,2,0,956,,NA,Mutant,wt,wt,wt,Mutant,Oligoastrocytoma,G2,Right,"Supratentorial, Frontal Lobe",FEMALE,30,Gross Total Resection,NA,NA,NA,IDHmut-non-codel,NA,M5,mi1,C1,P4,O2,coc1
+TCGA-HT-8010,1,G2,0,50,1,1,0,50,,NA,wt,wt,wt,wt,wt,Oligodendroglioma,G2,Right,"Supratentorial, Frontal Lobe",FEMALE,64,Gross Total Resection,NA,NA,NA,IDHmut-codel,R4,M3,mi1,C3,P1,O1,coc3
+TCGA-HT-8011,0,G3,1,278,0,0,0,494,,NA,wt,wt,wt,wt,wt,Astrocytoma,G3,Right,"Supratentorial, Temporal Lobe",MALE,55,Gross Total Resection,NA,YES,YES,IDHwt,R2,M4,mi4,C2,P3,O3,coc2
+TCGA-HT-8012,1,G2,1,133,1,1,0,286,,NA,wt,Mutant,wt,wt,wt,Oligodendroglioma,G2,Right,"Supratentorial, Temporal Lobe",FEMALE,30,Gross Total Resection,NA,NA,NA,IDHmut-codel,R3,M3,mi2,C3,P2,O1,coc3
+TCGA-HT-8013,0,G2,1,1306,1,2,1,1933,,NA,Mutant,wt,wt,wt,Mutant,Oligoastrocytoma,G2,Left,"Supratentorial, Frontal Lobe",FEMALE,37,Gross Total Resection,NA,NO,NO,IDHmut-non-codel,R1,M5,mi1,C1,P1,O2,coc1
+TCGA-HT-8015,0,G2,NA,NA,0,0,0,3,,NA,wt,wt,wt,wt,wt,Astrocytoma,G2,Left,"Supratentorial, Temporal Lobe",MALE,21,Gross Total Resection,NA,NA,NA,IDHwt,R4,M1,mi1,C1,P4,O3,coc1
+TCGA-HT-8018,0,G2,NA,NA,1,2,0,654,,NA,Mutant,wt,wt,wt,Mutant,Oligoastrocytoma,G2,Left,"Supratentorial, Temporal Lobe",FEMALE,40,Gross Total Resection,NA,NA,NA,IDHmut-non-codel,R4,M5,mi1,C1,P4,O2,coc1
+TCGA-HT-8019,0,G3,NA,NA,0,0,0,1004,,NA,wt,wt,wt,wt,wt,Oligodendroglioma,G3,Right,"Supratentorial, Frontal Lobe",FEMALE,34,Gross Total Resection,NA,NA,NA,IDHwt,R4,M1,mi1,C1,P4,O1,coc1
+TCGA-HT-8104,0,G3,NA,NA,0,0,0,372,,NA,wt,wt,Mutant,wt,wt,Astrocytoma,G3,Left,"Supratentorial, Frontal Lobe",FEMALE,51,Gross Total Resection,NA,YES,NA,IDHwt,R2,M4,mi1,C2,P3,O3,coc2
+TCGA-HT-8105,1,G3,0,190,1,1,0,190,,NA,wt,Mutant,wt,wt,Mutant,Oligodendroglioma,G3,Right,"Supratentorial, Frontal Lobe",MALE,54,Gross Total Resection,NA,YES,NA,IDHmut-codel,R3,M2,mi2,C3,P2,O1,coc3
+TCGA-HT-8106,0,G3,0,3,1,2,0,3,,NA,wt,wt,wt,wt,Mutant,Astrocytoma,G3,Midline,"Supratentorial, Frontal Lobe",MALE,53,Gross Total Resection,NA,NA,NA,IDHmut-non-codel,R2,M5,mi3,C1,P2,O2,coc2
+TCGA-HT-8107,0,G2,0,14,0,0,0,14,,NA,wt,wt,Mutant,wt,wt,Oligodendroglioma,G2,Left,"Supratentorial, Parietal Lobe",MALE,62,Gross Total Resection,NA,NA,NA,IDHwt,R4,M1,mi1,C1,P4,O3,coc1
+TCGA-HT-8108,0,G2,0,76,1,2,0,76,,NA,Mutant,wt,wt,wt,Mutant,Oligodendroglioma,G2,Left,"Supratentorial, Parietal Lobe",FEMALE,26,Gross Total Resection,NA,NA,NA,IDHmut-non-codel,R1,M5,mi2,C1,NA,O2,coc1
+TCGA-HT-8109,1,G3,NA,NA,1,1,0,120,,NA,wt,wt,wt,wt,wt,Oligodendroglioma,G3,Right,"Supratentorial, Frontal Lobe",MALE,64,Gross Total Resection,NA,NA,NA,IDHmut-codel,R4,M2,mi1,C3,P4,O1,coc3
+TCGA-HT-8110,0,G3,NA,NA,0,0,0,143,,NA,wt,wt,Mutant,wt,wt,Astrocytoma,G3,Right,"Supratentorial, Parietal Lobe",MALE,57,Gross Total Resection,NA,YES,NA,IDHwt,R2,M4,mi1,C2,P3,O3,coc2
+TCGA-HT-8111,0,G3,NA,NA,1,2,0,7,,NA,wt,wt,wt,wt,Mutant,Oligoastrocytoma,G3,Left,"Supratentorial, Frontal Lobe",MALE,32,Gross Total Resection,NA,NA,NA,IDHmut-non-codel,R1,M5,mi1,C1,P1,O2,coc1
+TCGA-HT-8113,0,G2,0,900,0,2,0,900,,NA,wt,wt,wt,wt,wt,Oligodendroglioma,G2,Left,"Supratentorial, Frontal Lobe",FEMALE,49,Gross Total Resection,NA,YES,YES,IDHmut-non-codel,R4,M3,mi1,C1,P4,O1,coc1
+TCGA-HT-8114,0,G3,0,118,1,2,0,118,,NA,Mutant,wt,wt,wt,Mutant,Oligoastrocytoma,G3,Left,"Supratentorial, Parietal Lobe",MALE,36,Gross Total Resection,NA,YES,YES,IDHmut-non-codel,R1,M5,mi2,C1,P1,O2,coc1
+TCGA-HT-8558,NA,G2,0,52,0,0,0,52,,NA,wt,wt,wt,wt,wt,Oligodendroglioma,G2,Left,"Supratentorial, Temporal Lobe",FEMALE,29,Gross Total Resection,NA,NO,NO,IDHwt,R4,M1,mi1,NA,P4,NA,coc1
+TCGA-HT-8563,0,G3,0,488,1,2,0,488,,NA,Mutant,wt,wt,wt,Mutant,Astrocytoma,G3,Right,"Supratentorial, Frontal Lobe",FEMALE,30,Gross Total Resection,NA,YES,NO,IDHmut-non-codel,R2,M5,mi3,C1,NA,O2,coc2
+TCGA-HT-8564,0,G3,1,120,0,0,0,478,,NA,wt,wt,wt,wt,Mutant,Astrocytoma,G3,Left,"Supratentorial, Temporal Lobe",MALE,47,Gross Total Resection,80,YES,YES,IDHwt,R4,M4,mi4,C1,P4,O2,coc1
+TCGA-HT-A4DS,0,G3,NA,NA,0,0,0,7,,NA,wt,wt,wt,wt,Mutant,Astrocytoma,G3,Right,"Supratentorial, Temporal Lobe",FEMALE,55,Gross Total Resection,NA,NA,NA,IDHwt,R2,M4,mi2,C1,NA,O2,coc2
+TCGA-HT-A4DV,1,G3,0,319,1,1,0,319,,NA,wt,wt,wt,wt,wt,Oligodendroglioma,G3,Left,"Supratentorial, Frontal Lobe",FEMALE,51,Gross Total Resection,90,YES,YES,IDHmut-codel,R4,M3,mi2,C3,P4,O1,coc3
+TCGA-HT-A5R5,0,G2,NA,NA,1,2,0,4,,NA,Mutant,wt,wt,wt,Mutant,Oligodendroglioma,G2,Left,"Supratentorial, Temporal Lobe",FEMALE,33,Gross Total Resection,NA,NA,NA,IDHmut-non-codel,R4,M5,mi2,C1,P1,O2,coc1
+TCGA-HT-A5R7,0,NA,NA,NA,1,2,NA,NA,,NA,Mutant,wt,wt,wt,wt,NA,NA,NA,NA,NA,NA,Gross Total Resection,NA,NA,NA,IDHmut-non-codel,R4,M5,mi2,C1,P1,O2,coc1
+TCGA-HT-A5RA,0,G3,0,447,0,0,0,447,,NA,wt,wt,wt,wt,wt,Astrocytoma,G3,Right,"Supratentorial, Temporal Lobe",FEMALE,65,Gross Total Resection,70,YES,YES,IDHwt,R2,M4,mi2,C2,NA,O3,coc2
+TCGA-HT-A5RB,0,G2,NA,NA,1,2,0,3,,NA,Mutant,wt,wt,wt,Mutant,Astrocytoma,G2,Right,"Supratentorial, Frontal Lobe",MALE,24,Gross Total Resection,NA,NA,NA,IDHmut-non-codel,R4,M5,mi2,C1,P4,O2,coc1
+TCGA-HT-A5RC,0,G3,1,162,0,0,1,162,,NA,wt,wt,Mutant,wt,wt,Astrocytoma,G3,Left,"Supratentorial, Frontal Lobe",FEMALE,70,Gross Total Resection,40,YES,YES,IDHwt,R2,M4,mi2,C2,NA,O3,coc2
+TCGA-HT-A61A,0,G2,NA,NA,1,NA,0,194,,NA,wt,wt,wt,wt,wt,Oligodendroglioma,G2,Left,"Supratentorial, Temporal Lobe",FEMALE,20,Subtotal Resection,80,YES,YES,IDHmut-non-codel,NA,M5,mi2,C1,NA,O2,coc1
+TCGA-HT-A61B,1,G2,0,396,1,2,NA,NA,,NA,wt,wt,wt,wt,Mutant,NA,NA,NA,NA,NA,NA,Gross Total Resection,NA,NA,NA,IDHmut-codel,NA,M3,mi2,C3,NA,O1,coc3
+TCGA-HT-A61C,0,G2,NA,NA,0,0,NA,NA,,NA,wt,wt,Mutant,wt,wt,NA,NA,NA,NA,NA,NA,Gross Total Resection,NA,NA,NA,IDHmut-non-codel,NA,M5,mi2,C1,NA,O2,coc1
+TCGA-HT-A614,0,G2,1,395,1,2,0,82,,NA,Mutant,wt,wt,wt,Mutant,Oligoastrocytoma,G2,Right,"Supratentorial, Not Otherwise Sp",MALE,47,Gross Total Resection,NA,NA,NA,IDHwt,NA,M4,mi2,C2,NA,O3,coc2
+TCGA-HT-A615,0,G3,0,162,1,1,0,396,,NA,wt,wt,wt,wt,wt,Oligodendroglioma,G2,Left,"Supratentorial, Temporal Lobe",FEMALE,38,Gross Total Resection,90,YES,NO,IDHmut-non-codel,NA,M5,mi2,C1,NA,O2,coc1
+TCGA-HT-A616,1,NA,NA,NA,1,2,0,55,,NA,Mutant,wt,wt,wt,wt,Astrocytoma,G2,Left,"Supratentorial, Frontal Lobe",FEMALE,36,Gross Total Resection,NA,NO,NO,IDHmut-codel,NA,M2,mi2,C3,NA,O1,coc3
+TCGA-HT-A617,NA,G2,NA,NA,0,0,0,491,,NA,wt,wt,wt,wt,wt,Oligodendroglioma,G2,Right,"Supratentorial, Not Otherwise Sp",MALE,47,Gross Total Resection,60,NA,NA,NA,NA,M5,mi2,NA,NA,NA,coc1
+TCGA-HT-A618,0,NA,NA,NA,1,2,0,162,,NA,Mutant,wt,wt,wt,Mutant,Astrocytoma,G3,NA,"Supratentorial, Temporal Lobe",FEMALE,37,Gross Total Resection,80,YES,YES,IDHmut-non-codel,NA,M5,mi2,C1,NA,O2,coc1
+TCGA-HT-A619,0,NA,NA,NA,1,1,NA,NA,,NA,wt,Mutant,wt,wt,wt,NA,NA,NA,NA,NA,NA,Gross Total Resection,NA,NA,NA,IDHwt,NA,M4,mi4,C2,NA,O3,coc2
+TCGA-DU-8158,0,G3,NA,NA,0,0,1,155,,NA,wt,wt,Mutant,wt,wt,Astrocytoma,G3,Left,"Supratentorial, Frontal Lobe",FEMALE,57,Subtotal Resection,80,YES,YES,IDHwt,R2,M4,mi4,C2,P3,O3,coc2
+TCGA-DU-8162,0,G3,1,402,0,0,1,444,,NA,wt,wt,Mutant,wt,wt,Oligoastrocytoma,G3,Right,"Supratentorial, Temporal Lobe",FEMALE,61,Subtotal Resection,80,YES,YES,IDHwt,R4,M4,mi1,C1,P4,O3,coc1
+TCGA-DU-8163,0,G3,1,509,1,2,0,629,,NA,Mutant,wt,wt,wt,Mutant,Oligoastrocytoma,G3,Left,"Supratentorial, Temporal Lobe",MALE,29,Subtotal Resection,90,YES,YES,IDHmut-non-codel,R1,M5,mi1,C1,P1,O2,coc1
+TCGA-DU-8164,1,G2,0,651,1,1,0,651,,NA,wt,wt,wt,wt,wt,Oligodendroglioma,G2,Right,"Supratentorial, Frontal Lobe",MALE,51,Subtotal Resection,NA,NA,YES,IDHmut-codel,R4,M2,mi2,C3,P4,O3,coc3
+TCGA-DU-8165,0,G3,0,582,0,0,0,582,,NA,wt,wt,wt,wt,Mutant,Oligodendroglioma,G3,Left,"Supratentorial, Temporal Lobe",FEMALE,60,Subtotal Resection,90,YES,YES,IDHwt,R2,M4,mi3,C2,P3,O2,coc2
+TCGA-DU-8166,0,G2,1,193,1,2,0,516,,NA,Mutant,wt,wt,wt,Mutant,Oligoastrocytoma,G2,Left,"Supratentorial, Frontal Lobe",FEMALE,29,Subtotal Resection,NA,YES,YES,IDHmut-non-codel,R4,M5,mi2,C1,P1,O2,coc1
+TCGA-DU-8167,0,G2,0,471,1,2,0,471,,NA,wt,wt,wt,wt,Mutant,Oligoastrocytoma,G2,Right,"Supratentorial, Frontal Lobe",FEMALE,69,Subtotal Resection,100,YES,NA,IDHmut-non-codel,R1,M3,mi1,C1,P4,O2,coc1
+TCGA-DU-8168,1,G3,0,431,1,1,0,431,,NA,wt,Mutant,wt,wt,wt,Oligodendroglioma,G3,Right,"Supratentorial, Frontal Lobe",FEMALE,55,Gross Total Resection,70,YES,YES,IDHmut-codel,R3,M2,mi2,C3,P4,O1,coc3
+TCGA-DU-A5TP,0,G3,1,203,1,2,0,433,,NA,Mutant,wt,wt,wt,Mutant,Astrocytoma,G3,Right,"Supratentorial, Parietal Lobe",MALE,33,Subtotal Resection,70,YES,YES,IDHmut-non-codel,R2,M5,mi2,C3,P4,O2,coc1
+TCGA-DU-A5TR,0,G2,0,383,1,2,0,383,,NA,Mutant,wt,wt,wt,Mutant,Oligoastrocytoma,G2,Left,"Supratentorial, Temporal Lobe",MALE,51,Biopsy Only,90,YES,YES,IDHmut-non-codel,R2,M3,mi2,C1,P1,O2,coc1
+TCGA-DU-A5TS,0,G2,0,460,1,2,0,460,,NA,Mutant,wt,wt,wt,wt,Oligodendroglioma,G2,Right,"Supratentorial, Frontal Lobe",MALE,42,Subtotal Resection,100,YES,YES,IDHmut-non-codel,NA,M5,mi2,C1,P1,O2,coc1
+TCGA-DU-A5TT,0,G3,0,151,0,0,0,151,,NA,wt,wt,Mutant,wt,wt,Oligodendroglioma,G3,Left,"Supratentorial, Frontal Lobe",MALE,70,Subtotal Resection,NA,YES,YES,IDHwt,R2,M4,mi2,C2,P3,O2,coc2
+TCGA-DU-A5TU,0,G2,NA,NA,1,2,0,111,,NA,Mutant,wt,wt,wt,Mutant,Astrocytoma,G2,Left,"Supratentorial, Frontal Lobe",FEMALE,62,Subtotal Resection,50,NO,NO,IDHmut-non-codel,R2,M3,mi4,C1,P2,O2,coc1
+TCGA-DU-A5TW,0,G3,0,172,1,2,0,172,,NA,Mutant,wt,wt,wt,Mutant,Astrocytoma,G3,Right,"Supratentorial, Frontal Lobe",FEMALE,33,Subtotal Resection,100,NO,NO,IDHmut-non-codel,R1,M5,mi2,C1,P2,O2,coc1
+TCGA-DU-A5TY,0,G3,0,371,0,0,0,371,,NA,wt,wt,Mutant,wt,wt,Astrocytoma,G3,Left,"Supratentorial, Parietal Lobe",FEMALE,46,Subtotal Resection,NA,YES,YES,IDHwt,R2,M4,mi4,C2,P3,O3,coc2
+TCGA-EZ-7264,1,G2,0,436,1,1,0,436,,Mutant,wt,Mutant,wt,wt,wt,Oligodendroglioma,G2,Right,"Supratentorial, Frontal Lobe",FEMALE,47,Gross Total Resection,NA,NA,NA,IDHmut-codel,R3,M3,mi2,C3,P2,O1,coc3
+TCGA-FG-5962,1,G3,0,1453,1,1,0,1453,,NA,wt,Mutant,wt,wt,wt,Oligodendroglioma,G3,Left,"Supratentorial, Occipital Lobe",MALE,54,Subtotal Resection,NA,YES,YES,IDHmut-codel,R4,M2,mi1,C3,P4,NA,coc3
+TCGA-FG-5963,0,G3,1,497,0,0,1,775,,NA,Mutant,wt,wt,wt,Mutant,Astrocytoma,G3,Right,"Supratentorial, Frontal Lobe",MALE,23,Subtotal Resection,90,YES,NO,IDHwt,R2,M1,mi1,C1,P1,NA,coc1
+TCGA-FG-5964,1,G2,0,1045,1,1,0,1045,,NA,wt,Mutant,wt,wt,wt,Oligodendroglioma,G2,Left,"Supratentorial, Parietal Lobe",MALE,62,Subtotal Resection,NA,NO,NA,IDHmut-codel,NA,M3,mi2,C3,P2,NA,coc3
+TCGA-FG-5965,0,G2,1,1035,1,2,1,1120,,NA,Mutant,wt,wt,wt,Mutant,Oligoastrocytoma,G2,Right,"Supratentorial, Frontal Lobe",FEMALE,39,Subtotal Resection,90,YES,NO,IDHmut-non-codel,NA,M5,mi1,C3,P1,NA,coc3
+TCGA-FG-6688,0,G3,1,405,0,0,0,571,,NA,wt,wt,wt,wt,wt,Astrocytoma,G3,Left,"Supratentorial, Parietal Lobe",FEMALE,59,Subtotal Resection,80,YES,NO,IDHwt,R2,M4,mi1,C2,P1,O3,coc2
+TCGA-FG-6689,0,G2,1,218,1,2,0,454,,NA,Mutant,wt,wt,wt,Mutant,Astrocytoma,G2,Right,"Supratentorial, Frontal Lobe",MALE,30,Subtotal Resection,70,NO,NO,IDHmut-non-codel,R4,M5,mi2,C1,P1,O2,coc1
+TCGA-FG-6690,0,G2,0,760,1,2,0,760,,NA,Mutant,wt,wt,wt,Mutant,Oligodendroglioma,G2,Left,"Supratentorial, Frontal Lobe",MALE,70,Subtotal Resection,90,YES,NA,IDHmut-non-codel,R1,M3,mi2,C3,P4,O2,coc3
+TCGA-FG-6691,0,G2,0,729,1,2,0,729,,NA,Mutant,wt,wt,wt,Mutant,Astrocytoma,G2,Right,"Supratentorial, Temporal Lobe",FEMALE,23,Gross Total Resection,100,NA,NA,IDHmut-non-codel,R1,M5,mi2,C1,P3,O2,coc1
+TCGA-FG-6692,0,G3,1,561,0,0,1,561,,NA,wt,wt,Mutant,wt,wt,Oligodendroglioma,G3,Right,"Supratentorial, Frontal Lobe",MALE,63,Subtotal Resection,NA,YES,NO,IDHwt,R2,M4,mi4,C2,NA,O3,coc2
+TCGA-FG-7634,1,G2,0,467,1,1,0,467,,NA,wt,Mutant,wt,wt,wt,Oligodendroglioma,G2,Left,"Supratentorial, Frontal Lobe",MALE,28,Subtotal Resection,NA,NA,NA,IDHmut-codel,NA,M3,mi2,C2,P1,O1,coc3
+TCGA-FG-7637,NA,G2,0,1219,1,NA,0,1219,,NA,wt,wt,wt,wt,wt,Oligoastrocytoma,G2,Right,"Supratentorial, Temporal Lobe",MALE,49,Subtotal Resection,NA,NA,NA,NA,R3,M3,mi2,NA,P2,NA,coc3
+TCGA-FG-7641,1,G2,0,627,1,1,0,627,,NA,wt,Mutant,wt,wt,wt,Oligodendroglioma,G2,Left,"Supratentorial, Frontal Lobe",MALE,31,Gross Total Resection,NA,NA,NA,IDHmut-codel,R4,M3,mi2,C3,P4,O1,coc3
+TCGA-FG-7643,0,G2,1,254,0,0,0,611,,NA,wt,wt,wt,wt,wt,Oligoastrocytoma,G2,Right,"Supratentorial, Frontal Lobe",FEMALE,49,Subtotal Resection,NA,NA,NA,IDHwt,R4,M4,mi1,C2,P4,O1,coc2
+TCGA-FG-8186,1,G3,0,487,1,1,0,487,,NA,wt,wt,wt,wt,wt,Oligoastrocytoma,G3,Right,"Supratentorial, Frontal Lobe",FEMALE,42,Subtotal Resection,70,YES,NA,IDHmut-codel,NA,M3,mi2,C3,P1,O1,coc3
+TCGA-FG-8189,0,G2,0,361,0,2,0,361,,NA,wt,wt,wt,wt,wt,Oligodendroglioma,G2,Right,"Supratentorial, Temporal Lobe",FEMALE,33,Subtotal Resection,70,YES,YES,IDHmut-non-codel,R4,M1,mi2,C1,P4,O1,coc1
+TCGA-FG-A4MT,0,G2,1,499,1,2,0,1164,,NA,Mutant,wt,wt,wt,Mutant,Oligodendroglioma,G2,Left,"Supratentorial, Temporal Lobe",FEMALE,27,Gross Total Resection,100,NO,NO,IDHmut-non-codel,R1,M5,mi2,C1,P2,O2,coc1
+TCGA-FG-A4MU,0,G3,NA,NA,0,0,0,18,,NA,wt,wt,Mutant,wt,wt,Oligoastrocytoma,G3,Right,"Supratentorial, Temporal Lobe",MALE,58,Subtotal Resection,NA,NA,NA,IDHwt,R2,M4,mi3,C2,P3,O3,coc2
+TCGA-FG-A60K,1,G2,0,202,1,1,0,202,,NA,wt,Mutant,wt,wt,wt,Oligoastrocytoma,G2,Right,"Supratentorial, Frontal Lobe",FEMALE,34,Gross Total Resection,NA,NO,NO,IDHmut-codel,NA,M3,mi2,C3,NA,O1,coc3
+TCGA-HT-7467,1,G2,NA,NA,1,1,0,3,,NA,wt,wt,wt,wt,wt,Oligodendroglioma,G2,Right,"Supratentorial, Parietal Lobe",MALE,54,Gross Total Resection,NA,NA,NA,IDHmut-codel,R4,M3,mi1,C3,P4,O1,coc3
+TCGA-HT-7468,1,G3,0,203,1,1,0,203,,NA,wt,Mutant,wt,wt,wt,Oligodendroglioma,G3,Right,"Supratentorial, Parietal Lobe",MALE,30,Gross Total Resection,80,NA,YES,IDHmut-codel,R3,M3,mi2,C3,P1,O1,coc3
+TCGA-HT-7469,0,G3,1,92,0,0,1,351,,NA,Mutant,wt,wt,Mutant,Mutant,Oligodendroglioma,G3,Left,"Supratentorial, Temporal Lobe",MALE,30,Gross Total Resection,NA,YES,YES,IDHwt,R2,M4,mi2,C1,P3,O2,coc2
+TCGA-HT-7470,0,G3,0,268,1,2,0,268,,NA,Mutant,wt,wt,wt,Mutant,Oligodendroglioma,G3,Right,"Supratentorial, Temporal Lobe",MALE,37,Gross Total Resection,90,YES,YES,IDHmut-non-codel,R4,M5,mi1,C1,P4,O2,coc1
+TCGA-HT-7471,1,G3,NA,NA,1,1,0,4,,NA,wt,Mutant,wt,wt,wt,Oligodendroglioma,G3,Left,"Supratentorial, Temporal Lobe",FEMALE,37,Gross Total Resection,NA,NA,NA,IDHmut-codel,R3,M3,mi2,C3,P2,O1,coc3
+TCGA-HT-7472,0,G2,0,1,1,2,0,1,,NA,Mutant,wt,wt,wt,Mutant,Oligodendroglioma,G2,Right,"Supratentorial, Frontal Lobe",MALE,38,Gross Total Resection,NA,NA,NA,IDHmut-non-codel,R1,M5,mi2,C3,P1,O2,coc1
+TCGA-HT-7473,0,G2,0,503,1,2,0,503,,NA,Mutant,wt,wt,wt,Mutant,Oligoastrocytoma,G2,Right,"Supratentorial, Temporal Lobe",MALE,28,Gross Total Resection,NA,NO,NA,IDHmut-non-codel,R1,M5,mi2,C1,P2,O2,coc1
+TCGA-HT-7474,0,G2,0,114,1,2,0,114,,NA,Mutant,wt,wt,wt,Mutant,Oligoastrocytoma,G2,Right,"Supratentorial, Frontal Lobe",MALE,52,Gross Total Resection,NA,NA,NA,IDHmut-non-codel,R4,M5,mi1,C1,P4,O2,coc1
+TCGA-HT-7475,0,G3,0,530,1,2,0,530,,NA,Mutant,wt,wt,wt,Mutant,Oligoastrocytoma,G3,Right,"Supratentorial, Frontal Lobe",MALE,67,Gross Total Resection,70,YES,NO,IDHmut-non-codel,R4,M5,mi2,C1,P4,O2,coc1
+TCGA-HT-7476,0,G2,0,199,0,2,0,199,,NA,Mutant,wt,wt,wt,Mutant,Astrocytoma,G2,Left,"Supratentorial, Temporal Lobe",MALE,26,Gross Total Resection,NA,YES,YES,IDHmut-non-codel,R4,M3,mi1,C1,P2,O2,coc1
+TCGA-HT-7477,0,G3,0,738,1,2,0,738,,NA,Mutant,wt,wt,wt,Mutant,Astrocytoma,G3,Left,"Supratentorial, Frontal Lobe",MALE,62,Gross Total Resection,80,YES,YES,IDHmut-non-codel,R2,M5,mi2,C2,P2,O2,coc2
+TCGA-HT-7478,0,G2,0,194,1,2,0,194,,NA,Mutant,wt,wt,Mutant,Mutant,Astrocytoma,G2,Left,"Supratentorial, Frontal Lobe",MALE,36,Gross Total Resection,NA,YES,NA,IDHmut-non-codel,R2,M5,mi4,C1,P2,O2,coc1
+TCGA-HT-7479,0,G3,0,216,1,2,0,216,,NA,wt,wt,wt,wt,Mutant,Astrocytoma,G3,Right,"Supratentorial, Frontal Lobe",MALE,44,Gross Total Resection,NA,NA,YES,IDHmut-non-codel,R1,M5,mi1,C1,P1,O2,coc1
+TCGA-HT-7480,1,G2,1,1943,1,1,0,2287,,NA,wt,Mutant,wt,wt,wt,Oligodendroglioma,G2,Right,"Supratentorial, Frontal Lobe",MALE,33,Gross Total Resection,NA,YES,YES,IDHmut-codel,R4,M3,mi2,C3,P4,O1,coc3
+TCGA-HT-7481,1,G2,1,880,1,1,0,1800,,NA,wt,wt,wt,wt,wt,Oligodendroglioma,G2,Right,"Supratentorial, Frontal Lobe",MALE,39,Gross Total Resection,NA,NO,NA,IDHmut-codel,R4,M3,mi2,C3,P1,O1,coc3
+TCGA-HT-7482,0,G2,1,374,1,2,0,1826,,NA,Mutant,wt,wt,wt,Mutant,Oligoastrocytoma,G2,Left,"Supratentorial, Frontal Lobe",FEMALE,18,Gross Total Resection,NA,NO,NO,IDHmut-non-codel,R1,M5,mi1,C1,P1,O2,coc1
+TCGA-HT-7483,0,G2,NA,NA,1,2,0,4690,,NA,Mutant,wt,wt,wt,Mutant,Oligoastrocytoma,G2,Right,"Supratentorial, Frontal Lobe",MALE,14,Gross Total Resection,NA,NA,NA,IDHmut-non-codel,R4,M5,mi2,C1,P2,O2,coc1
+TCGA-HT-7485,0,G2,0,122,1,2,0,122,,NA,Mutant,wt,wt,wt,Mutant,Astrocytoma,G2,Right,"Supratentorial, Parietal Lobe",MALE,42,Gross Total Resection,100,NA,NA,IDHmut-non-codel,R1,M5,mi1,C1,P1,O2,coc1
+TCGA-HT-7601,0,G3,0,153,1,2,0,153,,NA,wt,wt,wt,wt,Mutant,Astrocytoma,G3,Left,"Supratentorial, Frontal Lobe",FEMALE,30,Gross Total Resection,NA,YES,YES,IDHmut-non-codel,R2,M5,mi3,C3,P2,O2,coc2
+TCGA-HT-7602,0,G2,NA,NA,1,2,0,908,,wt,wt,wt,wt,wt,Mutant,Oligodendroglioma,G2,Right,"Supratentorial, Frontal Lobe",MALE,21,Gross Total Resection,NA,NA,NA,IDHmut-non-codel,R1,M5,mi1,C1,P1,O2,coc1
+TCGA-HT-7603,0,G2,0,705,1,2,0,705,,NA,Mutant,wt,wt,wt,Mutant,Oligodendroglioma,G2,NA,"Supratentorial, Frontal Lobe",MALE,29,Gross Total Resection,NA,YES,NA,IDHmut-non-codel,R4,M5,mi1,C1,P4,O2,coc1
+TCGA-HT-7604,0,G2,NA,NA,1,2,0,3283,,NA,Mutant,wt,wt,wt,Mutant,Astrocytoma,G2,Left,"Supratentorial, Frontal Lobe",MALE,50,Gross Total Resection,NA,NA,NA,IDHmut-non-codel,R1,M3,mi2,C1,P2,O2,coc1
+TCGA-HT-7605,1,G2,0,139,1,1,0,139,,NA,wt,wt,wt,wt,wt,Oligodendroglioma,G2,Right,"Supratentorial, Frontal Lobe",MALE,38,Gross Total Resection,NA,NA,NA,IDHmut-codel,R4,M3,mi1,C3,P4,O1,coc3
+TCGA-HT-7606,0,G2,0,526,1,2,0,526,,NA,wt,wt,wt,wt,Mutant,Astrocytoma,G2,Left,"Supratentorial, Frontal Lobe",FEMALE,30,Gross Total Resection,NA,YES,YES,IDHmut-non-codel,R1,M5,mi2,C1,P2,O2,coc1
+TCGA-HT-7607,1,G2,1,96,1,1,1,96,,NA,wt,wt,wt,wt,wt,Astrocytoma,G2,Left,"Supratentorial, Frontal Lobe",FEMALE,61,Gross Total Resection,70,NA,NA,IDHmut-codel,R4,M3,mi1,C3,P1,O1,coc3
+TCGA-HT-7608,1,G2,0,671,1,1,0,671,,NA,wt,wt,wt,wt,wt,Oligoastrocytoma,G2,Right,"Supratentorial, Temporal Lobe",MALE,61,Gross Total Resection,NA,NA,NA,IDHmut-codel,NA,NA,mi2,C3,P1,O1,coc3
+TCGA-HT-7609,0,G3,0,1399,1,2,0,1399,,NA,wt,wt,wt,wt,Mutant,Oligoastrocytoma,G3,Right,"Supratentorial, Frontal Lobe",MALE,34,Gross Total Resection,90,YES,YES,IDHmut-non-codel,R1,M5,mi2,C1,P2,O2,coc1
+TCGA-HT-7610,0,G2,1,1205,1,2,0,1706,,NA,Mutant,wt,wt,wt,Mutant,Oligoastrocytoma,G2,Left,"Supratentorial, Temporal Lobe",FEMALE,25,Gross Total Resection,NA,NA,NA,IDHmut-non-codel,R4,M5,mi2,C3,P4,O2,coc1
+TCGA-HT-7611,0,G2,0,1752,1,2,0,1752,,NA,Mutant,wt,wt,wt,Mutant,Oligoastrocytoma,G2,Right,"Supratentorial, Frontal Lobe",MALE,36,Gross Total Resection,90,NO,NO,IDHmut-non-codel,R1,M3,mi2,C1,P1,O2,coc1
+TCGA-HT-7616,1,G3,1,7,1,1,1,7,,NA,wt,Mutant,wt,wt,wt,Oligodendroglioma,G3,Right,"Supratentorial, Frontal Lobe",MALE,75,Gross Total Resection,NA,NA,NA,IDHmut-codel,R3,M2,mi2,C3,P2,O1,coc3
+TCGA-HT-7620,1,G3,1,280,1,1,0,434,,NA,wt,wt,wt,wt,wt,Oligodendroglioma,G3,Left,"Supratentorial, Frontal Lobe",MALE,40,Gross Total Resection,NA,YES,NO,IDHmut-codel,NA,M3,mi1,C3,P1,O1,coc3
+TCGA-HT-7676,0,G2,NA,NA,1,2,0,5,,NA,Mutant,wt,wt,wt,Mutant,Oligodendroglioma,G2,Left,"Supratentorial, Frontal Lobe",MALE,26,Gross Total Resection,NA,NA,NA,IDHmut-non-codel,R1,M5,mi2,C1,P1,O2,coc1
+TCGA-HT-7677,1,G3,0,494,1,1,0,494,,NA,wt,Mutant,wt,wt,wt,Oligodendroglioma,G3,Left,"Supratentorial, Frontal Lobe",MALE,53,Gross Total Resection,NA,YES,YES,IDHmut-codel,R3,M2,mi2,C3,P1,O1,coc3
+TCGA-HT-7680,0,G2,0,23,0,0,0,23,,NA,wt,wt,wt,wt,wt,Astrocytoma,G2,Midline,"Posterior Fossa, Cerebellum",FEMALE,32,Gross Total Resection,NA,NA,NA,IDHwt,R2,M1,mi1,C1,P1,O2,coc1

@@ -1,0 +1,81 @@
+-------------------------------------------------------------------------
+
+|PREDICTION OF TUMOUR OUTCOMES AND MOLECULAR MARKERS IN LOW-GRADE GLIOMAS|
+--> MATLAB codes and example workspace package to reproduce the experiments 
+    of ref. [1].
+
+-------------------------------------------------------------------------
+REFERENCE:                                                                
+[1] Zhou, H., Vallieres, M., Bai, H.X. et al. (2017). MRI features predict
+    survival and molecular markers in diffuse lower-grade gliomas.      
+    Neuro-Oncology, XX(XX), 1-10. doi:10.1093/neuonc/now256               
+-------------------------------------------------------------------------
+AUTHOR: Martin Vallières <mart.vallieres@gmail.com>
+-------------------------------------------------------------------------
+HISTORY:
+- Creation: January 2017
+-------------------------------------------------------------------------
+DISCLAIMER:
+"I'm not a programmer, I'm just a scientist doing stuff!"
+-------------------------------------------------------------------------
+
+
+
+***** PLEASE DO NOT HESITATE TO CONTACT ME IF YOU HAVE ANY QUESTIONS *****
+
+
+
+--> This package (ref. [1] study: /radiomics/STUDIES/LGG_study>)
+    contains 2 folders and 2 files (other than the current README file):
+
+1. 'Functions': MATLAB codes.
+
+2. 'WORKSPACE': Directory where the inputs and outputs of experiments are 
+                saved. It should contain 1 folder and 1 file. 
+       - TCGA_DATA: Folder containing relevant info for the study.
+       - 'masterScript_LGG.m': MATLAB master script to reproduce the 
+          experiments of ref. [1].
+
+3. TCGA_clinical_INFO.csv: Clinical information of patients of ref. [1].
+
+4. TCGA_vasari_INFO.csv: VASARI imaging features of patients of ref. [1].
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% IMPORTANT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ROI masks for the study are currently being uploaded on the TCIA website.
+The complete code to run and extract textures directly from the imaging
+data will be updated in masterScript_LGG.m shortly. In the meantime, please
+download pre-computed textures on Google Drive (see instructions below).
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+INSTRUCTIONS:
+
+1. Download the texture data ("TEXTURES_TCGA.zip") on Google Drive: 
+   https://drive.google.com/open?id=0B0fcZCGXT3nZWXM5d0t3OXVjQzA
+
+2. Extract the downloaded texture file ("TEXTURES_TCGA.zip") and place 
+   the resulting "TEXTURES" folder in ../WORKSPACE/TCGA_DATA
+
+3. Set up the MATLAB path to contain all sub-folders of the folder 
+   'Functions of this study (ref. [1]), and all sub-folders of the folders 
+   'MultivariableModeling', 'NontextureFeatures', 'TextureToolbox' and 
+   'Utilities' of the <https://github.com/mvallieres/radiomics/> package.
+    
+4. Run 'masterScript_LGG.m' in MATLAB from the 'WORKSPACE' folder. Expect 
+   the whole program to run in about 10 hours using an Intel(R) Core(TM)
+   i7-3770K CPU @ 3.50 GHz with 8 cores.
+
+
+
+NOTES:
+
+- Over time, some codes have been improved since the initial creation of 
+  the results of this study (e.g., better ROI and texture definition). 
+  Results may slightly  differ compared to what is found in ref. [1].
+
+- This software code have up to now been tested on a Linux (Ubuntu 14.04) 
+  operating system (OS) using Matlab R2015b only. It is expected to run 
+  fine on any Unix-based OS, but probably not in Windows due to 
+  differences in command line functions. Windows-compatible code is 
+  currently a work in progress.
