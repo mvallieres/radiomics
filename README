@@ -16,9 +16,13 @@ REFERENCES:
     sarcomas of the extremities. Physics in Medicine and Biology, 60(14), 
     5471-5496. doi:10.1088/0031-9155/60/14/5471
 
-[2] Zhou, H., Vallieres, M., Bai, H.X. et al. (2017). MRI features predict
+[2] Zhou, H., Vallières, M., Bai, H.X. et al. (2017). MRI features predict
     survival and molecular markers in diffuse lower-grade gliomas.      
-    Neuro-Oncology, XX(XX), 1-10. doi:10.1093/neuonc/now256
+    Neuro-Oncology, 19(6), 862-870. doi:10.1093/neuonc/now256
+
+[3] Vallière, M. et al. (2017). Radiomics strategies for risk assessment  
+    of tumour failure in head-and-neck cancer. Scientific Reports,
+    7:10117. doi:10.1038/s41598-017-10371-5 
 -------------------------------------------------------------------------
 AUTHOR: Martin Vallières <mart.vallieres@gmail.com>
 -------------------------------------------------------------------------
@@ -65,18 +69,22 @@ This package contains 5 folders:
     experiments of a given study, please see its corresponding folder.
    
     - 'STS_study': Ref. [1]
-		   A. Imaging data and clinical information is 
+		   A. Imaging/ROI data and clinical information is 
        	              available on The Cancer Imaging Archive (TCIA) website 
                       under the following DOI: 
 		      <http://dx.doi.org/10.7937/K9/TCIA.2015.7GO2GSKS>.
     - 'LGG_study': Ref. [2]
-		   A. Texture data ("TEXTURES_TCGA.zip") available
+		   A. Texture data ("TEXTURES_TCGA.zip") is available
                       on Google Drive: 
                       <https://drive.google.com/open?id=0B0fcZCGXT3nZWXM5d0t3OXVjQzA>
-		   B. Imaging data available on the TCIA website:
+		   B. Imaging data is available on the TCIA website:
 		      <http://doi.org/10.7937/K9/TCIA.2016.L4LTD3TK>
-		   C. ROI data: Being uploaded on the TCIA website (26 Jan 2017)	
- 		      --> Will be available late February 2017.
+		   C. ROI data is available on the TCIA website:
+		      <https://doi.org/10.7937/K9/TCIA.2017.BD7SGWCA>
+    - 'HN_study':  Ref. [3]
+		   A. Imaging/ROI data and clinical information is available
+                      on the TCIA website:
+		      <http://doi.org/10.7937/K9/TCIA.2017.8oje5q00>
 
 ***************************************************************************
 ACKNOWLEDGEMENTS: other software code
