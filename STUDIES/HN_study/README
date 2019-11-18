@@ -1,0 +1,16 @@
+-------------------------------------------------------------------------
+REFERENCE:
+[1] Vallières M, Kay-Rivest E, Perrin LJ, Liem X, Furstoss C, Aerts HJWL, Khaouam N, Nguyen-Tan PF, Wang C-S, Sultanem K, Seuntjens J, and El Naqa I. Radiomics strategies for risk assessment of tumour failure in head-and-neck cancer. Scientific Reports, 7:10117 (2017). doi:10.1038/s41598-017-10371-5
+-------------------------------------------------------------------------
+AUTHOR: Martin Vallières <mart.vallieres@gmail.com>
+-------------------------------------------------------------------------
+
+
+** IMPORTANT **
+- Code needs to be cleaned up, work in progress.
+- Some problems will occur while reading the associated DICOM data on TCIA
+  (https://wiki.cancerimagingarchive.net/display/Public/Head-Neck-PET-CT), 
+  since some DICOM information has been modified by TCIA during the transfer.
+  Adapting the code to solve these problems is a work in progress.
+- Final testing of this code is thus a work in progress. Please let me know
+  if you would like to work on the problems stated above: mart.vallieres@gmail.com
